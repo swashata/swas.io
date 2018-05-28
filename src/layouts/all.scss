@@ -1,0 +1,93 @@
+@import '~bulma/sass/utilities/initial-variables';
+
+.content .taglist {
+	list-style: none;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 1.5rem;
+	margin-top: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	align-items: center;
+	li {
+		padding: 0 2rem 1rem 0;
+		margin-bottom: 1.5rem;
+		margin-top: 0;
+	}
+}
+
+// Helper Classes
+.full-width-image-container {
+	width: 100vw;
+	height: 400px;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin: 5em -50vw;
+	background-size: cover;
+	background-position: bottom;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.margin-top-0 {
+	margin-top: 0 !important;
+}
+
+@import '~bulma';
+
+/* Prism JS*/
+/**
+ * Add back the container background-color, border-radius, padding, margin
+ * and overflow that we removed from <pre>.
+ */
+.gatsby-highlight {
+	background-color: #2d2d2d;
+	border-radius: 0.3em;
+	margin: 0.5em 0;
+	padding: 1em;
+	overflow: auto;
+}
+
+/**
+ * Remove the default PrismJS theme background-color, border-radius, margin,
+ * padding and overflow.
+ * 1. Make the element just wide enough to fit its content.
+ * 2. Always fill the visible space in .gatsby-highlight.
+ */
+.gatsby-highlight pre[class*='language-'] {
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	overflow: initial;
+	float: left; /* 1 */
+	min-width: 100%; /* 2 */
+
+	.tag {
+		background-color: transparent;
+		border-radius: 0;
+		display: inline;
+		font-size: inherit;
+		line-height: inherit;
+		height: auto;
+		font-family: inherit;
+		padding: 0;
+		margin: 0;
+	}
+}
+.gatsby-highlight pre[class*='language'],
+.gatsby-highlight code[class*='language'] {
+	font-family: 'Operator Mono SSm', 'Operator Mono', Consolas, Monaco,
+		'Andale Mono', 'Ubuntu Mono', monospace;
+	.token {
+		.attr-name {
+			font-style: italic;
+			color: #f0c775;
+		}
+		.function {
+			font-style: italic;
+		}
+	}
+}
