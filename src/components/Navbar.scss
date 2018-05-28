@@ -1,0 +1,14 @@
+.swas-navbar {
+	position: sticky;
+	top: 0;
+	background: rgba(255, 255, 255, 0.95);
+	-webkit-backdrop-filter: saturate(120%) blur(5px);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	.navbar-brand {
+		font-family: 'Oregano', sans-serif;
+		font-size: 1.5rem;
+	}
+	.navbar-end {
+		font-size: 1.5rem;
+	}
+}
