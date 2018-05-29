@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { kebabCase } from 'lodash';
 
-const BlogCard = ({ excerpt, date, featuredImage, tags, title, slug }) => (
+const BlogCard = ({ excerpt, featuredImage, tags, title, slug }) => (
 	<div className="blog-card card">
 		<header className="card-header">
 			<Link to={slug}>
-				<h2 className="card-header-title">{title}</h2>
+				<h2 className="card-header-title title is-5">{title}</h2>
 			</Link>
 		</header>
 		{featuredImage !== '' &&
@@ -27,7 +27,7 @@ const BlogCard = ({ excerpt, date, featuredImage, tags, title, slug }) => (
 				<p>{excerpt}</p>
 			</div>
 			{tags &&
-				tags.length && (
+				tags.length > 0 && (
 					<div className="blog-card__tags tags">
 						{tags.map(tag => (
 							<Link
@@ -51,7 +51,6 @@ const BlogCard = ({ excerpt, date, featuredImage, tags, title, slug }) => (
 
 BlogCard.propTypes = {
 	excerpt: PropTypes.string.isRequired,
-	date: PropTypes.string.isRequired,
 	featuredImage: PropTypes.string,
 	title: PropTypes.string.isRequired,
 	slug: PropTypes.string.isRequired,

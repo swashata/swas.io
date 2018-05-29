@@ -51,7 +51,32 @@ const TemplateWrapper = ({ data, location, children }) => {
 					</p>
 					<p>
 						Photos are used with permission from{' '}
-						<a href="https://somrajsahu.com/">Somraj Sahu</a>.
+						<a href="https://somrajsahu.com/">Somraj Sahu</a>. Ninja{' '}
+						Icon made by{' '}
+						<a
+							rel="noopener noreferrer nofollow"
+							href="http://www.freepik.com"
+							title="Freepik"
+						>
+							Freepik
+						</a>{' '}
+						from{' '}
+						<a
+							rel="noopener noreferrer nofollow"
+							href="https://www.flaticon.com/"
+							title="Flaticon"
+						>
+							www.flaticon.com
+						</a>{' '}
+						is licensed by{' '}
+						<a
+							href="http://creativecommons.org/licenses/by/3.0/"
+							title="Creative Commons BY 3.0"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							CC 3.0 BY
+						</a>
 					</p>
 				</div>
 			</footer>

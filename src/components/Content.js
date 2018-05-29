@@ -13,6 +13,10 @@ Content.propTypes = {
 	content: PropTypes.string,
 	className: PropTypes.string,
 };
+Content.defaultProps = {
+	content: '',
+	className: null,
+};
 
 HTMLContent.propTypes = Content.propTypes;
 

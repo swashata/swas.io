@@ -2,51 +2,59 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 
+import BlogCard from '../components/BlogCard';
+
 export default class IndexPage extends React.Component {
 	render() {
-		const { data } = this.props;
-		const { edges: posts } = data.allMarkdownRemark;
-
+		const {
+			data: {
+				posts: { edges },
+			},
+		} = this.props;
 		return (
 			<section className="section">
 				<div className="container">
-					<div className="content">
-						<h1 className="has-text-weight-bold is-size-2">
-							Latest Stories
-						</h1>
+					<h2 className="subtitle is-3 home-blog-title">
+						Latest From Blog
+					</h2>
+					<div className="blog-page__cards columns is-desktop is-multiline">
+						{edges.map(item => {
+							const {
+								node: {
+									excerpt,
+									fields: { slug },
+									frontmatter: {
+										date,
+										featured_image: featuredImage,
+										tags,
+										title,
+									},
+									id,
+								},
+							} = item;
+							const cardProps = {
+								excerpt,
+								date,
+								featuredImage,
+								tags,
+								title,
+								slug,
+							};
+							return (
+								<div className="column is-full" key={id}>
+									<BlogCard {...cardProps} />
+								</div>
+							);
+						})}
 					</div>
-					{posts.map(({ node: post }) => (
-						<div
-							className="content"
-							style={{
-								border: '1px solid #eaecee',
-								padding: '2em 4em',
-							}}
-							key={post.id}
+					<div className="home-browse">
+						<Link
+							className="button is-large is-link is-outlined"
+							to="/blog/"
 						>
-							<p>
-								<Link
-									className="has-text-primary"
-									to={post.fields.slug}
-								>
-									{post.frontmatter.title}
-								</Link>
-								<span> &bull; </span>
-								<small>{post.frontmatter.date}</small>
-							</p>
-							<p>
-								{post.excerpt}
-								<br />
-								<br />
-								<Link
-									className="button is-small"
-									to={post.fields.slug}
-								>
-									Keep Reading →
-								</Link>
-							</p>
-						</div>
-					))}
+							BROWSE
+						</Link>
+					</div>
 				</div>
 			</section>
 		);
@@ -55,7 +63,7 @@ export default class IndexPage extends React.Component {
 
 IndexPage.propTypes = {
 	data: PropTypes.shape({
-		allMarkdownRemark: PropTypes.shape({
+		posts: PropTypes.shape({
 			edges: PropTypes.array,
 		}),
 	}).isRequired,
@@ -63,9 +71,10 @@ IndexPage.propTypes = {
 
 export const pageQuery = graphql`
 	query IndexQuery {
-		allMarkdownRemark(
+		posts: allMarkdownRemark(
 			sort: { order: DESC, fields: [frontmatter___date] }
 			filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+			limit: 3
 		) {
 			edges {
 				node {
@@ -78,6 +87,7 @@ export const pageQuery = graphql`
 						title
 						templateKey
 						date(formatString: "MMMM DD, YYYY")
+						tags
 					}
 				}
 			}

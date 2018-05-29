@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const { createPaginationPages } = require('gatsby-pagination');
+const { createPaginationPages, prefixPathFormatter } = require('gatsby-pagination');
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
 	const { createPage } = boundActionCreators;
@@ -58,7 +58,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			edges: blogEdges,
 			component: path.resolve('src/templates/BlogPage.jsx'),
 			limit: 10,
-			pathFormatter: p => (p === 1 ? `/blog/` : `/blog/${p}`),
+			// pathFormatter: p => (p === 1 ? `/blog/` : `/blog/${p}`),
+			pathFormatter: prefixPathFormatter('/blog'),
 			context: {
 				title,
 			},
@@ -83,7 +84,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
 		// Tag pages:
 		let tags = [];
-		// Iterate through each post, putting all found tags into `tags`
 		edges.forEach(edge => {
 			if (_.get(edge, `node.frontmatter.tags`)) {
 				tags = tags.concat(edge.node.frontmatter.tags);

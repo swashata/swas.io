@@ -1,9 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 
 import BlogCard from '../components/BlogCard';
-
-import './BlogPage.scss';
 
 const createPaginationObjects = (length, page, increment = 2) =>
 	Array.from({ length }, (_, i) => ({
@@ -89,16 +88,7 @@ const BlogPage = ({ pathContext }) => {
 		}
 		/* eslint-enable */
 	}
-	// Now take the first item, three items nearby the current one and the last item
-	const newNavItems = [
-		{
-			link: `/blog/`,
-			index: 1,
-			current: page === 1,
-		},
-	];
 
-	console.log(navItems);
 	return (
 		<div className="blog-page">
 			<section className="hero blog-page__hero is-primary">
@@ -134,8 +124,8 @@ const BlogPage = ({ pathContext }) => {
 							slug,
 						};
 						return (
-							<div className="column is-half-desktop is-one-quarter-fullhd">
-								<BlogCard key={id} {...cardProps} />
+							<div className="column is-full" key={id}>
+								<BlogCard {...cardProps} />
 							</div>
 						);
 					})}
@@ -180,6 +170,10 @@ const BlogPage = ({ pathContext }) => {
 			</div>
 		</div>
 	);
+};
+
+BlogPage.propTypes = {
+	pathContext: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default BlogPage;

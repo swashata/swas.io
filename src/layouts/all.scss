@@ -1,8 +1,8 @@
 @import '~bulma/sass/utilities/initial-variables';
 
-$family-sans-serif: 'Source Sans Pro', BlinkMacSystemFont, -apple-system,
-	'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-	'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$family-sans-serif: 'Roboto', BlinkMacSystemFont, -apple-system, 'Segoe UI',
+	'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+	'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 
 .content .taglist {
 	list-style: none;
@@ -94,9 +94,93 @@ $family-sans-serif: 'Source Sans Pro', BlinkMacSystemFont, -apple-system,
 			font-style: italic;
 		}
 	}
+	.number {
+		background-color: transparent;
+		border-radius: 0;
+		display: inline;
+		font-size: inherit;
+		height: auto;
+		margin: 0;
+		min-width: unset;
+		padding: 0;
+		text-align: left;
+		vertical-align: baseline;
+	}
 }
 
+// Accent text
 .text-accent {
 	color: #cb3340;
 	font-family: 'Oregano', sans-serif;
+}
+
+// Home page
+.home-blog-title {
+	font-weight: normal;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.home-browse {
+	text-align: center;
+	a.button {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+}
+
+// Blog pages
+.single {
+	& &__title {
+		font-weight: normal;
+		font-family: 'Oregano', sans-serif;
+		letter-spacing: 2px;
+	}
+	& &__subtitle {
+		font-weight: normal;
+	}
+	& &__post-meta {
+		margin: 1rem 0;
+	}
+}
+.blog-page {
+	&__hero {
+		background: url('../img/blog.jpg') no-repeat scroll center center;
+		background-size: cover;
+		min-height: 200px;
+		.hero-body {
+			display: flex;
+			align-items: center;
+			.title {
+				font-family: Oregano, sans-serif;
+				font-size: 2rem;
+			}
+			.subtitle {
+				font-size: 1rem;
+			}
+		}
+		@media screen and (min-width: 640px) {
+			min-height: 300px;
+			.hero-body {
+				.title {
+					font-size: 6vw;
+				}
+				.subtitle {
+					font-size: 2vw;
+				}
+			}
+		}
+		@media screen and (min-width: 1650px) {
+			.hero-body {
+				.title {
+					font-size: 7rem;
+				}
+				.subtitle {
+					font-size: (2/6 * 7) * 1rem;
+				}
+			}
+		}
+	}
+	&__container {
+		padding: 1.25rem;
+	}
 }

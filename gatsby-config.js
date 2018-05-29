@@ -41,7 +41,7 @@ module.exports = {
 						resolve: `gatsby-remark-prismjs`,
 						options: {
 							classPrefix: 'language-',
-							inlineCodeMarker: '>',
+							inlineCodeMarker: null,
 							aliases: {},
 						},
 					},
@@ -53,7 +53,7 @@ module.exports = {
 			options: {
 				fonts: [
 					'Oregano', // you can also specify font weights and styles
-					'Source+Sans+Pro:300,300i,400,400i,700,700i',
+					'Roboto:300,300i,400,400i,700,700i',
 				],
 			},
 		},

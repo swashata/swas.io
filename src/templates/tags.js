@@ -1,49 +1,83 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
+import BlogCard from '../components/BlogCard';
 
 class TagRoute extends React.Component {
 	render() {
-		const posts = this.props.data.allMarkdownRemark.edges;
-		const postLinks = posts.map(post => (
-			<li key={post.node.fields.slug}>
-				<Link to={post.node.fields.slug}>
-					<h2 className="is-size-2">{post.node.frontmatter.title}</h2>
-				</Link>
-			</li>
-		));
-		const tag = this.props.pathContext.tag;
-		const title = this.props.data.site.siteMetadata.title;
-		const totalCount = this.props.data.allMarkdownRemark.totalCount;
+		const {
+			data: {
+				allMarkdownRemark: { edges: posts, totalCount },
+				site: {
+					siteMetadata: { title },
+				},
+			},
+			pathContext: { tag },
+		} = this.props;
 		const tagHeader = `${totalCount} post${
 			totalCount === 1 ? '' : 's'
 		} tagged with “${tag}”`;
 
 		return (
-			<section className="section">
+			<div className="blog-page">
 				<Helmet title={`${tag} | ${title}`} />
-				<div className="container content">
-					<div className="columns">
-						<div
-							className="column is-10 is-offset-1"
-							style={{ marginBottom: '6rem' }}
-						>
-							<h3 className="title is-size-4 is-bold-light">
-								{tagHeader}
-							</h3>
-							<ul className="taglist">{postLinks}</ul>
-							<p>
-								<Link to="/tags/">Browse all tags</Link>
-							</p>
+				<section className="hero blog-page__hero is-primary">
+					<div className="hero-body">
+						<div className="container">
+							<h1 className="title is-1">{tagHeader}</h1>
+							<h2 className="subtitle is-4">{title}</h2>
 						</div>
 					</div>
+				</section>
+				<div className="container blog-page__container">
+					<div className="blog-page__cards columns is-desktop is-multiline">
+						{posts.map(item => {
+							const {
+								node: {
+									excerpt,
+									fields: { slug },
+									frontmatter: {
+										featured_image: featuredImage,
+										tags,
+										title, // eslint-disable-line no-shadow
+									},
+									id,
+								},
+							} = item;
+							const cardProps = {
+								excerpt,
+								featuredImage,
+								tags,
+								title,
+								slug,
+							};
+							return (
+								<div className="column is-full" key={id}>
+									<BlogCard {...cardProps} />
+								</div>
+							);
+						})}
+					</div>
 				</div>
-			</section>
+				<div className="home-browse">
+					<Link
+						className="button is-large is-link is-outlined"
+						to="/tags/"
+					>
+						Browse all tags
+					</Link>
+				</div>
+			</div>
 		);
 	}
 }
 
 export default TagRoute;
+TagRoute.propTypes = {
+	data: PropTypes.objectOf(PropTypes.any).isRequired,
+	pathContext: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export const tagPageQuery = graphql`
 	query TagPage($tag: String) {
@@ -64,8 +98,13 @@ export const tagPageQuery = graphql`
 						slug
 					}
 					frontmatter {
+						tags
+						templateKey
 						title
+						featured_image
 					}
+					excerpt
+					id
 				}
 			}
 		}

@@ -33,6 +33,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
     "react-helmet": "^5.2.0",
+    "reading-time": "^1.1.1",
     "uuid": "^3.2.1"
   },
   "keywords": [
