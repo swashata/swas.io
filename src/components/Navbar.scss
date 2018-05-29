@@ -1,4 +1,4 @@
-.swas-navbar {
+.swas-navbar.navbar {
 	position: sticky;
 	top: 0;
 	background: rgba(255, 255, 255, 0.95);
@@ -7,6 +7,12 @@
 	.navbar-brand {
 		font-family: 'Oregano', sans-serif;
 		font-size: 1.5rem;
+		.navbar-item {
+			color: #cb3340;
+			&:hover {
+				color: darken(#cb3340, 10);
+			}
+		}
 	}
 	.navbar-end {
 		font-size: 1.5rem;

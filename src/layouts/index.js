@@ -9,9 +9,9 @@ import Hero from '../components/Hero';
 import './all.scss';
 
 const TemplateWrapper = ({ data, location, children }) => {
-	console.log(location);
+	let content;
 	if (location.pathname === '/') {
-		return (
+		content = (
 			<div className="home-page">
 				<Helmet title={data.site.siteMetadata.title} />
 				<Hero data={data} />
@@ -19,13 +19,43 @@ const TemplateWrapper = ({ data, location, children }) => {
 				<div className="home-page__blog">{children()}</div>
 			</div>
 		);
+	} else {
+		content = (
+			<div className="non-home-page">
+				<Helmet title={data.site.siteMetadata.title} />
+				<Navbar />
+				<div>{children()}</div>
+			</div>
+		);
 	}
 	return (
-		<div>
-			<Helmet title={data.site.siteMetadata.title} />
-			<Navbar />
-			<div>{children()}</div>
-		</div>
+		<React.Fragment>
+			{content}
+			<footer className="footer">
+				<div className="content has-text-centered">
+					<p>
+						Made with{' '}
+						<span role="img" aria-label="love">
+							❤️
+						</span>{' '}
+						by <span className="text-accent">Swashata Ghosh</span>{' '}
+						with <a href="https://www.gatsbyjs.org/">Gatbsy</a> and{' '}
+						<a href="https://www.netlify.com/">Netlify</a>. The
+						source code is licensed{' '}
+						<a href="http://opensource.org/licenses/mit-license.php">
+							MIT
+						</a>. The website content is licensed{' '}
+						<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+							CC BY NC SA 4.0
+						</a>.
+					</p>
+					<p>
+						Photos are used with permission from{' '}
+						<a href="https://somrajsahu.com/">Somraj Sahu</a>.
+					</p>
+				</div>
+			</footer>
+		</React.Fragment>
 	);
 };
 

@@ -24,24 +24,23 @@ export const BlogPostTemplate = ({
 						<h1 className="title is-size-2 has-text-weight-bold is-bold-light">
 							{title}
 						</h1>
-						<p>{description}</p>
-						<PostContent content={content} />
 						{tags && tags.length ? (
-							<div style={{ marginTop: `4rem` }}>
-								<h4>Tags</h4>
-								<ul className="taglist">
+							<div style={{ margin: `1rem 0` }}>
+								<div className="tags">
 									{tags.map(tag => (
-										<li key={`${tag}tag`}>
-											<Link
-												to={`/tags/${kebabCase(tag)}/`}
-											>
-												{tag}
-											</Link>
-										</li>
+										<Link
+											to={`/tags/${kebabCase(tag)}/`}
+											className="tag is-link"
+											key={tag}
+										>
+											{tag}
+										</Link>
 									))}
-								</ul>
+								</div>
 							</div>
 						) : null}
+						<p>{description}</p>
+						<PostContent content={content} />
 					</div>
 				</div>
 			</div>
@@ -59,7 +58,7 @@ BlogPostTemplate.propTypes = {
 
 const BlogPost = ({ data }) => {
 	const { markdownRemark: post } = data;
-
+	console.log(data);
 	return (
 		<BlogPostTemplate
 			content={post.html}
