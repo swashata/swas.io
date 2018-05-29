@@ -5,12 +5,12 @@ title: "Linode Private Networking with GitLab & GitLab Runner"
 date: 2017-09-16T18:18:01+05:30
 tags: [ "GitLab", "Linode", "Networking" ]
 ---
-![GitLab CI/CD](/blog-images/1/gitlab-ci-cd.png)
+![GitLab CI/CD](/img/gitlab-ci-cd.png)
 
 So I have this 3 servers running for my complete GitLab setup with automated CI/CD
 and code analysis with SonarQube. (*About which I will surely write*).
 
-![GitLab CI/CD](/blog-images/1/linode-instances.png)
+![GitLab CI/CD](/img/linode-instances.png)
 
 One thing I wanted to take advantage of was Linode's Private Networking for
 faster communication between my GitLab and GitLab Runner. Do note that I assume
@@ -78,7 +78,7 @@ sudo gitlab-ctl reconfigure
 
 --------------------------------------------------------------------------------
 
-![GitLab CI/CD](/blog-images/1/gitlab-runner.png)
+![GitLab CI/CD](/img/gitlab-runner.png)
 
 That's it. Now enjoy while your runners will communicate faster.
 

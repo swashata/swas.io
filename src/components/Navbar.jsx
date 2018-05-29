@@ -45,6 +45,9 @@ class Navbar extends React.PureComponent {
 					</div>
 					<div className={menuClass}>
 						<div className="navbar-start">
+							<Link className="navbar-item" to="/">
+								Home
+							</Link>
 							<Link className="navbar-item" to="/blog/">
 								Blog
 							</Link>
@@ -64,6 +67,18 @@ class Navbar extends React.PureComponent {
 							>
 								<span className="icon">
 									<FontAwesomeIcon icon={['fab', 'github']} />
+								</span>
+							</a>
+							<a
+								href="https://twitter.com/swashata"
+								className="navbar-item"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<span className="icon">
+									<FontAwesomeIcon
+										icon={['fab', 'twitter']}
+									/>
 								</span>
 							</a>
 						</div>

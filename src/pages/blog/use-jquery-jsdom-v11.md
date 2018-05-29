@@ -90,6 +90,6 @@ const inputElement = $( '#fiptest' );
 console.log( inputElement.length );
 ```
 
-![jQuery JSDOM v11 Output](blog-images/use-jquery-jsdom-v11/jsdom-jquery-output.png)
+![jQuery JSDOM v11 Output](/img/jsdom-jquery-output.png)
 
 Now it ran correctly.
