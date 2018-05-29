@@ -12,23 +12,23 @@ const Hero = props => {
 			},
 		},
 	} = props;
-	console.log(author, socials, taglines);
 	return (
 		<div className="swas-hero">
 			<div className="swas-hero__title">
-				<h1 className="swas-hero__author">{author}</h1>
-				<h2 className="swas-hero__tagline">{taglines.join(' ')}</h2>
-				<div className="swas-hero__socials">
-					{Object.keys(socials).map(s => (
-						<a
-							className="swas-hero__social"
-							key={s}
-							href={socials[s]}
-						>
-							<FontAwesomeIcon icon={['fab', s]} />
-						</a>
-					))}
-				</div>
+				<h1 className="swas-hero__author title">{author}</h1>
+				<h2
+					className="swas-hero__tagline subtitle"
+					dangerouslySetInnerHTML={{
+						__html: taglines.join(' - '),
+					}}
+				/>
+			</div>
+			<div className="swas-hero__socials">
+				{Object.keys(socials).map(s => (
+					<a className="swas-hero__social" key={s} href={socials[s]}>
+						<FontAwesomeIcon icon={['fab', s]} />
+					</a>
+				))}
 			</div>
 		</div>
 	);

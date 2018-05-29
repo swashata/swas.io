@@ -8,9 +8,10 @@ module.exports = {
 			linkedin: 'https://www.linkedin.com/in/swashata/',
 		},
 		taglines: [
-			'🤠 Founder @ WPQuark',
-			'😎 React, Node, WordPress',
-			'❤️ Scooby & Shelly',
+			'Founder <a href="https://wpquark.com">@WPQuark</a>',
+			'Created <a href="https://eform.live">eForm</a>',
+			'React, Node, WordPress',
+			'❤️s Scooby & Shelly',
 		],
 	},
 	plugins: [
@@ -54,6 +55,24 @@ module.exports = {
 					'Oregano', // you can also specify font weights and styles
 					'Source+Sans+Pro:300,300i,400,400i,700,700i',
 				],
+			},
+		},
+		{
+			resolve: `gatsby-plugin-favicon`,
+			options: {
+				logo: './src/img/ninja.png',
+				injectHTML: true,
+				icons: {
+					android: true,
+					appleIcon: true,
+					appleStartup: true,
+					coast: false,
+					favicons: true,
+					firefox: true,
+					twitter: false,
+					yandex: false,
+					windows: false,
+				},
 			},
 		},
 		{
