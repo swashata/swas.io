@@ -8,9 +8,7 @@ const ProjectItem = ({ entry, widgetFor, getAsset }) => {
 		html: widgetFor('body'),
 		title: entry.getIn(['data', 'title']),
 		subtitle: entry.getIn(['data', 'subtitle']),
-		featuredImage: getAsset(
-			entry.getIn(['data', 'featured_image'])
-		).toString(),
+		featuredImage: getAsset(entry.getIn(['data', 'featured_image'])),
 		link: entry.getIn(['data', 'link']),
 	};
 	return <ProjectList {...props} />;
