@@ -59,6 +59,12 @@ module.exports = {
 							aliases: {},
 						},
 					},
+					{
+						resolve: 'gatsby-remark-images',
+						options: {
+							maxWidth: 1344,
+						},
+					},
 				],
 			},
 		},
@@ -100,6 +106,19 @@ module.exports = {
 				exclude: ['/preview/**', '/do-not-track/me/too/'],
 			},
 		},
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: "Swas.io - Swashata's Personal Blog",
+				short_name: 'Swas.io',
+				start_url: '/',
+				background_color: '#D1C4E9',
+				theme_color: '#EDE7F6',
+				display: 'standalone',
+				icon: 'src/img/ninja.png', // This path is relative to the root of the site.
+			},
+		},
+		'gatsby-plugin-offline',
 		{
 			resolve: 'gatsby-plugin-netlify-cms',
 			options: {

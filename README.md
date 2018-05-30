@@ -1,33 +1,34 @@
-# Gatsby + Netlify CMS Starter
+# Swas.io - Swashata's Personal Blog
 
-This repo contains an example business website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org): **[Demo Link](https://gatsby-netlify-cms.netlify.com/)**.
+Hey there 🎉🎉. This is my personal blog built with the awesome [Gatsby](https://www.gatsbyjs.org/).
 
-It follows the [JAMstack architecture](https://jamstack.org) by using Git as a single source of truth, and [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
+Here I write about things I like and stuff I have learnt. Please feel free to
+browse.
 
-## Prerequisites
+<p align="center">
+	<a href="https://swas.io">Swas.io</a>
+</p>
 
-- Node (I recommend using v8.2.0 or higher)
-- [Gatsby CLI](https://www.gatsbyjs.org/docs/)
+If you are curious, I have started with the [netlify-cms gatsby starter](https://github.com/AustinGreen/gatsby-starter-netlify-cms) and
+hacked my way into building the site.
 
-## Getting Started (Recommended)
+* Connection with [netlifycms](https://www.netlifycms.org/).
+* Paginated Blog and Posts with [gatsby-pagination](https://github.com/infinitedescent/gatsby-pagination).
+* Structured Projects with ordering 💪.
 
-Netlify CMS can run in any frontend web environment, but the quickest way to try it out is by running it on a pre-configured starter site with Netlify. The example here is the Kaldi coffee company template (adapted from [One Click Hugo CMS](https://github.com/netlify-templates/one-click-hugo-cms)). Use the button below to build and deploy your own copy of the repository:
-
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/AustinGreen/gatsby-starter-netlify-cms&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
-
-After clicking that button, you’ll authenticate with GitHub and choose a repository name. Netlify will then automatically create a repository in your GitHub account with a copy of the files from the template. Next, it will build and deploy the new site on Netlify, bringing you to the site dashboard when the build is complete. Next, you’ll need to set up Netlify’s Identity service to authorize users to log in to the CMS.
+and many a things. Fork away 😎.
 
 ### Access Locally
 ```
 $ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
 $ cd [REPO_NAME]
-$ yarn
-$ npm run develop
+$ yarn install
+$ yarn develop
 ```
 To test the CMS locally, you'll need run a production build of the site:
 ```
-$ npm run build
-$ npm run serve
+$ yarn build
+$ yarn serve
 ```
 
 ## Getting Started (Without Netlify)
