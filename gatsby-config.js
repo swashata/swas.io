@@ -53,6 +53,15 @@ module.exports = {
 			options: {
 				plugins: [
 					{
+						resolve: 'gatsby-remark-embed-video',
+						options: {
+							width: 800,
+							ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
+							height: 400, // Optional: Overrides optional.ratio
+							related: false, // Optional: Will remove related videos from the end of an embedded YouTube video.
+						},
+					},
+					{
 						resolve: `gatsby-remark-prismjs`,
 						options: {
 							classPrefix: 'language-',
@@ -66,15 +75,6 @@ module.exports = {
 						options: {
 							maxWidth: 1344,
 							linkImagesToOriginal: true,
-						},
-					},
-					{
-						resolve: 'gatsby-remark-embed-video',
-						options: {
-							width: 800,
-							ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
-							height: 400, // Optional: Overrides optional.ratio
-							related: false, // Optional: Will remove related videos from the end of an embedded YouTube video.
 						},
 					},
 				],
