@@ -8,6 +8,7 @@ module.exports = {
 		twitterHandle: '@swashata',
 		author: 'Swashata Ghosh',
 		url: 'https://swas.io',
+		siteUrl: 'https://swas.io',
 		socials: {
 			twitter: 'https://twitter.com/swashata',
 			github: 'https://github.com/swashata',
@@ -24,6 +25,12 @@ module.exports = {
 	plugins: [
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-sass',
+		{
+			resolve: 'gatsby-plugin-sitemap',
+			options: {
+				exclude: ['/project/*', '/tags/*'],
+			},
+		},
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {

@@ -28,7 +28,7 @@ const BlogPost = ({ entry, widgetFor, getAsset }) => {
 		title: entry.getIn(['data', 'title']),
 		tags: [],
 		date,
-		hero: getAsset(entry.getIn(['data', 'hero_image'])),
+		hero: getAsset(entry.getIn(['data', 'hero_image'])).toString(),
 	};
 	return <BlogPostTemplate {...props} />;
 };
