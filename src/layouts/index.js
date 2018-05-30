@@ -29,7 +29,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 			<meta name="MobileOptimized" content="320" />
 			<meta name="referrer" content="no-referrer-when-downgrade" />
 			<meta name="generator" content="gatsbyjs" />
-			<meta name="theme-color" content="#EDE7F6" />
+			<meta name="theme-color" content="#E1F5FE" />
 
 			<title>{title}</title>
 
