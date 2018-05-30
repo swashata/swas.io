@@ -128,9 +128,10 @@ code[class*='language-'] {
 .home-browse {
 	text-align: center;
 	a.button {
-		padding-left: 3rem;
-		padding-right: 3rem;
+		width: 480px;
 	}
+	margin-bottom: 4rem;
+	margin-top: 4rem;
 }
 
 // Blog pages

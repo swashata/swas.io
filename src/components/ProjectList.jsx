@@ -15,10 +15,16 @@ const ProjectList = ({ title, subtitle, featuredImage, link, html }) => (
 				<h2 className="title is-4">{title}</h2>
 				<h3 className="subtitle is-6">{subtitle}</h3>
 			</div>
-			<div
-				className="content project-list__text has-text-justified"
-				dangerouslySetInnerHTML={{ __html: html }}
-			/>
+			{typeof html === 'string' ? (
+				<div
+					className="content project-list__text has-text-justified"
+					dangerouslySetInnerHTML={{ __html: html }}
+				/>
+			) : (
+				<div className="content project-list__text has-text-justified">
+					{html}
+				</div>
+			)}
 			<div className="project-list__link">
 				<a
 					href={link}
@@ -38,7 +44,7 @@ ProjectList.propTypes = {
 	subtitle: PropTypes.string.isRequired,
 	featuredImage: PropTypes.string.isRequired,
 	link: PropTypes.string.isRequired,
-	html: PropTypes.string.isRequired,
+	html: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 };
 
 export default ProjectList;

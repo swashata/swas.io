@@ -49,7 +49,7 @@ export default class IndexPage extends React.Component {
 					</div>
 					<div className="home-browse">
 						<Link
-							className="button is-large is-link is-outlined"
+							className="button is-large is-link is-outlined is-rounded"
 							to="/projects/"
 						>
 							MORE PROJECTS
@@ -90,7 +90,7 @@ export default class IndexPage extends React.Component {
 					</div>
 					<div className="home-browse">
 						<Link
-							className="button is-large is-link is-outlined"
+							className="button is-large is-link is-outlined is-rounded"
 							to="/blog/"
 						>
 							BROWSE

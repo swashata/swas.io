@@ -39,6 +39,7 @@ BlogPost.propTypes = {
 		getAsset: PropTypes.func,
 	}).isRequired,
 	widgetFor: PropTypes.func.isRequired,
+	getAsset: PropTypes.func.isRequired,
 };
 
 export default BlogPost;
