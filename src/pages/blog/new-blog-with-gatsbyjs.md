@@ -3,8 +3,8 @@ templateKey: blog-post
 title: New Blog with Gatsbyjs
 date: '2018-05-30T21:32:55+05:30'
 description: >-
-  New blog finally created with gatsbyjs. Here are some information if you are
-  trying out.
+  New blog finally created with gatsbyjs. Just trying out how things are with
+  the new system.
 tags:
   - General
 ---
@@ -26,4 +26,6 @@ This post is just to try out some things.
 
 This is uploaded from the netlify cms.
 
-![null]()
+![just something](/img/carbon.png)
+
+And that's all. Hope these things work.
