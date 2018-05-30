@@ -25,9 +25,9 @@ class TagRoute extends React.Component {
 				title={`${shortTitle} – ${tag}`}
 				subtitle={tagHeader}
 				footer={
-					<div className="has-text-centered">
+					<div className="home-browse">
 						<Link
-							className="button is-large is-link is-outlined"
+							className="button is-large is-link is-outlined is-rounded"
 							to="/tags/"
 						>
 							Browse all tags

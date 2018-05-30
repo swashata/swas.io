@@ -1,0 +1,37 @@
+.blog-card {
+	margin: 1rem 0;
+	padding: 1rem 2rem;
+	border-left: 4px solid rgba(0, 0, 0, 0.05);
+
+	& &__header {
+		margin: 0 0 1rem 0;
+		padding: 0 0 1rem 0;
+		border-bottom: 4px solid rgba(0, 0, 0, 0.05);
+
+		.title {
+			text-transform: uppercase;
+			font-weight: normal;
+			a {
+				color: inherit;
+			}
+		}
+		.subtitle {
+			text-transform: uppercase;
+			font-weight: 300;
+			.tag {
+				margin: 0 0.5rem;
+			}
+		}
+	}
+
+	& &__content {
+		margin: 0 0 2rem 0;
+	}
+	& &__footer {
+		// margin: 0 0 1rem 0;
+		a {
+			padding-left: 5rem;
+			padding-right: 5rem;
+		}
+	}
+}

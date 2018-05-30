@@ -93,7 +93,7 @@ export default class IndexPage extends React.Component {
 							className="button is-large is-link is-outlined is-rounded"
 							to="/blog/"
 						>
-							BROWSE
+							BROWSE ALL
 						</Link>
 					</div>
 				</div>
@@ -129,6 +129,7 @@ export const pageQuery = graphql`
 						templateKey
 						date(formatString: "MMMM DD, YYYY")
 						tags
+						featured_image
 					}
 				}
 			}

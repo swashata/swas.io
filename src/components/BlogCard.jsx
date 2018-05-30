@@ -5,16 +5,30 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { kebabCase } from 'lodash';
 
-const BlogCard = ({ excerpt, featuredImage, tags, title, slug }) => (
-	<div className="blog-card card">
-		<header className="card-header">
-			<Link to={slug}>
-				<h2 className="card-header-title title is-5">{title}</h2>
-			</Link>
+import './BlogCard.scss';
+
+const BlogCard = ({ excerpt, featuredImage, tags, title, slug, date }) => (
+	<div className="blog-card">
+		<header className="blog-card__header">
+			<h2 className="title is-4">
+				<Link to={slug}>{title}</Link>
+			</h2>
+			<p className="subtitle is-6">
+				{`on ${date} under`}
+				{tags.map(tag => (
+					<Link
+						to={`/tags/${kebabCase(tag)}/`}
+						className="tag"
+						key={tag}
+					>
+						{tag}
+					</Link>
+				))}
+			</p>
 		</header>
 		{featuredImage !== '' &&
 			featuredImage != null && (
-				<div className="card-image">
+				<div className="blog-card__featured-image">
 					<figure className="image is-fullwidth">
 						<Link to={slug}>
 							<img src={featuredImage} alt={title} />
@@ -22,27 +36,13 @@ const BlogCard = ({ excerpt, featuredImage, tags, title, slug }) => (
 					</figure>
 				</div>
 			)}
-		<div className="card-content">
-			<div className="content">
+		<div className="blog-card__content">
+			<div className="content has-text-justified">
 				<p>{excerpt}</p>
 			</div>
-			{tags &&
-				tags.length > 0 && (
-					<div className="blog-card__tags tags">
-						{tags.map(tag => (
-							<Link
-								to={`/tags/${kebabCase(tag)}/`}
-								className="tag is-link"
-								key={tag}
-							>
-								{tag}
-							</Link>
-						))}
-					</div>
-				)}
 		</div>
-		<footer className="card-footer">
-			<Link to={slug} className="card-footer-item">
+		<footer className="blog-card__footer">
+			<Link to={slug} className="button is-outlined is-rounded">
 				READ MORE
 			</Link>
 		</footer>
@@ -55,6 +55,7 @@ BlogCard.propTypes = {
 	title: PropTypes.string.isRequired,
 	slug: PropTypes.string.isRequired,
 	tags: PropTypes.arrayOf(PropTypes.string),
+	date: PropTypes.string.isRequired,
 };
 BlogCard.defaultProps = {
 	featuredImage: null,

@@ -31,10 +31,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 							tags
 							templateKey
 							title
-							date
+							date(formatString: "MMMM DD, YYYY")
 							featured_image
 						}
-						excerpt
+						excerpt(pruneLength: 400)
 					}
 				}
 			}
