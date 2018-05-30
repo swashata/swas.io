@@ -24,7 +24,9 @@ export const BlogPostTemplate = props => {
 		disqusConfig,
 	} = props;
 	const PostContent = contentComponent || Content;
-	const readingStat = readingTime(content);
+	const readingStat = !contentComponent
+		? readingTime(content.props.value)
+		: readingTime(content);
 	return (
 		<Page
 			title={title}

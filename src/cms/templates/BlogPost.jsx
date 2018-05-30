@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { BlogPostTemplate } from '../../templates/blog-post';
 
-const BlogPost = ({ entry, widgetFor }) => {
+const BlogPost = ({ entry, widgetFor, getAsset }) => {
 	const entryDate = new Date(entry.getIn(['data', 'date']));
 	const monthNames = [
 		'January',
@@ -22,12 +22,13 @@ const BlogPost = ({ entry, widgetFor }) => {
 	const date = `${
 		monthNames[entryDate.getMonth()]
 	}, ${entryDate.getFullYear()}`;
+	const content = widgetFor('body');
 	const props = {
-		content: widgetFor('body'),
+		content,
 		title: entry.getIn(['data', 'title']),
-		tags: entry.getIn(['data', 'tags']),
+		tags: [],
 		date,
-		hero: entry.getIn(['data', 'hero_image']),
+		hero: getAsset(entry.getIn(['data', 'hero_image'])),
 	};
 	return <BlogPostTemplate {...props} />;
 };
@@ -35,6 +36,7 @@ const BlogPost = ({ entry, widgetFor }) => {
 BlogPost.propTypes = {
 	entry: PropTypes.shape({
 		getIn: PropTypes.func,
+		getAsset: PropTypes.func,
 	}).isRequired,
 	widgetFor: PropTypes.func.isRequired,
 };
