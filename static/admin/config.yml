@@ -40,6 +40,6 @@ collections:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "projects"}
       - {label: "Featured Image", name: "featured_image", widget: "image"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Order", name: "Order", widget: "number", default: 0, valueType: "int", min: 0}
+      - {label: "Order", name: "Order", widget: "number", default: 1, valueType: "int", min: 1}
       - {label: "Link", name: "link", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
