@@ -87,6 +87,20 @@ module.exports = {
 			},
 		},
 		{
+			resolve: `gatsby-plugin-google-analytics`,
+			options: {
+				trackingId: 'UA-81510319-8',
+				// Puts tracking script in the head instead of the body
+				head: true,
+				// Setting this parameter is optional
+				anonymize: true,
+				// Setting this parameter is also optional
+				respectDNT: true,
+				// Avoids sending pageview hits from custom paths
+				exclude: ['/preview/**', '/do-not-track/me/too/'],
+			},
+		},
+		{
 			resolve: 'gatsby-plugin-netlify-cms',
 			options: {
 				modulePath: `${__dirname}/src/cms/cms.js`,
