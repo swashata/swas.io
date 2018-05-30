@@ -1,6 +1,7 @@
 ---
 templateKey: blog-post
-featured_image: ''
+featured_image: '/img/jsdom-jquery-output.png'
+hero_image: ''
 title: "Use jQuery in Node with JSDOM V11"
 date: 2018-03-23T12:51:13+05:30
 draft: false

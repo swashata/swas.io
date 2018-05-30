@@ -20,14 +20,16 @@
 		line-height: 1.1;
 		font-size: 3.5rem;
 		letter-spacing: 8px;
+		font-weight: normal;
 	}
 	& &__tagline {
 		color: #ffffff;
 		font-size: 1.25rem;
 		margin-top: -0.25rem !important;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 300;
 		a {
-			font-family: 'Oregano', sans-serif;
-			font-weight: bold;
+			font-weight: normal;
 			letter-spacing: 2px;
 			// font-style: italic;
 			background: rgba(0, 0, 0, 0.3);

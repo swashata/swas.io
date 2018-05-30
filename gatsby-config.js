@@ -1,7 +1,13 @@
 module.exports = {
 	siteMetadata: {
 		title: "Swas.io - Swashata's Personal Blog",
+		shortTitle: 'Swas.io',
+		description:
+			'Personal blog of Swashata Ghosh, full-stack web developer and WordPress geek based in Noida, IN. Here I write about stuff I have learnt and things I like.',
+		image: '/img/ninja.png',
+		twitterHandle: '@swashata',
 		author: 'Swashata Ghosh',
+		url: 'https://swas.io',
 		socials: {
 			twitter: 'https://twitter.com/swashata',
 			github: 'https://github.com/swashata',
@@ -13,6 +19,7 @@ module.exports = {
 			'React, Node, WordPress',
 			'❤️s Scooby & Shelly',
 		],
+		disqusShortName: 'swashata',
 	},
 	plugins: [
 		'gatsby-plugin-react-helmet',
@@ -41,7 +48,7 @@ module.exports = {
 						resolve: `gatsby-remark-prismjs`,
 						options: {
 							classPrefix: 'language-',
-							inlineCodeMarker: null,
+							inlineCodeMarker: '>',
 							aliases: {},
 						},
 					},
@@ -51,10 +58,7 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-google-fonts`,
 			options: {
-				fonts: [
-					'Oregano', // you can also specify font weights and styles
-					'Roboto:300,300i,400,400i,700,700i',
-				],
+				fonts: ['Oregano', 'Roboto:300,400,400i,700,700i'],
 			},
 		},
 		{

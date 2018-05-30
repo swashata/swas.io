@@ -1,6 +1,7 @@
 ---
 templateKey: blog-post
 featured_image: ''
+hero_image: ''
 title: "Hello World"
 date: 2017-09-15T15:56:05+05:30
 tags: ["General"]

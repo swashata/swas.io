@@ -10,10 +10,46 @@ import './all.scss';
 
 const TemplateWrapper = ({ data, location, children }) => {
 	let content;
+	const {
+		site: {
+			siteMetadata: {
+				title,
+				description,
+				image,
+				twitterHandle,
+				author,
+				url,
+			},
+		},
+	} = data;
+	const helmet = (
+		<Helmet>
+			<meta httpEquiv="X-UA-Compatible" content="chrome=1" />
+			<meta name="HandheldFriendly" content="True" />
+			<meta name="MobileOptimized" content="320" />
+			<meta name="referrer" content="no-referrer-when-downgrade" />
+			<meta name="generator" content="gatsbyjs" />
+
+			<title>{title}</title>
+
+			<meta name="description" content={description} />
+
+			<meta name="author" content={author} />
+
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content={twitterHandle} />
+			<meta name="twitter:creator" content={twitterHandle} />
+
+			<meta property="og:title" content={title} />
+			<meta property="og:type" content="website" />
+			<meta property="og:image" content={image} />
+			<meta property="og:description" content={description} />
+		</Helmet>
+	);
 	if (location.pathname === '/') {
 		content = (
 			<div className="home-page">
-				<Helmet title={data.site.siteMetadata.title} />
+				{helmet}
 				<Hero data={data} />
 				<Navbar />
 				<div className="home-page__blog">{children()}</div>
@@ -22,7 +58,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 	} else {
 		content = (
 			<div className="non-home-page">
-				<Helmet title={data.site.siteMetadata.title} />
+				{helmet}
 				<Navbar />
 				<div>{children()}</div>
 			</div>
@@ -97,7 +133,11 @@ export const query = graphql`
 		site {
 			siteMetadata {
 				title
+				description
+				image
+				twitterHandle
 				author
+				url
 				socials {
 					twitter
 					github

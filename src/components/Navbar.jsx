@@ -54,7 +54,7 @@ class Navbar extends React.PureComponent {
 							<Link className="navbar-item" to="/projects">
 								Projects
 							</Link>
-							<Link className="navbar-item" to="/about">
+							<Link className="navbar-item" to="/page/about-me/">
 								About
 							</Link>
 						</div>

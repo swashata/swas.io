@@ -1,7 +1,9 @@
 ---
 templateKey: blog-post
 featured_image: ''
+hero_image: ''
 title: "Automatic Letsencrypt SSL for Gitlab and GitLab Pages"
+description: "How to automate SSL with lets encrypt for GitLab and GitLab pages."
 date: 2017-09-17T07:54:41+05:30
 tags: [ "GitLab", "Let's encrypt", "SSL" ]
 ---

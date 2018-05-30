@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 
 import BlogCard from '../components/BlogCard';
+import Page from '../components/Page';
 
 const createPaginationObjects = (length, page, increment = 2) =>
 	Array.from({ length }, (_, i) => ({
@@ -19,7 +20,7 @@ const BlogPage = ({ pathContext }) => {
 		next,
 		pages,
 		total,
-		title: siteTitle,
+		shortTitle: siteTitle,
 	} = pathContext;
 	let navItems = [
 		{
@@ -89,86 +90,79 @@ const BlogPage = ({ pathContext }) => {
 		/* eslint-enable */
 	}
 
+	const footer = (
+		<nav className="pagination">
+			{prev && (
+				<Link to={prev} className="pagination-previous">
+					Previous
+				</Link>
+			)}
+			{next && (
+				<Link to={next} className="pagination-next">
+					Next page
+				</Link>
+			)}
+			<ul className="pagination-list">
+				{navItems.map(item => (
+					<li key={item.index}>
+						{item.separator ? (
+							<span className="pagination-ellipsis">
+								&hellip;
+							</span>
+						) : (
+							<Link
+								to={item.link}
+								className={`pagination-link ${
+									item.current ? 'is-current' : ''
+								}`}
+								aria-label={`Goto page ${item.index}`}
+							>
+								{item.index}
+							</Link>
+						)}
+					</li>
+				))}
+			</ul>
+		</nav>
+	);
+
 	return (
-		<div className="blog-page">
-			<section className="hero blog-page__hero is-primary">
-				<div className="hero-body">
-					<div className="container">
-						<h1 className="title is-1">{siteTitle}</h1>
-						<h2 className="subtitle is-4">{`Showing Page ${page} of ${pages} (total ${total} articles)`}</h2>
-					</div>
-				</div>
-			</section>
-			<div className="container blog-page__container">
-				<div className="blog-page__cards columns is-desktop is-multiline">
-					{nodes.map(item => {
-						const {
-							node: {
-								excerpt,
-								fields: { slug },
-								frontmatter: {
-									date,
-									featured_image: featuredImage,
-									tags,
-									title,
-								},
-								id,
-							},
-						} = item;
-						const cardProps = {
+		<Page
+			title={`${siteTitle} – Blog`}
+			subtitle={`Showing Page ${page} of ${pages} · Total ${total} articles`}
+			footer={footer}
+		>
+			<div className="columns is-desktop is-multiline">
+				{nodes.map(item => {
+					const {
+						node: {
 							excerpt,
-							date,
-							featuredImage,
-							tags,
-							title,
-							slug,
-						};
-						return (
-							<div className="column is-full" key={id}>
-								<BlogCard {...cardProps} />
-							</div>
-						);
-					})}
-				</div>
-				<div className="container blog-page__nav">
-					<nav className="pagination">
-						{prev && (
-							<Link to={prev} className="pagination-previous">
-								Previous
-							</Link>
-						)}
-						{next && (
-							<Link to={next} className="pagination-next">
-								Next page
-							</Link>
-						)}
-						<ul className="pagination-list">
-							{navItems.map(item => (
-								<li key={item.index}>
-									{item.separator ? (
-										<span className="pagination-ellipsis">
-											&hellip;
-										</span>
-									) : (
-										<Link
-											to={item.link}
-											className={`pagination-link ${
-												item.current ? 'is-current' : ''
-											}`}
-											aria-label={`Goto page ${
-												item.index
-											}`}
-										>
-											{item.index}
-										</Link>
-									)}
-								</li>
-							))}
-						</ul>
-					</nav>
-				</div>
+							fields: { slug },
+							frontmatter: {
+								date,
+								featured_image: featuredImage,
+								tags,
+								title,
+							},
+							id,
+						},
+					} = item;
+					const cardProps = {
+						excerpt,
+						date,
+						featuredImage,
+						tags,
+						title,
+						slug,
+					};
+					return (
+						<div className="column is-full" key={id}>
+							<BlogCard {...cardProps} />
+						</div>
+					);
+				})}
 			</div>
-		</div>
+		</Page>
 	);
 };
 

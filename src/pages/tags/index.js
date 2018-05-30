@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { kebabCase } from 'lodash';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
+import Page from '../../components/Page';
 
 const TagsPage = ({
 	data: {
@@ -12,32 +13,19 @@ const TagsPage = ({
 		},
 	},
 }) => (
-	<div className="blog-page">
-		<Helmet title={`Tags | ${title}`} />
-		<section className="hero blog-page__hero is-primary">
-			<div className="hero-body">
-				<div className="container">
-					<h1 className="title is-1">{`Total ${
-						group.length
-					} tags`}</h1>
-					<h2 className="subtitle is-4">{title}</h2>
-				</div>
-			</div>
-		</section>
-		<div className="container blog-page__container">
-			<div className="tags">
-				{group.map(tag => (
-					<Link
-						className="tag is-info is-large"
-						to={`/tags/${kebabCase(tag.fieldValue)}/`}
-						key={tag}
-					>
-						{tag.fieldValue} ({tag.totalCount})
-					</Link>
-				))}
-			</div>
+	<Page title={`Total ${group.length} tags`} subtitle={title}>
+		<div className="tags">
+			{group.map(tag => (
+				<Link
+					className="tag is-info is-large"
+					to={`/tags/${kebabCase(tag.fieldValue)}/`}
+					key={tag}
+				>
+					{tag.fieldValue} ({tag.totalCount})
+				</Link>
+			))}
 		</div>
-	</div>
+	</Page>
 );
 TagsPage.propTypes = {
 	data: PropTypes.shape({

@@ -1,7 +1,11 @@
 const _ = require('lodash');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const { createPaginationPages, prefixPathFormatter } = require('gatsby-pagination');
+const {
+	createPaginationPages,
+	prefixPathFormatter,
+	createLinkedPages,
+} = require('gatsby-pagination');
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
 	const { createPage } = boundActionCreators;
@@ -11,6 +15,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			site {
 				siteMetadata {
 					title
+					shortTitle
 				}
 			}
 			posts: allMarkdownRemark(
@@ -44,7 +49,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			data: {
 				posts: { edges },
 				site: {
-					siteMetadata: { title },
+					siteMetadata: { title, shortTitle },
 				},
 			},
 		} = result;
@@ -52,6 +57,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 		// Create paginated pages for blog posts
 		const blogEdges = edges.filter(
 			edge => edge.node.frontmatter.templateKey === 'blog-post'
+		);
+		const staticEdges = edges.filter(
+			edge => edge.node.frontmatter.templateKey === 'static-page'
 		);
 		createPaginationPages({
 			createPage,
@@ -62,19 +70,43 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			pathFormatter: prefixPathFormatter('/blog'),
 			context: {
 				title,
+				shortTitle,
 			},
 		});
 
-		edges.forEach(edge => {
-			const { id } = edge.node;
+		// Create linked blog pages
+		createLinkedPages({
+			createPage,
+			edges: blogEdges,
+			component: path.resolve(`src/templates/blog-post.js`),
+			edgeParser: edge => {
+				const {
+					id,
+					fields: { slug },
+					frontmatter: { tags },
+				} = edge.node;
+				return {
+					path: slug,
+					tags,
+					// additional data can be passed via context
+					context: {
+						id,
+						slug,
+					},
+				};
+			},
+			circular: true,
+		});
+
+		// Create static pages
+		staticEdges.forEach(edge => {
+			const {
+				id,
+				fields: { slug },
+			} = edge.node;
 			createPage({
-				path: edge.node.fields.slug,
-				tags: edge.node.frontmatter.tags,
-				component: path.resolve(
-					`src/templates/${String(
-						edge.node.frontmatter.templateKey
-					)}.js`
-				),
+				path: slug,
+				component: path.resolve(`src/templates/static-page.js`),
 				// additional data can be passed via context
 				context: {
 					id,

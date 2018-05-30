@@ -15,7 +15,7 @@ const BlogCard = ({ excerpt, featuredImage, tags, title, slug }) => (
 		{featuredImage !== '' &&
 			featuredImage != null && (
 				<div className="card-image">
-					<figure className="image is-4by3">
+					<figure className="image is-fullwidth">
 						<Link to={slug}>
 							<img src={featuredImage} alt={title} />
 						</Link>

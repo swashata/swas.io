@@ -1,6 +1,7 @@
 ---
 templateKey: blog-post
-featured_image: ''
+featured_image: '/img/gitlab-ci-cd.png'
+hero_image: '/img/gitlab-ci-cd.png'
 title: "Linode Private Networking with GitLab & GitLab Runner"
 date: 2017-09-16T18:18:01+05:30
 tags: [ "GitLab", "Linode", "Networking" ]
