@@ -159,3 +159,15 @@ $family-sans-serif: 'Roboto', BlinkMacSystemFont, -apple-system, 'Segoe UI',
 		text-overflow: ellipsis;
 	}
 }
+
+// Netlify CMS
+.nc-widgetPreview pre {
+	background: #2d2d2d;
+	border-radius: 0.3em;
+	margin: 0.5em 0;
+	padding: 1em;
+}
+.nc-widgetPreview pre code,
+.nc-widgetPreview code {
+	color: #ccc;
+}

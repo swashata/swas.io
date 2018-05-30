@@ -26,7 +26,8 @@ export const StaticPageTemplate = ({
 
 StaticPageTemplate.propTypes = {
 	title: PropTypes.string.isRequired,
-	content: PropTypes.string.isRequired,
+	content: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+		.isRequired,
 	contentComponent: PropTypes.func,
 	subtitle: PropTypes.string.isRequired,
 	helmet: PropTypes.objectOf(PropTypes.any),

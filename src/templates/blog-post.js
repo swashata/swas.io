@@ -94,7 +94,8 @@ export const BlogPostTemplate = props => {
 };
 
 BlogPostTemplate.propTypes = {
-	content: PropTypes.string.isRequired,
+	content: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+		.isRequired,
 	contentComponent: PropTypes.func,
 	title: PropTypes.string.isRequired,
 	helmet: PropTypes.objectOf(PropTypes.any),
