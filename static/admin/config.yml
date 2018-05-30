@@ -18,7 +18,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Featured Image (OpenGraph)", name: "featured_image", widget: "image", required: false}
       - {label: "Hero Image", name: "hero_image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
@@ -40,6 +40,7 @@ collections:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "projects"}
       - {label: "Featured Image", name: "featured_image", widget: "image"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Order", name: "Order", widget: "number", default: 1, valueType: "int", min: 1}
+      - {label: "Subtitle", name: "subtitle", widget: "string"}
+      - {label: "Order", name: "order", widget: "number", default: 1, valueType: "int", min: 1}
       - {label: "Link", name: "link", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}

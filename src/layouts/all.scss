@@ -68,7 +68,9 @@ $family-sans-serif: 'Roboto', BlinkMacSystemFont, -apple-system, 'Segoe UI',
 	overflow: initial;
 	float: left; /* 1 */
 	min-width: 100%; /* 2 */
-
+}
+pre[class*='language-'],
+code[class*='language-'] {
 	.tag {
 		background-color: transparent;
 		border-radius: 0;

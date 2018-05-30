@@ -1,0 +1,91 @@
+.project-list {
+	display: flex;
+	max-width: 1200px;
+	margin: 2rem auto;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+
+	& &__image,
+	& &__content {
+		flex: 0 0 100%;
+	}
+
+	& &__image {
+		display: flex;
+		align-items: center;
+		a {
+			animation: pulseProject infinite forwards 10s;
+		}
+		img {
+			transition: transform 300ms ease-out;
+			transform: rotate(0);
+		}
+		a:hover {
+			img {
+				transform: rotate(2deg);
+			}
+		}
+	}
+
+	& &__content {
+		padding: 2rem;
+		display: flex;
+		justify-content: center;
+		flex-flow: column nowrap;
+		border-left: 4px solid rgba(0, 0, 0, 0.05);
+	}
+
+	& &__titles {
+		padding-bottom: 1rem;
+		margin-bottom: 2rem;
+		border-bottom: 4px solid rgba(0, 0, 0, 0.05);
+		.title {
+			text-transform: uppercase;
+			font-weight: normal;
+		}
+		.subtitle {
+			text-transform: uppercase;
+			font-weight: 300;
+		}
+	}
+
+	& &__link {
+		a {
+			display: block;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		& &__image {
+			flex-basis: calc(55% - 1rem);
+		}
+		& &__content {
+			flex-basis: calc(45% - 1rem);
+		}
+	}
+
+	// Even odd
+	&:nth-child(2n) {
+		& .project-list__image {
+			order: 2;
+		}
+		& .project-list__content {
+			order: 1;
+			border-right: 4px solid rgba(0, 0, 0, 0.05);
+			border-left: none;
+		}
+	}
+}
+
+@keyframes pulseProject {
+	0% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(1.02, 1.02);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
