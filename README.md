@@ -18,6 +18,14 @@ hacked my way into building the site.
 
 and many a things. Fork away 😎.
 
+### New Entries
+
+```bash
+yarn new
+```
+
+Will walk you through a wizard to create either a blog, page or post entry. Neat! 🍪
+
 ### Access Locally
 ```
 $ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
