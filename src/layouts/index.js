@@ -121,7 +121,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 			<div className="home-page">
 				{helmet}
 				<Hero data={data} />
-				<Navbar />
+				<Navbar location={location} />
 				<div className="home-page__blog">{children()}</div>
 			</div>
 		);
@@ -129,7 +129,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 		content = (
 			<div className="non-home-page">
 				{helmet}
-				<Navbar />
+				<Navbar location={location} />
 				<div>{children()}</div>
 			</div>
 		);

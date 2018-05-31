@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import enhanceWithClickOutside from 'react-click-outside';
 
 import './Navbar.scss';
 
 class Navbar extends React.PureComponent {
+	static propTypes = {
+		location: PropTypes.shape({
+			pathname: PropTypes.string.isRequired,
+		}).isRequired,
+	};
 	state = {
 		isOpen: false,
 	};
@@ -14,11 +21,47 @@ class Navbar extends React.PureComponent {
 		this.setState(state => ({ isOpen: !state.isOpen }));
 	};
 
+	handleClickOutside() {
+		this.setState(state => {
+			if (state.isOpen) {
+				return { isOpen: false };
+			}
+			return null;
+		});
+	}
+
 	render() {
 		const burgerClass = `navbar-burger ${
 			this.state.isOpen ? 'is-active' : ''
 		}`;
 		const menuClass = `navbar-menu ${this.state.isOpen ? 'is-active' : ''}`;
+		const navLinks = [
+			{
+				path: '/',
+				label: 'Home',
+			},
+			{
+				path: '/blog/',
+				label: 'Blog',
+			},
+			{
+				path: '/projects/',
+				label: 'Projects',
+			},
+			{
+				path: '/page/about-me/',
+				label: 'About',
+			},
+			{
+				path: '/page/uses/',
+				label: 'Uses',
+			},
+			{
+				path: '/contact/',
+				label: 'Contact',
+			},
+		];
+		const { location } = this.props;
 		return (
 			<nav className="navbar is-transparent swas-navbar">
 				<div className="container">
@@ -45,18 +88,21 @@ class Navbar extends React.PureComponent {
 					</div>
 					<div className={menuClass}>
 						<div className="navbar-start">
-							<Link className="navbar-item" to="/">
-								Home
-							</Link>
-							<Link className="navbar-item" to="/blog/">
-								Blog
-							</Link>
-							<Link className="navbar-item" to="/projects/">
-								Projects
-							</Link>
-							<Link className="navbar-item" to="/page/about-me/">
-								About
-							</Link>
+							{navLinks.map(nav => {
+								const className =
+									nav.path === location.pathname
+										? 'navbar-item is-active'
+										: 'navbar-item';
+								return (
+									<Link
+										className={className}
+										to={nav.path}
+										key={nav.path}
+									>
+										{nav.label}
+									</Link>
+								);
+							})}
 						</div>
 						<div className="navbar-end">
 							<a
@@ -89,4 +135,4 @@ class Navbar extends React.PureComponent {
 	}
 }
 
-export default Navbar;
+export default enhanceWithClickOutside(Navbar);

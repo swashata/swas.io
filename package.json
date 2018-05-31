@@ -39,6 +39,7 @@
     "prismjs": "^1.14.0",
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
+    "react-click-outside": "^3.0.1",
     "react-helmet": "^5.2.0",
     "react-share": "^2.2.0",
     "reading-time": "^1.1.1",
