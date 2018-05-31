@@ -137,7 +137,7 @@ export const pageQuery = graphql`
 		projects: allMarkdownRemark(
 			sort: { order: DESC, fields: [frontmatter___order] }
 			filter: { frontmatter: { templateKey: { eq: "projects" } } }
-			limit: 4
+			limit: 3
 		) {
 			edges {
 				node {

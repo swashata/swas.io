@@ -77,6 +77,7 @@ module.exports = {
 							linkImagesToOriginal: true,
 						},
 					},
+					'gatsby-remark-responsive-iframe',
 				],
 			},
 		},
@@ -84,24 +85,6 @@ module.exports = {
 			resolve: `gatsby-plugin-google-fonts`,
 			options: {
 				fonts: ['Oregano', 'Roboto:300,400,400i,700,700i'],
-			},
-		},
-		{
-			resolve: `gatsby-plugin-favicon`,
-			options: {
-				logo: './src/img/ninja.png',
-				injectHTML: true,
-				icons: {
-					android: true,
-					appleIcon: true,
-					appleStartup: true,
-					coast: false,
-					favicons: true,
-					firefox: true,
-					twitter: false,
-					yandex: false,
-					windows: false,
-				},
 			},
 		},
 		{
@@ -114,8 +97,6 @@ module.exports = {
 				anonymize: true,
 				// Setting this parameter is also optional
 				respectDNT: true,
-				// Avoids sending pageview hits from custom paths
-				exclude: ['/preview/**', '/do-not-track/me/too/'],
 			},
 		},
 		{
@@ -124,9 +105,9 @@ module.exports = {
 				name: "Swas.io - Swashata's Personal Blog",
 				short_name: 'Swas.io',
 				start_url: '/',
-				background_color: '#BBDEFB',
-				theme_color: '#E1F5FE',
-				display: 'minimal-ui',
+				background_color: '#FCF2E5',
+				theme_color: '#1E578E',
+				display: 'standalone',
 				icon: 'src/img/ninja.png', // This path is relative to the root of the site.
 			},
 		},

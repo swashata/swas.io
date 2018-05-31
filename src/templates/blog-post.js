@@ -9,6 +9,7 @@ import Disqus from 'disqus-react';
 
 import Page from '../components/Page';
 import Content, { HTMLContent } from '../components/Content';
+import Share from '../components/Share';
 
 export const BlogPostTemplate = props => {
 	const {
@@ -21,7 +22,7 @@ export const BlogPostTemplate = props => {
 		hero,
 		nextPost,
 		prevPost,
-		disqusConfig,
+		socialConfig,
 	} = props;
 	const PostContent = contentComponent || Content;
 	const readingStat = !contentComponent
@@ -63,8 +64,8 @@ export const BlogPostTemplate = props => {
 							</Link>
 						) : null}
 					</nav>
-					{disqusConfig !== null ? (
-						<Disqus.DiscussionEmbed {...disqusConfig} />
+					{socialConfig !== null ? (
+						<Disqus.DiscussionEmbed {...socialConfig} />
 					) : null}
 				</React.Fragment>
 			}
@@ -74,19 +75,28 @@ export const BlogPostTemplate = props => {
 			<div className="content">
 				<PostContent content={content} />
 			</div>
-			<div className="single__post-meta">
+			<div className="post-meta">
 				{tags && tags.length ? (
-					<div className="post-meta__tags">
+					<div className="post-meta__block">
+						<h6 className="title is-6">Tags:</h6>
 						<div className="tags">
 							{tags.map(tag => (
 								<Link
 									to={`/tags/${kebabCase(tag)}/`}
-									className="tag is-link is-medium"
+									className="tag is-medium"
 									key={tag}
 								>
 									{tag}
 								</Link>
 							))}
+						</div>
+					</div>
+				) : null}
+				{socialConfig !== null ? (
+					<div className="post-meta__block">
+						<h6 className="title is-6">Share:</h6>
+						<div className="post-meta__share-buttons">
+							<Share socialConfig={socialConfig} tags={tags} />
 						</div>
 					</div>
 				) : null}
@@ -106,7 +116,7 @@ BlogPostTemplate.propTypes = {
 	hero: PropTypes.string,
 	prevPost: PropTypes.objectOf(PropTypes.any),
 	nextPost: PropTypes.objectOf(PropTypes.any),
-	disqusConfig: PropTypes.shape({
+	socialConfig: PropTypes.shape({
 		shortname: PropTypes.string.isRequired,
 		config: PropTypes.object.isRequired,
 	}),
@@ -118,7 +128,7 @@ BlogPostTemplate.defaultProps = {
 	prevPost: null,
 	nextPost: null,
 	helmet: null,
-	disqusConfig: null,
+	socialConfig: null,
 };
 
 const BlogPost = ({ data }) => {
@@ -137,7 +147,7 @@ const BlogPost = ({ data }) => {
 			fields: { slug },
 		},
 		site: {
-			siteMetadata: { shortTitle, url, disqusShortName },
+			siteMetadata: { shortTitle, url, disqusShortName, twitterHandle },
 		},
 		prevPost,
 		nextPost,
@@ -165,13 +175,14 @@ const BlogPost = ({ data }) => {
 			/>
 		</Helmet>
 	);
-	const disqusConfig = {
+	const socialConfig = {
 		shortname: disqusShortName,
 		config: {
 			url: `${url}${slug}`,
 			title,
 			identifier: slug,
 		},
+		twitterHandle,
 	};
 	const props = {
 		content: html,
@@ -184,7 +195,7 @@ const BlogPost = ({ data }) => {
 		hero,
 		prevPost,
 		nextPost,
-		disqusConfig,
+		socialConfig,
 	};
 	return <BlogPostTemplate {...props} />;
 };
@@ -210,6 +221,7 @@ export const pageQuery = graphql`
 				shortTitle
 				url
 				disqusShortName
+				twitterHandle
 			}
 		}
 		post: markdownRemark(id: { eq: $id }) {

@@ -63,17 +63,22 @@
 		& &__content {
 			flex-basis: calc(45% - 1rem);
 		}
-	}
 
-	// Even odd
-	&:nth-child(2n) {
-		& .project-list__image {
-			order: 2;
-		}
-		& .project-list__content {
-			order: 1;
-			border-right: 4px solid rgba(0, 0, 0, 0.05);
-			border-left: none;
+		// Even odd
+		&:nth-child(2n) {
+			& .project-list__image {
+				order: 2;
+				a:hover {
+					img {
+						transform: rotate(-2deg);
+					}
+				}
+			}
+			& .project-list__content {
+				order: 1;
+				border-right: 4px solid rgba(0, 0, 0, 0.05);
+				border-left: none;
+			}
 		}
 	}
 }

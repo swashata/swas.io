@@ -28,10 +28,9 @@
 		margin: 0 0 2rem 0;
 	}
 	& &__footer {
-		// margin: 0 0 1rem 0;
 		a {
-			padding-left: 5rem;
-			padding-right: 5rem;
+			width: 300px;
+			max-width: 100%;
 		}
 	}
 }
