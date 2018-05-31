@@ -26,6 +26,6 @@ This post is just to try out some things.
 
 This is uploaded from the netlify cms.
 
-![just something](/img/carbon.png)
+![just something](../../images/carbon.png)
 
 And that's all. Hope these things work.

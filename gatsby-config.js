@@ -23,14 +23,6 @@ module.exports = {
 		disqusShortName: 'swashata',
 	},
 	plugins: [
-		'gatsby-plugin-react-helmet',
-		'gatsby-plugin-sass',
-		{
-			resolve: 'gatsby-plugin-sitemap',
-			options: {
-				exclude: ['/project/*', '/tags/*'],
-			},
-		},
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {
@@ -42,12 +34,22 @@ module.exports = {
 			resolve: 'gatsby-source-filesystem',
 			options: {
 				path: `${__dirname}/src/img`,
+				name: 'img',
+			},
+		},
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				path: `${__dirname}/src/images`,
 				name: 'images',
 			},
 		},
-		'gatsby-plugin-twitter',
-		'gatsby-transformer-sharp',
 		'gatsby-plugin-sharp',
+		'gatsby-transformer-sharp',
+
+		'gatsby-plugin-twitter',
+		'gatsby-plugin-react-helmet',
+		'gatsby-plugin-sass',
 		{
 			resolve: 'gatsby-transformer-remark',
 			options: {
@@ -73,7 +75,7 @@ module.exports = {
 					{
 						resolve: 'gatsby-remark-images',
 						options: {
-							maxWidth: 1344,
+							maxWidth: 960,
 							linkImagesToOriginal: true,
 						},
 					},
@@ -85,6 +87,12 @@ module.exports = {
 			resolve: `gatsby-plugin-google-fonts`,
 			options: {
 				fonts: ['Oregano', 'Roboto:300,400,400i,700,700i'],
+			},
+		},
+		{
+			resolve: 'gatsby-plugin-sitemap',
+			options: {
+				exclude: ['/project/*', '/tags/*'],
 			},
 		},
 		{

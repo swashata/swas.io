@@ -98,7 +98,13 @@ export const tagPageQuery = graphql`
 						tags
 						templateKey
 						title
-						featured_image
+						featured_image {
+							childImageSharp {
+								sizes(maxWidth: 960) {
+									...GatsbyImageSharpSizes
+								}
+							}
+						}
 					}
 					excerpt
 					id

@@ -32,7 +32,16 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 							templateKey
 							title
 							date(formatString: "MMMM DD, YYYY")
-							featured_image
+							featured_image {
+								childImageSharp {
+									sizes {
+										aspectRatio
+										src
+										srcSet
+										sizes
+									}
+								}
+							}
 						}
 						excerpt(pruneLength: 400)
 					}

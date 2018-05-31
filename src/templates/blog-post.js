@@ -19,10 +19,10 @@ export const BlogPostTemplate = props => {
 		title,
 		helmet,
 		date,
-		hero,
 		nextPost,
 		prevPost,
 		socialConfig,
+		featured,
 	} = props;
 	const PostContent = contentComponent || Content;
 	const readingStat = !contentComponent
@@ -69,11 +69,13 @@ export const BlogPostTemplate = props => {
 					) : null}
 				</React.Fragment>
 			}
-			hero={hero}
+			hero={featured}
 		>
 			{helmet || ''}
 			<div className="content">
-				<PostContent content={content} />
+				<article className="blog-article">
+					<PostContent content={content} />
+				</article>
 			</div>
 			<div className="post-meta">
 				{tags && tags.length ? (
@@ -113,22 +115,22 @@ BlogPostTemplate.propTypes = {
 	helmet: PropTypes.objectOf(PropTypes.any),
 	tags: PropTypes.arrayOf(PropTypes.string),
 	date: PropTypes.string.isRequired,
-	hero: PropTypes.string,
 	prevPost: PropTypes.objectOf(PropTypes.any),
 	nextPost: PropTypes.objectOf(PropTypes.any),
 	socialConfig: PropTypes.shape({
 		shortname: PropTypes.string.isRequired,
 		config: PropTypes.object.isRequired,
 	}),
+	featured: PropTypes.string,
 };
 BlogPostTemplate.defaultProps = {
 	contentComponent: null,
 	tags: [],
-	hero: '',
 	prevPost: null,
 	nextPost: null,
 	helmet: null,
 	socialConfig: null,
+	featured: null,
 };
 
 const BlogPost = ({ data }) => {
@@ -140,8 +142,7 @@ const BlogPost = ({ data }) => {
 				title,
 				tags,
 				date,
-				hero_image: hero,
-				featured_image: featured,
+				featured_image: featuredImage,
 			},
 			excerpt,
 			fields: { slug },
@@ -152,6 +153,15 @@ const BlogPost = ({ data }) => {
 		prevPost,
 		nextPost,
 	} = data;
+	console.log(featuredImage);
+	const featured =
+		featuredImage &&
+		featuredImage.childImageSharp &&
+		featuredImage.childImageSharp.sizes &&
+		featuredImage.childImageSharp.sizes.src
+			? featuredImage.childImageSharp.sizes.src
+			: '';
+
 	const helmet = (
 		<Helmet>
 			<title>{`${title} | ${shortTitle}`}</title>
@@ -192,10 +202,10 @@ const BlogPost = ({ data }) => {
 		tags,
 		date,
 		title,
-		hero,
 		prevPost,
 		nextPost,
 		socialConfig,
+		featured,
 	};
 	return <BlogPostTemplate {...props} />;
 };
@@ -231,8 +241,13 @@ export const pageQuery = graphql`
 				date(formatString: "MMMM, YYYY")
 				title
 				tags
-				hero_image
-				featured_image
+				featured_image {
+					childImageSharp {
+						sizes(maxWidth: 960) {
+							...GatsbyImageSharpSizes
+						}
+					}
+				}
 				description
 			}
 			excerpt

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import { kebabCase } from 'lodash';
+import Img from 'gatsby-image';
 
 import './BlogCard.scss';
 
@@ -14,7 +15,7 @@ const BlogCard = ({ excerpt, featuredImage, tags, title, slug, date }) => (
 				<Link to={slug}>{title}</Link>
 			</h2>
 			<p className="subtitle is-6">
-				{`on ${date} under`}
+				{`on ${date} • under`}
 				{tags.map(tag => (
 					<Link
 						to={`/tags/${kebabCase(tag)}/`}
@@ -26,16 +27,20 @@ const BlogCard = ({ excerpt, featuredImage, tags, title, slug, date }) => (
 				))}
 			</p>
 		</header>
-		{featuredImage !== '' &&
-			featuredImage != null && (
-				<div className="blog-card__featured-image">
-					<figure className="image is-fullwidth">
-						<Link to={slug}>
-							<img src={featuredImage} alt={title} />
-						</Link>
-					</figure>
-				</div>
-			)}
+		{featuredImage &&
+		featuredImage.childImageSharp &&
+		featuredImage.childImageSharp.sizes ? (
+			<div className="blog-card__featured-image">
+				<figure className="image is-fullwidth">
+					<Link to={slug}>
+						<Img
+							sizes={featuredImage.childImageSharp.sizes}
+							alt={title}
+						/>
+					</Link>
+				</figure>
+			</div>
+		) : null}
 		<div className="blog-card__content">
 			<div className="content has-text-justified">
 				<p>{excerpt}</p>
@@ -51,7 +56,10 @@ const BlogCard = ({ excerpt, featuredImage, tags, title, slug, date }) => (
 
 BlogCard.propTypes = {
 	excerpt: PropTypes.string.isRequired,
-	featuredImage: PropTypes.string,
+	featuredImage: PropTypes.shape({
+		sizes: PropTypes.string,
+		srcSet: PropTypes.string,
+	}),
 	title: PropTypes.string.isRequired,
 	slug: PropTypes.string.isRequired,
 	tags: PropTypes.arrayOf(PropTypes.string),

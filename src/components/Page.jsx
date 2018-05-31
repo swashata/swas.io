@@ -6,7 +6,7 @@ import './Page.scss';
 const Page = ({ title, subtitle, children, footer, hero }) => {
 	const heroStyle = {};
 	if (hero && hero !== '') {
-		heroStyle.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${hero}")`;
+		heroStyle.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("${hero}")`;
 	}
 	return (
 		<div className="page">

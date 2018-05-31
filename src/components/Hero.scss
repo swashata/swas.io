@@ -3,16 +3,17 @@
 	width: 100vw;
 	align-items: center;
 	justify-content: flex-start;
-	background: url('../img/bg.jpg') no-repeat scroll center center;
-	background-size: cover;
+	background-color: #003d82;
 	padding: 10vmin;
 	display: flex;
 	align-content: center;
 	flex-flow: row wrap;
+	position: relative;
 	& &__title {
 		color: #ffffff;
 		margin-bottom: 4rem;
 		flex: 0 0 100%;
+		position: relative;
 	}
 	& &__author {
 		color: #ffffff;
@@ -50,6 +51,7 @@
 		justify-content: space-between;
 		width: 100%;
 		max-width: 30rem;
+		position: relative;
 	}
 	& &__social {
 		color: #ffffff;

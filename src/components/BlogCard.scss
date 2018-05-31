@@ -1,5 +1,6 @@
 .blog-card {
-	margin: 1rem 0;
+	margin: 1rem auto;
+	max-width: 1200px;
 	padding: 1rem 2rem;
 	border-left: 4px solid rgba(0, 0, 0, 0.05);
 
@@ -19,7 +20,7 @@
 			text-transform: uppercase;
 			font-weight: 300;
 			.tag {
-				margin: 0 0.5rem;
+				margin: 0 0.25rem;
 			}
 		}
 	}

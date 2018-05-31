@@ -23,7 +23,9 @@ const Projects = props => {
 						html,
 						id,
 						frontmatter: {
-							featured_image: featuredImage,
+							featured_image: {
+								childImageSharp: { sizes: featuredImage },
+							},
 							title,
 							subtitle,
 							link,
@@ -61,7 +63,7 @@ export const projectQuery = graphql`
 		projects: allMarkdownRemark(
 			sort: { order: DESC, fields: [frontmatter___order] }
 			filter: { frontmatter: { templateKey: { eq: "projects" } } }
-			limit: 4
+			limit: 1000
 		) {
 			edges {
 				node {
@@ -69,7 +71,13 @@ export const projectQuery = graphql`
 					frontmatter {
 						title
 						subtitle
-						featured_image
+						featured_image {
+							childImageSharp {
+								sizes(maxWidth: 960) {
+									...GatsbyImageSharpSizes
+								}
+							}
+						}
 						link
 					}
 					html

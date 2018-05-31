@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-featured_image: '/img/jsdom-jquery-output.png'
+featured_image: '../../images/jsdom-jquery-output.png'
 hero_image: ''
 title: "Use jQuery in Node with JSDOM V11"
 date: 2018-03-23T12:51:13+05:30
@@ -91,6 +91,6 @@ const inputElement = $( '#fiptest' );
 console.log( inputElement.length );
 ```
 
-![jQuery JSDOM v11 Output](/img/jsdom-jquery-output.png)
+![jQuery JSDOM v11 Output](../../images/jsdom-jquery-output.png)
 
 Now it ran correctly.

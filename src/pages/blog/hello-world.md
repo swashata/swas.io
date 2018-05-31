@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-featured_image: ''
+featured_image: null
 hero_image: ''
 title: "Hello World"
 date: 2017-09-15T15:56:05+05:30

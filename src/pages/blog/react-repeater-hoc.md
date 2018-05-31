@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-featured_image: ''
+featured_image: null
 hero_image: ''
 title: "React Repeater HOC"
 date: 2018-04-19T10:17:33+05:30

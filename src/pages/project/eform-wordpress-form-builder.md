@@ -1,6 +1,6 @@
 ---
 templateKey: projects
-featured_image: /img/project-eform.png
+featured_image: ../../images/project-eform.png
 title: eForm - WordPress Form Builder
 subtitle: Complete Form Solution for WordPress
 order: 100

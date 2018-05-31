@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 
 import './ProjectList.scss';
 
@@ -7,7 +8,7 @@ const ProjectList = ({ title, subtitle, featuredImage, link, html }) => (
 	<div className="project-list">
 		<div className="project-list__image">
 			<a href={link} target="_blank" rel="noopener noreferrer">
-				<img src={featuredImage} alt={title} />
+				<Img sizes={featuredImage} alt={title} />
 			</a>
 		</div>
 		<div className="project-list__content">
@@ -42,7 +43,10 @@ const ProjectList = ({ title, subtitle, featuredImage, link, html }) => (
 ProjectList.propTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle: PropTypes.string.isRequired,
-	featuredImage: PropTypes.string.isRequired,
+	featuredImage: PropTypes.shape({
+		sizes: PropTypes.string.isRequired,
+		srcSet: PropTypes.string.isRequired,
+	}).isRequired,
 	link: PropTypes.string.isRequired,
 	html: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
 };

@@ -9,8 +9,8 @@ export default class IndexPage extends React.Component {
 	render() {
 		const {
 			data: {
-				posts: { edges },
-				projects: { edges: projectEdges },
+				posts: { edges, totalCount: totalPosts },
+				projects: { edges: projectEdges, totalCount: totalProjects },
 			},
 		} = this.props;
 		return (
@@ -26,7 +26,11 @@ export default class IndexPage extends React.Component {
 									html,
 									id,
 									frontmatter: {
-										featured_image: featuredImage,
+										featured_image: {
+											childImageSharp: {
+												sizes: featuredImage,
+											},
+										},
 										title,
 										subtitle,
 										link,
@@ -52,7 +56,7 @@ export default class IndexPage extends React.Component {
 							className="button is-large is-link is-outlined is-rounded"
 							to="/projects/"
 						>
-							MORE PROJECTS
+							{`EXPLORE ALL ${totalProjects} PROJECTS`}
 						</Link>
 					</div>
 					<h2 className="subtitle is-3 home-blog-title">
@@ -93,7 +97,7 @@ export default class IndexPage extends React.Component {
 							className="button is-large is-link is-outlined is-rounded"
 							to="/blog/"
 						>
-							BROWSE ALL
+							{`BROWSE ALL ${totalPosts} ENTRIES`}
 						</Link>
 					</div>
 				</div>
@@ -117,6 +121,7 @@ export const pageQuery = graphql`
 			filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
 			limit: 4
 		) {
+			totalCount
 			edges {
 				node {
 					excerpt(pruneLength: 400)
@@ -129,7 +134,13 @@ export const pageQuery = graphql`
 						templateKey
 						date(formatString: "MMMM DD, YYYY")
 						tags
-						featured_image
+						featured_image {
+							childImageSharp {
+								sizes(maxWidth: 960) {
+									...GatsbyImageSharpSizes
+								}
+							}
+						}
 					}
 				}
 			}
@@ -139,13 +150,20 @@ export const pageQuery = graphql`
 			filter: { frontmatter: { templateKey: { eq: "projects" } } }
 			limit: 3
 		) {
+			totalCount
 			edges {
 				node {
 					id
 					frontmatter {
 						title
 						subtitle
-						featured_image
+						featured_image {
+							childImageSharp {
+								sizes(maxWidth: 650) {
+									...GatsbyImageSharpSizes
+								}
+							}
+						}
 						link
 					}
 					html

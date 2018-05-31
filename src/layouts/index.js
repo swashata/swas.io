@@ -12,15 +12,9 @@ const TemplateWrapper = ({ data, location, children }) => {
 	let content;
 	const {
 		site: {
-			siteMetadata: {
-				title,
-				description,
-				image,
-				twitterHandle,
-				author,
-				url,
-			},
+			siteMetadata: { title, description, image, twitterHandle, author },
 		},
+		blogBG,
 	} = data;
 	const helmet = (
 		<Helmet>
@@ -120,7 +114,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 		content = (
 			<div className="home-page">
 				{helmet}
-				<Hero data={data} />
+				<Hero data={data} bg={blogBG} />
 				<Navbar location={location} />
 				<div className="home-page__blog">{children()}</div>
 			</div>
@@ -210,13 +204,17 @@ export const query = graphql`
 				image
 				twitterHandle
 				author
-				url
 				socials {
 					twitter
 					github
 					linkedin
 				}
 				taglines
+			}
+		}
+		blogBG: imageSharp(id: { regex: "/img/bg.jpg/" }) {
+			sizes(maxWidth: 2160) {
+				...GatsbyImageSharpSizes
 			}
 		}
 	}

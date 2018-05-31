@@ -14,17 +14,14 @@
 	& &__image {
 		display: flex;
 		align-items: center;
+		animation: pulseProject infinite forwards 10s;
 		a {
-			animation: pulseProject infinite forwards 10s;
-		}
-		img {
+			display: block;
+			width: 100%;
 			transition: transform 300ms ease-out;
-			transform: rotate(0);
 		}
 		a:hover {
-			img {
-				transform: rotate(2deg);
-			}
+			transform: rotate(2deg);
 		}
 	}
 
@@ -69,9 +66,7 @@
 			& .project-list__image {
 				order: 2;
 				a:hover {
-					img {
-						transform: rotate(-2deg);
-					}
+					transform: rotate(-2deg);
 				}
 			}
 			& .project-list__content {
