@@ -4,8 +4,8 @@ backend:
 
 publish_mode: editorial_workflow
 display_url: https://swas.io
-media_folder: static/img
-public_folder: /img
+media_folder: src/images
+public_folder: ../../images
 
 collections:
   - name: "blog"
