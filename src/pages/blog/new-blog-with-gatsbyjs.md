@@ -2,6 +2,7 @@
 templateKey: blog-post
 title: New Blog with Gatsbyjs
 date: '2018-05-30T21:32:55+05:30'
+featured_image: ../../images/gatsbyjs-preview.png
 description: >-
   New blog finally created with gatsbyjs. Just trying out how things are with
   the new system.

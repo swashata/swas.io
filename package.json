@@ -60,7 +60,7 @@
     "serve": "gatsby serve",
     "format": "prettier --config ./prettier.config.js --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "new": "node ./scripts/new.js"
+    "newEntry": "node ./scripts/new.js"
   },
   "devDependencies": {
     "@wpquark/eslint-config": "^1.0.1",

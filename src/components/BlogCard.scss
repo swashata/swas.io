@@ -28,6 +28,15 @@
 	& &__content {
 		margin: 0 0 2rem 0;
 	}
+
+	& &__featured-image {
+		margin-bottom: 1rem;
+		.gatsby-image-wrapper img {
+			border-radius: 16px;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+		}
+	}
+
 	& &__footer {
 		a {
 			width: 300px;

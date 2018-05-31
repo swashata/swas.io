@@ -16,6 +16,17 @@ const TemplateWrapper = ({ data, location, children }) => {
 		},
 		blogBG,
 	} = data;
+	const {
+		edges: [
+			{
+				node: {
+					frontmatter: {
+						image: { childImageSharp },
+					},
+				},
+			},
+		],
+	} = blogBG;
 	const helmet = (
 		<Helmet>
 			<meta httpEquiv="X-UA-Compatible" content="chrome=1" />
@@ -114,7 +125,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 		content = (
 			<div className="home-page">
 				{helmet}
-				<Hero data={data} bg={blogBG} />
+				<Hero data={data} bg={childImageSharp} />
 				<Navbar location={location} />
 				<div className="home-page__blog">{children()}</div>
 			</div>
@@ -194,7 +205,6 @@ TemplateWrapper.propTypes = {
 };
 
 export default TemplateWrapper;
-
 export const query = graphql`
 	query HomePageQuery {
 		site {
@@ -212,10 +222,27 @@ export const query = graphql`
 				taglines
 			}
 		}
-		blogBG: imageSharp(id: { regex: "/img/bg.jpg/" }) {
-			sizes(maxWidth: 2160) {
-				...GatsbyImageSharpSizes
+		blogBG: allMarkdownRemark(
+			filter: { frontmatter: { templateKey: { eq: "home" } } }
+		) {
+			edges {
+				node {
+					frontmatter {
+						image {
+							childImageSharp {
+								sizes(maxWidth: 2500) {
+									...GatsbyImageSharpSizes
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 `;
+// blogBG: imageSharp(id: { regex: "/images/bg.jpg/" }) {
+// 	sizes(maxWidth: 1920) {
+// 		...GatsbyImageSharpSizes
+// 	}
+// }

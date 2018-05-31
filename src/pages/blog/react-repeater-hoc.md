@@ -1,8 +1,7 @@
 ---
 templateKey: blog-post
-featured_image: null
-hero_image: ''
 title: "React Repeater HOC"
+featured_image: ../../images/react-repeater.png
 date: 2018-04-19T10:17:33+05:30
 draft: false
 tags: ["React", "javascript", "hoc"]

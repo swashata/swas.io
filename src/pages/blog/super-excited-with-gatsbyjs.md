@@ -1,13 +1,12 @@
 ---
 title: Super Excited with Gatsbyjs
 date: 2018-05-31T14:52:13.481Z
-featured_image: ../../images/swas.io-home-page.png
+featured_image: ../../images/swas-io-home-page.png
 description: See why I am super excited with gatsbyjs with all image optimization and stuff.
 tags: ["General", "Gatsbyjs"]
 templateKey: blog-post
 ---
 
-![My Home Page](../../images/swas.io-home-page.png)
 
 So my optimization is nearly complete and I am amazed to see the power and
 potential of [gatsbyjs](https://www.gatsbyjs.org/). I have just started learning

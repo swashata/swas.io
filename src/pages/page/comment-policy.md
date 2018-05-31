@@ -1,6 +1,7 @@
 ---
 templateKey: 'static-page'
 title: Comment Policy
+featured_image: ../../images/gatsbyjs-preview.png
 ---
 
 ## Keep it civil aka don’t be a jerk

@@ -21,7 +21,7 @@ and many a things. Fork away 😎.
 ### New Entries
 
 ```bash
-yarn new
+yarn newEntry
 ```
 
 Will walk you through a wizard to create either a blog, page or post entry. Neat! 🍪

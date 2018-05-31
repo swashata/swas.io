@@ -1,7 +1,6 @@
 ---
 templateKey: blog-post
-featured_image: null
-hero_image: ''
+featured_image: ../../images/hello-world-banner.jpg
 title: "Hello World"
 date: 2017-09-15T15:56:05+05:30
 tags: ["General"]

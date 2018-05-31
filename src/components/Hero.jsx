@@ -14,7 +14,6 @@ const Hero = props => {
 		},
 		bg,
 	} = props;
-	console.log(bg);
 	return (
 		<div className="swas-hero">
 			<Img
@@ -49,6 +48,10 @@ const Hero = props => {
 Hero.propTypes = {
 	data: PropTypes.shape({
 		site: PropTypes.object,
+	}).isRequired,
+	bg: PropTypes.shape({
+		src: PropTypes.string,
+		srcSet: PropTypes.string,
 	}).isRequired,
 };
 export default Hero;
