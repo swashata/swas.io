@@ -99,7 +99,10 @@ const getFrontmatter = ({
 				date: new Date().toISOString(),
 				featured_image,
 				description,
-				tags,
+				tags: `[${tags
+					.split(',')
+					.map(tag => `"${tag.trim()}"`)
+					.join(',')}]`,
 				templateKey: 'blog-post',
 			};
 			break;
