@@ -1,7 +1,6 @@
 ---
 templateKey: static-page
 title: About Me
-featured_image: ../../images/gatsbyjs-preview.png
 ---
 > Full-stack web developer and WordPress geek.
 

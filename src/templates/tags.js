@@ -13,6 +13,7 @@ class TagRoute extends React.Component {
 				site: {
 					siteMetadata: { title, shortTitle },
 				},
+				pageBG,
 			},
 			pathContext: { tag },
 		} = this.props;
@@ -24,6 +25,7 @@ class TagRoute extends React.Component {
 			<Page
 				title={`${shortTitle} – ${tag}`}
 				subtitle={tagHeader}
+				hero={pageBG.childImageSharp}
 				footer={
 					<div className="home-browse">
 						<Link
@@ -71,7 +73,11 @@ class TagRoute extends React.Component {
 
 export default TagRoute;
 TagRoute.propTypes = {
-	data: PropTypes.objectOf(PropTypes.any).isRequired,
+	data: PropTypes.shape({
+		site: PropTypes.object.isRequired,
+		allMarkdownRemark: PropTypes.object.isRequired,
+		pageBG: PropTypes.object.isRequired,
+	}).isRequired,
 	pathContext: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
@@ -108,6 +114,15 @@ export const tagPageQuery = graphql`
 					}
 					excerpt
 					id
+				}
+			}
+		}
+		pageBG: file(relativePath: { eq: "tags.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 2500) {
+					...GatsbyImageSharpResolutions
 				}
 			}
 		}

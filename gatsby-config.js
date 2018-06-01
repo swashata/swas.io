@@ -33,13 +33,6 @@ module.exports = {
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {
-				path: `${__dirname}/src/img`,
-				name: 'img',
-			},
-		},
-		{
-			resolve: 'gatsby-source-filesystem',
-			options: {
 				path: `${__dirname}/src/images`,
 				name: 'images',
 			},
@@ -71,7 +64,6 @@ module.exports = {
 							aliases: {},
 						},
 					},
-					'gatsby-remark-copy-linked-files',
 					{
 						resolve: 'gatsby-remark-images',
 						options: {
@@ -79,6 +71,7 @@ module.exports = {
 							linkImagesToOriginal: true,
 						},
 					},
+					'gatsby-remark-copy-linked-files',
 					'gatsby-remark-responsive-iframe',
 				],
 			},
@@ -119,12 +112,12 @@ module.exports = {
 				icon: 'src/img/ninja.png', // This path is relative to the root of the site.
 			},
 		},
-		{
-			resolve: 'gatsby-plugin-netlify-cms',
-			options: {
-				modulePath: `${__dirname}/src/cms/cms.js`,
-			},
-		},
-		'gatsby-plugin-netlify', // make sure to keep it last in the array
+		// {
+		// 	resolve: 'gatsby-plugin-netlify-cms',
+		// 	options: {
+		// 		modulePath: `${__dirname}/src/cms/cms.js`,
+		// 	},
+		// },
+		// 'gatsby-plugin-netlify', // make sure to keep it last in the array
 	],
 };

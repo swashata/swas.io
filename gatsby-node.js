@@ -36,9 +36,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 								childImageSharp {
 									sizes {
 										aspectRatio
+										base64
+										sizes
 										src
 										srcSet
-										sizes
 									}
 								}
 							}

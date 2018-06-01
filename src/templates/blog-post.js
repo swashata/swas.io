@@ -23,6 +23,7 @@ export const BlogPostTemplate = props => {
 		prevPost,
 		socialConfig,
 		featured,
+		pageBG,
 	} = props;
 	const PostContent = contentComponent || Content;
 	const readingStat = !contentComponent
@@ -69,7 +70,7 @@ export const BlogPostTemplate = props => {
 					) : null}
 				</React.Fragment>
 			}
-			hero={featured}
+			hero={featured || pageBG}
 		>
 			{helmet || ''}
 			<div className="content">
@@ -152,14 +153,14 @@ const BlogPost = ({ data }) => {
 		},
 		prevPost,
 		nextPost,
+		pageBG,
 	} = data;
-	console.log(featuredImage);
 	const featured =
 		featuredImage &&
 		featuredImage.childImageSharp &&
-		featuredImage.childImageSharp.sizes &&
-		featuredImage.childImageSharp.sizes.src
-			? featuredImage.childImageSharp.sizes.src
+		featuredImage.childImageSharp.resolutions &&
+		featuredImage.childImageSharp.resolutions.src
+			? featuredImage.childImageSharp.resolutions.src
 			: '';
 
 	const helmet = (
@@ -205,7 +206,11 @@ const BlogPost = ({ data }) => {
 		prevPost,
 		nextPost,
 		socialConfig,
-		featured,
+		featured:
+			featuredImage && featuredImage.childImageSharp
+				? featuredImage.childImageSharp
+				: null,
+		pageBG,
 	};
 	return <BlogPostTemplate {...props} />;
 };
@@ -243,8 +248,8 @@ export const pageQuery = graphql`
 				tags
 				featured_image {
 					childImageSharp {
-						sizes(maxWidth: 960) {
-							...GatsbyImageSharpSizes
+						resolutions(width: 960) {
+							...GatsbyImageSharpResolutions
 						}
 					}
 				}
@@ -269,6 +274,15 @@ export const pageQuery = graphql`
 			}
 			fields {
 				slug
+			}
+		}
+		pageBG: file(relativePath: { eq: "blog.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 2500) {
+					...GatsbyImageSharpResolutions
+				}
 			}
 		}
 	}

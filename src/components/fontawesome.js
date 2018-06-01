@@ -5,6 +5,8 @@ import faAngleDoubleRight from '@fortawesome/fontawesome-free-solid/faAngleDoubl
 import faEdit from '@fortawesome/fontawesome-free-solid/faEdit';
 import faUser from '@fortawesome/fontawesome-free-solid/faUser';
 import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
+import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner';
+import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
 // import faCheckSquare from '@fortawesome/fontawesome-free-solid/faCheckSquare';
 // import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee';
 
@@ -14,5 +16,7 @@ fontawesome.library.add(
 	faAngleDoubleRight,
 	faEdit,
 	faUser,
-	faEnvelope
+	faEnvelope,
+	faSpinner,
+	faTimes
 );

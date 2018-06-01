@@ -17,7 +17,8 @@ const Hero = props => {
 	return (
 		<div className="swas-hero">
 			<Img
-				sizes={bg.sizes}
+				// sizes={bg.sizes}
+				resolutions={bg.resolutions}
 				style={{
 					position: 'absolute',
 					left: 0,

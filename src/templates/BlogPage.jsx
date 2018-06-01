@@ -12,7 +12,7 @@ const createPaginationObjects = (length, page, increment = 2) =>
 		current: page === i + increment,
 	}));
 
-const BlogPage = ({ pathContext }) => {
+const BlogPage = ({ data, pathContext }) => {
 	const {
 		nodes,
 		page,
@@ -22,6 +22,7 @@ const BlogPage = ({ pathContext }) => {
 		total,
 		shortTitle: siteTitle,
 	} = pathContext;
+	const { pageBG } = data;
 	let navItems = [
 		{
 			link: `/blog/`,
@@ -131,6 +132,7 @@ const BlogPage = ({ pathContext }) => {
 			title={`${siteTitle} – Blog`}
 			subtitle={`Showing Page ${page} of ${pages} · Total ${total} articles`}
 			footer={footer}
+			hero={pageBG.childImageSharp}
 		>
 			<div className="columns is-desktop is-multiline">
 				{nodes.map(item => {
@@ -168,6 +170,23 @@ const BlogPage = ({ pathContext }) => {
 
 BlogPage.propTypes = {
 	pathContext: PropTypes.objectOf(PropTypes.any).isRequired,
+	data: PropTypes.shape({
+		pageBG: PropTypes.object,
+	}).isRequired,
 };
 
 export default BlogPage;
+
+export const BlogPageQuery = graphql`
+	query BlogPageQuery {
+		pageBG: file(relativePath: { eq: "blog.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 2500) {
+					...GatsbyImageSharpResolutions
+				}
+			}
+		}
+	}
+`;

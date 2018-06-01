@@ -20,9 +20,6 @@
 			width: 100%;
 			transition: transform 300ms ease-out;
 		}
-		a:hover {
-			transform: rotate(2deg);
-		}
 	}
 
 	& &__content {
@@ -53,9 +50,12 @@
 		}
 	}
 
-	@media screen and (min-width: 768px) {
+	@media screen and (min-width: 1024px) {
 		& &__image {
 			flex-basis: calc(55% - 1rem);
+			a:hover {
+				transform: rotate(2deg);
+			}
 		}
 		& &__content {
 			flex-basis: calc(45% - 1rem);

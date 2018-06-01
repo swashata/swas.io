@@ -11,11 +11,12 @@ export const StaticPageTemplate = ({
 	contentComponent,
 	subtitle,
 	helmet,
+	pageBG,
 }) => {
 	const PageContent = contentComponent || Content;
 
 	return (
-		<Page title={title} subtitle={subtitle}>
+		<Page title={title} subtitle={subtitle} hero={pageBG.childImageSharp}>
 			{helmet || ''}
 			<div className="content">
 				<PageContent content={content} />
@@ -31,6 +32,9 @@ StaticPageTemplate.propTypes = {
 	contentComponent: PropTypes.func,
 	subtitle: PropTypes.string.isRequired,
 	helmet: PropTypes.objectOf(PropTypes.any),
+	pageBG: PropTypes.shape({
+		childImageSharp: PropTypes.object,
+	}).isRequired,
 };
 StaticPageTemplate.defaultProps = {
 	contentComponent: null,
@@ -48,6 +52,7 @@ const StaticPage = ({ data }) => {
 		site: {
 			siteMetadata: { title: siteTitle, shortTitle },
 		},
+		pageBG,
 	} = data;
 	const helmet = (
 		<Helmet>
@@ -70,6 +75,7 @@ const StaticPage = ({ data }) => {
 			content={html}
 			subtitle={siteTitle}
 			helmet={helmet}
+			pageBG={pageBG}
 		/>
 	);
 };
@@ -78,6 +84,7 @@ StaticPage.propTypes = {
 	data: PropTypes.shape({
 		page: PropTypes.object,
 		site: PropTypes.object,
+		pageBG: PropTypes.object,
 	}).isRequired,
 };
 
@@ -99,6 +106,15 @@ export const staticPageQuery = graphql`
 			excerpt
 			fields {
 				slug
+			}
+		}
+		pageBG: file(relativePath: { eq: "pages.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 2500) {
+					...GatsbyImageSharpResolutions
+				}
 			}
 		}
 	}

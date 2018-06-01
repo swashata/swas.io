@@ -16,17 +16,17 @@ const TemplateWrapper = ({ data, location, children }) => {
 		},
 		blogBG,
 	} = data;
-	const {
-		edges: [
-			{
-				node: {
-					frontmatter: {
-						image: { childImageSharp },
-					},
-				},
-			},
-		],
-	} = blogBG;
+	// const {
+	// 	edges: [
+	// 		{
+	// 			node: {
+	// 				frontmatter: {
+	// 					image: { childImageSharp },
+	// 				},
+	// 			},
+	// 		},
+	// 	],
+	// } = blogBG;
 	const helmet = (
 		<Helmet>
 			<meta httpEquiv="X-UA-Compatible" content="chrome=1" />
@@ -125,7 +125,7 @@ const TemplateWrapper = ({ data, location, children }) => {
 		content = (
 			<div className="home-page">
 				{helmet}
-				<Hero data={data} bg={childImageSharp} />
+				<Hero data={data} bg={blogBG.childImageSharp} />
 				<Navbar location={location} />
 				<div className="home-page__blog">{children()}</div>
 			</div>
@@ -222,27 +222,14 @@ export const query = graphql`
 				taglines
 			}
 		}
-		blogBG: allMarkdownRemark(
-			filter: { frontmatter: { templateKey: { eq: "home" } } }
-		) {
-			edges {
-				node {
-					frontmatter {
-						image {
-							childImageSharp {
-								sizes(maxWidth: 2500) {
-									...GatsbyImageSharpSizes
-								}
-							}
-						}
-					}
+		blogBG: file(relativePath: { eq: "bg.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 2500) {
+					...GatsbyImageSharpResolutions
 				}
 			}
 		}
 	}
 `;
-// blogBG: imageSharp(id: { regex: "/images/bg.jpg/" }) {
-// 	sizes(maxWidth: 1920) {
-// 		...GatsbyImageSharpSizes
-// 	}
-// }

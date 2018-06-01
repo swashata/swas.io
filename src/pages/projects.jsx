@@ -10,12 +10,14 @@ const Projects = props => {
 			site: {
 				siteMetadata: { shortTitle },
 			},
+			pageBG,
 		},
 	} = props;
 	return (
 		<Page
 			title={`Projects – ${shortTitle}`}
 			subtitle={`Total ${edges.length} projects published`}
+			hero={pageBG.childImageSharp}
 		>
 			{edges.map(project => {
 				const {
@@ -53,6 +55,7 @@ Projects.propTypes = {
 	data: PropTypes.shape({
 		projects: PropTypes.object,
 		site: PropTypes.object,
+		pageBG: PropTypes.object,
 	}).isRequired,
 };
 
@@ -87,6 +90,15 @@ export const projectQuery = graphql`
 		site {
 			siteMetadata {
 				shortTitle
+			}
+		}
+		pageBG: file(relativePath: { eq: "projects.jpg" }) {
+			childImageSharp {
+				# Specify the image processing specifications right in the query.
+				# Makes it trivial to update as your page's design changes.
+				resolutions(width: 2500) {
+					...GatsbyImageSharpResolutions
+				}
 			}
 		}
 	}
