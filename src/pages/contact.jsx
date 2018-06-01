@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Recaptcha from 'react-google-recaptcha';
 
 import Page from '../components/Page';
+
+const RECAPTCHA_SITE_KEY = '6LcOq1wUAAAAALPCGwXixAbMHQuoUb_mP0G-ZPwK';
 
 function encode(data) {
 	return Object.keys(data)
@@ -30,7 +33,7 @@ class Contact extends React.PureComponent {
 		name: '',
 		email: '',
 		message: '',
-		bot: '',
+		recaptcha: '',
 		submitting: false,
 		succeeded: false,
 		error: '',
@@ -39,7 +42,7 @@ class Contact extends React.PureComponent {
 	changeName = e => this.setState({ name: e.target.value });
 	changeEmail = e => this.setState({ email: e.target.value });
 	changeMessage = e => this.setState({ message: e.target.value });
-	changeBot = e => this.setState({ bot: e.target.value });
+	changeRecaptcha = value => this.setState({ recaptcha: value });
 
 	handleFormSubmit = e => {
 		e.preventDefault();
@@ -57,7 +60,7 @@ class Contact extends React.PureComponent {
 						name: this.state.name,
 						email: this.state.email,
 						message: this.state.message,
-						'bot-field': this.state.bot,
+						'g-recaptcha-response': this.state.recaptcha,
 					}),
 				})
 					.then(() => {
@@ -104,7 +107,7 @@ class Contact extends React.PureComponent {
 					<form
 						method="post"
 						data-netlify="true"
-						data-netlify-honeypot="bot-field"
+						data-netlify-recaptcha="true"
 						name="Contact"
 						onSubmit={this.handleFormSubmit}
 					>
@@ -166,21 +169,13 @@ class Contact extends React.PureComponent {
 						</div>
 						<div className="field">
 							<label htmlFor="bot" className="label">
-								Do not Fill This (Anti BOT)
+								Recaptcha
 							</label>
-							<div className="control has-icons-left">
-								<input
-									type="text"
-									name="bot"
-									id="bot"
-									value={this.state.bot}
-									onChange={this.changeBot}
-									placeholder="Should be empty"
-									className="input"
+							<div className="control">
+								<Recaptcha
+									sitekey={RECAPTCHA_SITE_KEY}
+									onChange={this.changeRecaptcha}
 								/>
-								<span className="is-small is-left icon">
-									<FontAwesomeIcon icon="times" />
-								</span>
 							</div>
 						</div>
 						<div className="field">
