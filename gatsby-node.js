@@ -40,6 +40,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 										sizes
 										src
 										srcSet
+										srcWebp
+										srcSetWebp
 									}
 								}
 							}

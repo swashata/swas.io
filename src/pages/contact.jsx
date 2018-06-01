@@ -254,7 +254,7 @@ export const contactQuery = graphql`
 				# Specify the image processing specifications right in the query.
 				# Makes it trivial to update as your page's design changes.
 				resolutions(width: 2500) {
-					...GatsbyImageSharpResolutions
+					...GatsbyImageSharpResolutions_withWebp
 				}
 			}
 		}

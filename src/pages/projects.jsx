@@ -77,7 +77,7 @@ export const projectQuery = graphql`
 						featured_image {
 							childImageSharp {
 								sizes(maxWidth: 960) {
-									...GatsbyImageSharpSizes
+									...GatsbyImageSharpSizes_withWebp
 								}
 							}
 						}
@@ -97,7 +97,7 @@ export const projectQuery = graphql`
 				# Specify the image processing specifications right in the query.
 				# Makes it trivial to update as your page's design changes.
 				resolutions(width: 2500) {
-					...GatsbyImageSharpResolutions
+					...GatsbyImageSharpResolutions_withWebp
 				}
 			}
 		}
