@@ -109,7 +109,7 @@ module.exports = {
 				background_color: '#FCF2E5',
 				theme_color: '#1E578E',
 				display: 'standalone',
-				icon: 'src/img/ninja.png', // This path is relative to the root of the site.
+				icon: 'src/images/ninja.png', // This path is relative to the root of the site.
 			},
 		},
 		// {
