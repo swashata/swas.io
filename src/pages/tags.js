@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { kebabCase } from 'lodash';
+import kebabCase from 'lodash.kebabcase';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import Page from '../components/Page';
@@ -19,6 +19,9 @@ const TagsPage = ({
 		subtitle={title}
 		hero={pageBG.childImageSharp}
 	>
+		<Helmet>
+			<title>{`Tags | ${title}`}</title>
+		</Helmet>
 		<div
 			className="tags"
 			style={{ maxWidth: '960px', margin: '2rem auto' }}
