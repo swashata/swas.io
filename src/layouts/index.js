@@ -164,7 +164,8 @@ const TemplateWrapper = ({ data, location, children }) => {
 						</p>
 						<p>
 							Photos are used with permission from{' '}
-							<a href="https://somrajsahu.com/">Somraj Sahu</a>.
+							<a href="https://somrajsahu.com/">Somraj Sahu</a> &{' '}
+							<a href="https://unsplash.com/">Unsplash.com</a>.
 							Ninja Icon made by{' '}
 							<a
 								rel="noopener noreferrer nofollow"
