@@ -23,7 +23,6 @@ export const BlogPostTemplate = props => {
 		prevPost,
 		socialConfig,
 		featured,
-		pageBG,
 	} = props;
 	const PostContent = contentComponent || Content;
 	const readingStat = !contentComponent
@@ -70,7 +69,7 @@ export const BlogPostTemplate = props => {
 					) : null}
 				</React.Fragment>
 			}
-			hero={featured || pageBG}
+			hero={featured}
 		>
 			{helmet || ''}
 			<div className="content">
@@ -122,7 +121,7 @@ BlogPostTemplate.propTypes = {
 		shortname: PropTypes.string.isRequired,
 		config: PropTypes.object.isRequired,
 	}),
-	featured: PropTypes.string,
+	featured: PropTypes.objectOf(PropTypes.any),
 };
 BlogPostTemplate.defaultProps = {
 	contentComponent: null,
@@ -209,8 +208,7 @@ const BlogPost = ({ data }) => {
 		featured:
 			featuredImage && featuredImage.childImageSharp
 				? featuredImage.childImageSharp
-				: null,
-		pageBG,
+				: pageBG,
 	};
 	return <BlogPostTemplate {...props} />;
 };
@@ -220,6 +218,7 @@ BlogPost.propTypes = {
 		post: PropTypes.object,
 		prevPost: PropTypes.object,
 		nextPost: PropTypes.object,
+		pageBG: PropTypes.object,
 	}).isRequired,
 	pathContext: PropTypes.shape({
 		prev: PropTypes.string,

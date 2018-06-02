@@ -12,6 +12,7 @@
 		"jsx-a11y/anchor-is-valid": 0,
 		"import/no-unresolved": [2, {
 			"ignore": ["^(~)(.*)"]
-		}]
+		}],
+		"import/no-extraneous-dependencies": 0
 	}
 }
