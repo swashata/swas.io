@@ -206,9 +206,11 @@ const BlogPost = ({ data }) => {
 		nextPost,
 		socialConfig,
 		featured:
-			featuredImage && featuredImage.childImageSharp
+			featuredImage &&
+			featuredImage.childImageSharp &&
+			featuredImage.childImageSharp.resolutions
 				? featuredImage.childImageSharp
-				: pageBG,
+				: pageBG.childImageSharp,
 	};
 	return <BlogPostTemplate {...props} />;
 };

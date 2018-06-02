@@ -95,11 +95,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 				const {
 					id,
 					fields: { slug },
-					frontmatter: { tags },
 				} = edge.node;
 				return {
 					path: slug,
-					tags,
 					// additional data can be passed via context
 					context: {
 						id,
