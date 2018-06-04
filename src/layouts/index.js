@@ -6,6 +6,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 import '../components/fontawesome';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+
 import './all.scss';
 
 const TemplateWrapper = ({ data, location, children }) => {

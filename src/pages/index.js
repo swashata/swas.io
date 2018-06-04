@@ -7,7 +7,6 @@ import ProjectList from '../components/ProjectList';
 
 export default class IndexPage extends React.Component {
 	render() {
-		console.log(this.props);
 		const {
 			data: {
 				posts: { edges, totalCount: totalPosts },

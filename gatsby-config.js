@@ -41,9 +41,9 @@ module.exports = {
 		},
 		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
-
 		'gatsby-plugin-twitter',
 		'gatsby-plugin-react-helmet',
+		// 'gatsby-plugin-sass',
 		{
 			resolve: 'gatsby-plugin-postcss-sass',
 			options: {
