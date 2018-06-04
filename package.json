@@ -10,6 +10,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.0-11",
     "@fortawesome/react-fontawesome": "^0.1.0-11",
+    "autoprefixer": "^8.6.0",
     "bulma": "^0.7.1",
     "disqus-react": "^1.0.5",
     "gatsby": "^1.9.213",
@@ -20,11 +21,12 @@
     "gatsby-plugin-google-fonts": "^0.0.4",
     "gatsby-plugin-manifest": "^1.0.22",
     "gatsby-plugin-netlify": "^1.0.19",
+    "gatsby-plugin-postcss-sass": "^1.0.21",
     "gatsby-plugin-react-helmet": "^2.0.5",
-    "gatsby-plugin-sass": "^1.0.17",
     "gatsby-plugin-sharp": "^1.6.44",
     "gatsby-plugin-sitemap": "^1.2.23",
     "gatsby-plugin-twitter": "^1.0.20",
+    "gatsby-remark-autolink-headers": "^1.4.18",
     "gatsby-remark-copy-linked-files": "^1.5.32",
     "gatsby-remark-embed-video": "^1.2.0",
     "gatsby-remark-images": "^1.5.63",
@@ -67,5 +69,8 @@
     "eslint": "^4.19.1",
     "eslint-plugin-markdown": "^1.0.0-beta.6",
     "prettier": "^1.13.0"
-  }
+  },
+  "browserslist": [
+    "last 2 version"
+  ]
 }

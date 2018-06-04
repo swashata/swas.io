@@ -108,6 +108,10 @@ code[class*='language-'] {
 		text-align: left;
 		vertical-align: baseline;
 	}
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
 }
 :not(pre) > code[class*='language'] {
 	padding: 0.25em 0.5em 0.25em;
@@ -186,7 +190,20 @@ code[class*='language-'] {
 .blog-article {
 	max-width: 960px;
 	margin: 0 auto;
-
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		text-transform: uppercase;
+		font-weight: 300;
+		> * {
+			text-transform: none;
+		}
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+	}
 	.gatsby-resp-image-image {
 		border: 1px solid rgba(0, 0, 0, 0.05);
 		border-radius: 8px;

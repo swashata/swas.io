@@ -59,6 +59,9 @@
 	}
 	& &__container {
 		padding-bottom: 0;
+		.container {
+			position: static;
+		}
 		.content {
 			padding-bottom: 1.5rem;
 			border-bottom: 4px solid rgba(0, 0, 0, 0.05);

@@ -1,3 +1,5 @@
+const autoprefixer = require('autoprefixer');
+
 module.exports = {
 	siteMetadata: {
 		title: "Swas.io - Swashata's Personal Blog",
@@ -42,11 +44,22 @@ module.exports = {
 
 		'gatsby-plugin-twitter',
 		'gatsby-plugin-react-helmet',
-		'gatsby-plugin-sass',
+		{
+			resolve: 'gatsby-plugin-postcss-sass',
+			options: {
+				postCssPlugins: [autoprefixer()],
+			},
+		},
 		{
 			resolve: 'gatsby-transformer-remark',
 			options: {
 				plugins: [
+					{
+						resolve: 'gatsby-remark-autolink-headers',
+						options: {
+							offsetY: 55,
+						},
+					},
 					{
 						resolve: 'gatsby-remark-embed-video',
 						options: {
