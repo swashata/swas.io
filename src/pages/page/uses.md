@@ -4,24 +4,24 @@ title: What Do I Use?
 ---
 
 This page lists the most recent things I am using. Just for the curious ones 🤓.
-If you are looking for something not present here, just [twit](https://twitter.com/swashata).
+If you are looking for something not present here, just [tweet](https://twitter.com/swashata).
 
 ## Editor & Dev Environment
 
-* Currently working on a MacBook Pro 13" late 2017 model. It has 3.1 GHz Intel Core i5, 512GB of SSD and 8GB of RAM.
-* [Visual Studio Code](https://code.visualstudio.com/) is my current editor. Very
-recently I have switched from sublime text 3 and loving it so far.
-* [Beautiful UI](https://vscbui.rocks) is a VSCode color theme that I have ported
-from Sublime DA UI. I am using the tomorrow dark theme.
-* [iTerm2](https://iterm2.com/) is my terminal right now. With this I am using zsh + [oh my zsh](http://ohmyz.sh/).
-* [Sketch App](https://www.sketchapp.com/) is my go to solution for any graphics need that I can do myself. I am not a pro here.
-* [VVV](https://varyingvagrantvagrants.org/) is what I use for WordPress development.
+-   Currently working on a MacBook Pro 13" late 2017 model. It has 3.1 GHz Intel Core i5, 512GB of SSD and 8GB of RAM.
+-   [Visual Studio Code](https://code.visualstudio.com/) is my current editor. Very
+    recently I have switched from sublime text 3 and loving it so far.
+-   [Beautiful UI](https://vscbui.rocks) is a VSCode color theme that I have ported
+    from Sublime DA UI. I am using the tomorrow dark theme.
+-   [iTerm2](https://iterm2.com/) is my terminal right now. With this I am using zsh + [oh my zsh](http://ohmyz.sh/).
+-   [Sketch App](https://www.sketchapp.com/) is my go to solution for any graphics need that I can do myself. I am not a pro here.
+-   [VVV](https://varyingvagrantvagrants.org/) is what I use for WordPress development.
 
 ## Workflow Desktop Apps
 
-* [Magnet](http://magnet.crowdcafe.com/) and [Divvy](http://mizage.com/divvy/) for quick window management.
-* [Rocket](https://matthewpalmer.net/rocket/) for emojis 🎉💥🍪.
-* I use mac's mission control a lot.
+-   [Magnet](http://magnet.crowdcafe.com/) and [Divvy](http://mizage.com/divvy/) for quick window management.
+-   [Rocket](https://matthewpalmer.net/rocket/) for emojis 🎉💥🍪.
+-   I use mac's mission control a lot.
 
 ## Dotfiles
 
@@ -144,9 +144,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 	"terminal.integrated.cursorStyle": "line",
 	"terminal.integrated.cursorBlinking": true,
 	"terminal.integrated.fontSize": 14,
-	"phpcs.ignorePatterns": [
-		"**/vendor/**"
-	],
+	"phpcs.ignorePatterns": ["**/vendor/**"],
 	"files.trimTrailingWhitespace": true,
 	"files.insertFinalNewline": true,
 	"eslint.packageManager": "yarn",
@@ -161,39 +159,26 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 		"plaintext": "jade",
 		"vue-html": "html"
 	},
-	"window.title": "${activeEditorShort}${separator}${rootName}${seperator}${dirty}",
+	"window.title":
+		"${activeEditorShort}${separator}${rootName}${seperator}${dirty}",
 	"eslint.enable": true,
 	"eslint.autoFixOnSave": false,
 	"eslint.alwaysShowStatus": true,
-	"eslint.validate": [
-		"javascript",
-		"javascriptreact",
-		"html"
-	],
+	"eslint.validate": ["javascript", "javascriptreact", "html"],
 	"workbench.statusBar.feedback.visible": false,
-	"editor.rulers": [
-		80,
-		100,
-		120
-	],
-	"cSpell.userWords": [
-		"gitignore"
-	],
+	"editor.rulers": [80, 100, 120],
+	"cSpell.userWords": ["gitignore"],
 	"explorer.confirmDragAndDrop": false,
 	"css.validate": false,
 	"less.validate": false,
 	"scss.validate": false,
 	"json.schemas": [
 		{
-			"fileMatch": [
-				"cypress.json"
-			],
+			"fileMatch": ["cypress.json"],
 			"url": "https://on.cypress.io/cypress.schema.json"
 		},
 		{
-			"fileMatch": [
-				".prettierrc.json"
-			],
+			"fileMatch": [".prettierrc.json"],
 			"url": "http://json.schemastore.org/prettierrc"
 		}
 	],
@@ -229,10 +214,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 	"path-autocomplete.transformations": [
 		{
 			"type": "replace",
-			"parameters": [
-				"^_",
-				""
-			],
+			"parameters": ["^_", ""],
 			"when": {
 				"fileName": "\\.scss$"
 			}
@@ -266,12 +248,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 	"editor.dragAndDrop": false,
 	"editor.find.autoFindInSelection": true,
 	"editor.emptySelectionClipboard": true,
-	"colorize.files_extensions": [
-		".tmTheme"
-	],
-	"vscode_custom_css.imports": [
-		"file:///Users/swashata/.vscode_custom.css"
-	],
+	"colorize.files_extensions": [".tmTheme"],
+	"vscode_custom_css.imports": ["file:///Users/swashata/.vscode_custom.css"],
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"cSpell.enabled": false,
 	"material-icon-theme.activeIconPack": "react_redux",
