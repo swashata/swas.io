@@ -31,9 +31,7 @@ export const BlogPostTemplate = props => {
 	return (
 		<Page
 			title={title}
-			subtitle={`on ${date} · ${readingStat.text} · ${
-				readingStat.words
-			} words`}
+			subtitle={`on ${date} • ${readingStat.text}`}
 			footer={
 				<React.Fragment>
 					<nav className="post-navigation" aria-label="pagination">

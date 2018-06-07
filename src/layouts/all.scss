@@ -204,9 +204,10 @@ code[class*='language-'] {
 		padding-bottom: 0.5rem;
 		border-bottom: 2px solid rgba(0, 0, 0, 0.05);
 	}
-	.gatsby-resp-image-image {
+	.gatsby-resp-image-wrapper {
 		border: 1px solid rgba(0, 0, 0, 0.05);
 		border-radius: 8px;
+		overflow: hidden;
 	}
 }
 

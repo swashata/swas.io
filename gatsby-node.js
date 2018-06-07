@@ -77,7 +77,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 			createPage,
 			edges: blogEdges,
 			component: path.resolve('src/templates/BlogPage.jsx'),
-			limit: 10,
+			limit: 5,
 			// pathFormatter: p => (p === 1 ? `/blog/` : `/blog/${p}`),
 			pathFormatter: prefixPathFormatter('/blog'),
 			context: {
