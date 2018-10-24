@@ -132,7 +132,7 @@ module.exports = {
 		// 		modulePath: `${__dirname}/src/cms/cms.js`,
 		// 	},
 		// },
-		'gatsby-plugin-netlify-cache',
+		// 'gatsby-plugin-netlify-cache', // Only for gatsby-v2
 		'gatsby-plugin-netlify', // make sure to keep it last in the array
 	],
 };
