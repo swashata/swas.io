@@ -38,7 +38,7 @@
     "gatsby-transformer-sharp": "^1.6.21",
     "inquirer": "^5.2.0",
     "lodash.kebabcase": "^4.1.1",
-    "prismjs": "^1.14.0",
+    "prismjs": "^1.21.0",
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
     "react-async-script": "^0.9.1",
