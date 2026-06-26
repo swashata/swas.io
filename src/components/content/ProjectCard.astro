@@ -12,7 +12,9 @@ const { title, subtitle, link, image } = project.data;
 const { Content } = await render(project);
 ---
 
-<article class="grid gap-6 border-t border-border py-8 lg:grid-cols-[15rem_1fr_8rem] lg:items-start">
+<article
+  class="grid gap-6 border-t border-border py-8 lg:grid-cols-[15rem_1fr_8rem] lg:items-start"
+>
   {
     image && (
       <a href={link} target="_blank" rel="noreferrer" class="block">

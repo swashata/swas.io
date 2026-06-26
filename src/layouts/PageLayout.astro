@@ -14,7 +14,11 @@ const { title, description } = Astro.props;
     <div class="max-w-4xl">
       <p class="mb-6 text-sm text-muted"><span class="accent-marker">&gt;</span> page</p>
       <h1 class="display-type text-5xl sm:text-7xl lg:text-8xl">{title}</h1>
-      {description && <p class="mt-8 max-w-3xl text-xl leading-relaxed sm:text-2xl">{description}</p>}
+      {
+        description && (
+          <p class="mt-8 max-w-3xl text-xl leading-relaxed sm:text-2xl">{description}</p>
+        )
+      }
     </div>
     <div class="prose prose-editorial mt-12 max-w-3xl">
       <slot />

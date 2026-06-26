@@ -1,0 +1,33 @@
+---
+import { getEntrySlug, readingTime } from '@/lib/content';
+import type { CollectionEntry } from 'astro:content';
+import ContentMeta from '@/components/content/ContentMeta.astro';
+
+interface Props {
+  entry: CollectionEntry<'writing'>;
+}
+
+const { entry } = Astro.props;
+const href = `/writing/${getEntrySlug(entry)}`;
+const minutes = readingTime(entry.body);
+---
+
+<a
+  href={href}
+  class="group grid gap-1 py-3 no-underline transition-colors hover:text-accent sm:grid-cols-[minmax(0,1fr)_max-content] sm:items-baseline sm:gap-6"
+>
+  <ContentMeta
+    date={entry.data.date}
+    minutes={minutes}
+    class="sm:order-2 sm:justify-self-end sm:whitespace-nowrap sm:text-right"
+  />
+  <span class="text-lg font-medium leading-snug text-balance sm:order-1">
+    {entry.data.title}
+    <span
+      aria-hidden="true"
+      class="inline-block pl-1 font-sans text-accent opacity-0 transition-[opacity,translate] duration-200 group-hover:translate-x-1 group-hover:opacity-100"
+    >
+      →
+    </span>
+  </span>
+</a>

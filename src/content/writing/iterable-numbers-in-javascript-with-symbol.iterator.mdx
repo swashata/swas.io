@@ -2,7 +2,8 @@
 title: Iterable Numbers in JavaScript with Symbol.iterator
 date: 2018-06-05T14:24:24.746Z
 description: Just an experiment to iterate numbers with for-of loop and spread to create ranges etc.
-tags: ["JavaScript","ES6"]
+category: Web Platforms
+tags: ['JavaScript', 'ES6']
 ---
 
 > Kudos to [Samantha Ming](http://www.samanthaming.com/tidbits/17-print-ranges-natively)
@@ -37,36 +38,36 @@ This is what the code looks like.
  * This code is licensed under MIT license
  */
 class IterableNumber {
-	constructor(num = 0) {
-		if (Number.isNaN(Number.parseInt(num, 10)) || !Number.isFinite(num)) {
-			throw new Error('Must pass a valid finite integer');
-		}
-		this.num = num;
-		this[Symbol.iterator] = () => ({
-			next: this.generateNext(this.num),
-		});
-	}
+  constructor(num = 0) {
+    if (Number.isNaN(Number.parseInt(num, 10)) || !Number.isFinite(num)) {
+      throw new Error('Must pass a valid finite integer');
+    }
+    this.num = num;
+    this[Symbol.iterator] = () => ({
+      next: this.generateNext(this.num),
+    });
+  }
 
-	generateNext = top => {
-		// increase the number by one, if positive, else decrease by one
-		let running = top > 0 ? top + 1 : top - 1;
-		return () => {
-			// If the running number is zero, then it was done
-			// in the previous step
-			if (running === 0) {
-				return {
-					done: true,
-				};
-			}
-			// Otherwise, let's decrease or increase the number, based on
-			// positivity
-			running = this.num > 0 ? running - 1 : running + 1;
-			return {
-				value: running,
-				done: false,
-			};
-		};
-	};
+  generateNext = (top) => {
+    // increase the number by one, if positive, else decrease by one
+    let running = top > 0 ? top + 1 : top - 1;
+    return () => {
+      // If the running number is zero, then it was done
+      // in the previous step
+      if (running === 0) {
+        return {
+          done: true,
+        };
+      }
+      // Otherwise, let's decrease or increase the number, based on
+      // positivity
+      running = this.num > 0 ? running - 1 : running + 1;
+      return {
+        value: running,
+        done: false,
+      };
+    };
+  };
 }
 ```
 
@@ -77,7 +78,7 @@ const spreadedNum = [...new IterableNumber(9)];
 console.log(spreadedNum); // [ 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]
 
 for (const i of new IterableNumber(20)) {
-	console.log(i); // 20, 19, 18, ... 1, 0
+  console.log(i); // 20, 19, 18, ... 1, 0
 }
 
 const spreadedNumN = [...new IterableNumber(-9)];
@@ -87,10 +88,10 @@ const spreadedZ = [...new IterableNumber(0)];
 console.log(spreadedZ); // [ 0 ]
 
 try {
-	const invalidSpread = [...new IterableNumber('duh?')];
-	console.log(invalidSpread);
+  const invalidSpread = [...new IterableNumber('duh?')];
+  console.log(invalidSpread);
 } catch (e) {
-	console.log(e); // [Error: Must pass a valid finite integer]
+  console.log(e); // [Error: Must pass a valid finite integer]
 }
 ```
 

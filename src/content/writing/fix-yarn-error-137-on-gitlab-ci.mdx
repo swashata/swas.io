@@ -2,7 +2,8 @@
 title: Fix Yarn error 137 on GitLab CI
 date: 2019-10-01T16:56:39.606Z
 description: How to fix Yarn exit code 137 when running commands on GitLab CI/CD through GitLab Runner.
-tags: ["gitlab","ci/cd"]
+category: Developer Experience
+tags: ['gitlab', 'ci/cd']
 ---
 
 Very recently I came across an error when running some nodejs script on GitLab
@@ -18,11 +19,11 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 A quick googling revealed that the issue was indeed related to memory. For some
 background, here's my GitLab setup.
 
--   I use [gitlab.com](https://gitlab.com) hosted service.
--   For runner, I have a 4GB [linode](https://linode.com) instance running
-    GitLab Runner.
--   GitLab runner is running with
-    [docker executor](https://docs.gitlab.com/runner/executors/docker.html).
+- I use [gitlab.com](https://gitlab.com) hosted service.
+- For runner, I have a 4GB [linode](https://linode.com) instance running
+  GitLab Runner.
+- GitLab runner is running with
+  [docker executor](https://docs.gitlab.com/runner/executors/docker.html).
 
 ## Fixing Yarn error 137 on GitLab CI
 

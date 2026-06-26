@@ -1,4 +1,6 @@
 ---
+import SectionTitle from '@/components/content/SectionTitle.astro';
+
 interface Topic {
   slug: string;
   label: string;
@@ -7,25 +9,24 @@ interface Topic {
 
 interface Props {
   topics: Topic[];
+  title?: string;
+  basePath?: string;
 }
 
-const { topics } = Astro.props;
+const { topics, title = 'topics', basePath = '/topics' } = Astro.props;
 ---
 
-<section class="site-container py-10">
-  <div class="rule mb-8"></div>
-  <h2 class="mb-6 text-xl font-bold"><span class="accent-marker">&gt;</span> topics</h2>
-  <ul class="flex flex-wrap gap-x-4 gap-y-3 text-lg">
-    {
-      topics.map((topic, index) => (
-        <li>
-          <a href={`/topics/${topic.slug}`} class="no-underline">
-            {topic.label}
-          </a>
-          {topic.count && <span class="ml-1 text-sm text-muted">({topic.count})</span>}
-          {index < topics.length - 1 && <span class="ml-4 accent-marker">/</span>}
-        </li>
-      ))
-    }
-  </ul>
-</section>
+<SectionTitle>{title}</SectionTitle>
+<ul class="flex flex-wrap gap-x-4 gap-y-3 pt-6 text-lg">
+  {
+    topics.map((topic, index) => (
+      <li>
+        <a href={`${basePath}/${topic.slug}`} class="no-underline">
+          {topic.label}
+        </a>
+        {topic.count && <span class="ml-1 text-sm text-muted">({topic.count})</span>}
+        {index < topics.length - 1 && <span class="ml-4 accent-marker">/</span>}
+      </li>
+    ))
+  }
+</ul>

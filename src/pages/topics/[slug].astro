@@ -1,5 +1,5 @@
 ---
-import ContentList from '@/components/content/ContentList.astro';
+import ContentArchive from '@/components/content/ContentArchive.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getAllTopics, slugify, sortByDateDesc } from '@/lib/content';
 import { getCollection } from 'astro:content';
@@ -25,9 +25,5 @@ const { topic, entries } = Astro.props;
 ---
 
 <BaseLayout title={topic.label} description={`Writing tagged ${topic.label}.`}>
-  <section class="site-container py-16 sm:py-24">
-    <p class="mb-6 text-sm text-muted"><span class="accent-marker">&gt;</span> topic</p>
-    <h1 class="display-type text-6xl sm:text-8xl">{topic.label}</h1>
-  </section>
-  <ContentList entries={entries} />
+  <ContentArchive entries={entries} label="topic" title={topic.label} />
 </BaseLayout>

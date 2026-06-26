@@ -1,9 +1,10 @@
 ---
 image: ../../assets/images/letsencrypt.png
-title: "Automatic Letsencrypt SSL for Gitlab and GitLab Pages"
-description: "How to automate SSL with lets encrypt for GitLab and GitLab pages."
+title: 'Automatic Letsencrypt SSL for Gitlab and GitLab Pages'
+description: 'How to automate SSL with lets encrypt for GitLab and GitLab pages.'
 date: 2017-09-17T07:54:41+05:30
-tags: [ "GitLab", "Let's encrypt", "SSL" ]
+category: Developer Experience
+tags: ['GitLab', "Let's encrypt", 'SSL']
 ---
 
 So I use GitLab and GitLab pages as part of my workflow for past 4 years and it
@@ -22,9 +23,9 @@ I opted for Let's Encrypt.
 For this, I am assuming, we are running GitLab on Ubuntu 16.04 LTS and we have
 the following packages installed.
 
-* [Python3](https://www.python.org/) - Comes pre-installed with Ubuntu 16.04.
-* [Certbot](https://certbot.eff.org/) - We will see how to install it.
-* [GitLab pages](https://docs.gitlab.com/ee/administration/pages/) is setup with any of the official methods.
+- [Python3](https://www.python.org/) - Comes pre-installed with Ubuntu 16.04.
+- [Certbot](https://certbot.eff.org/) - We will see how to install it.
+- [GitLab pages](https://docs.gitlab.com/ee/administration/pages/) is setup with any of the official methods.
 
 Before we proceed, let's do a system upgrade.
 
@@ -35,8 +36,8 @@ sudo apt upgrade
 
 In my scenario, the URLs are as follows.
 
-* GitLab - `https://wpquark.io` Listening on `139.162.39.232`.
-* GitLab Pages - `https://wpquark.xyz` Listening on `172.104.184.210`.
+- GitLab - `https://wpquark.io` Listening on `139.162.39.232`.
+- GitLab Pages - `https://wpquark.xyz` Listening on `172.104.184.210`.
 
 But you can have both GitLab and GitLab pages on the same IP. I have this because
 I support custom domain. This website `https://swashata.me` is actually being
@@ -394,5 +395,5 @@ This will check for renewal every day at `3:15am` and will execute needed hooks.
 
 ## Further Read
 
-* [Secure GitLab with Let's Encrypt](https://www.digitalocean.com/community/tutorials/how-to-secure-gitlab-with-let-s-encrypt-on-ubuntu-16-04) - Digital Ocean.
-* [Securing GitLab Pages with Let's Encrypt](https://about.gitlab.com/2016/04/11/tutorial-securing-your-gitlab-pages-with-tls-and-letsencrypt/) - GitLab.
+- [Secure GitLab with Let's Encrypt](https://www.digitalocean.com/community/tutorials/how-to-secure-gitlab-with-let-s-encrypt-on-ubuntu-16-04) - Digital Ocean.
+- [Securing GitLab Pages with Let's Encrypt](https://about.gitlab.com/2016/04/11/tutorial-securing-your-gitlab-pages-with-tls-and-letsencrypt/) - GitLab.

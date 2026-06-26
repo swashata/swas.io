@@ -9,17 +9,20 @@ const nav = [
 const current = Astro.url.pathname;
 ---
 
-<header class="site-container pt-8 sm:pt-12">
+<header class="site-container py-4 sm:pt-6">
   <div class="flex items-center justify-between gap-6">
     <a
       href="/"
-      class="font-sans text-3xl font-extrabold tracking-[0.14em] no-underline sm:text-4xl"
+      class="font-mono text-2xl font-extrabold tracking-wider no-underline sm:text-4xl"
       aria-label="swas home"
     >
-      swas<span class="inline-block h-[0.9em] w-[0.18em] translate-y-[0.12em] bg-foreground"></span>
+      swas
+      <span class="animate-ping text-accent font-bold">_</span>
     </a>
     <nav aria-label="Primary navigation">
-      <ul class="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm sm:gap-x-9 sm:text-base">
+      <ul
+        class="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm sm:gap-x-9 sm:text-xl font-mono"
+      >
         {
           nav.map((item) => (
             <li>
@@ -36,5 +39,5 @@ const current = Astro.url.pathname;
       </ul>
     </nav>
   </div>
-  <div class="rule mt-8 sm:mt-10"></div>
+  <div class="rule mt-4 sm:mt-6"></div>
 </header>

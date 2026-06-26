@@ -23,7 +23,12 @@ const { title, description, image, type } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png" />
-    <link rel="alternate" type="application/rss+xml" title="swas.io writing" href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="swas.io writing"
+      href="/rss.xml"
+    />
     <Seo title={title} description={description} image={image} type={type} />
   </head>
   <body>

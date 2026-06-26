@@ -1,0 +1,44 @@
+---
+import { Clock3, SlidersHorizontal, Terminal } from 'lucide-react';
+import AboutCard from '@/components/content/AboutCard.astro';
+import SectionTitle from '@/components/content/SectionTitle.astro';
+
+const links = [
+  {
+    href: '/about',
+    command: 'about',
+    description:
+      'A short background on my work, how I think about engineering, and the path from building WordPress products to leading engineering at Freemius.',
+    icon: Terminal,
+  },
+  {
+    href: '/uses',
+    command: 'uses',
+    description:
+      'The tools, hardware, software, and workflows I rely on to keep my development and writing loop simple, fast, and predictable.',
+    icon: SlidersHorizontal,
+  },
+  {
+    href: '/now',
+    command: 'now',
+    description:
+      'What currently has my attention: work, writing, systems I’m thinking about, things I’m learning, and a few life updates.',
+    icon: Clock3,
+  },
+];
+---
+
+<SectionTitle>whoami</SectionTitle>
+<div class="grid gap-4 py-10 md:grid-cols-2 lg:grid-cols-3">
+  {
+    links.map((link, index) => (
+      <AboutCard
+        href={link.href}
+        command={link.command}
+        description={link.description}
+        icon={link.icon}
+        class={index === 0 ? 'md:col-span-2 lg:col-span-1' : undefined}
+      />
+    ))
+  }
+</div>

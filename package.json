@@ -14,13 +14,19 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{astro,css,js,jsx,json,jsonc,md,mdx,mjs,ts,tsx,yml,yaml}": "prettier --write"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/react": "^6.0.0",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^7.0.3",
@@ -36,7 +42,10 @@
   "devDependencies": {
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
     "prettier": "^3.8.4",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
   }
 }

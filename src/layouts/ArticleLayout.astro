@@ -2,20 +2,22 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ShareButton from '@/components/islands/ShareButton';
-import { formatDate, readingTime } from '@/lib/content';
+import { formatDate, readingTime, slugify } from '@/lib/content';
 
 interface Props {
   title: string;
   description?: string;
   date: Date;
+  category: string;
   tags?: string[];
   image?: ImageMetadata;
   body?: string;
 }
 
-const { title, description, date, tags = [], image, body = '' } = Astro.props;
+const { title, description, date, category, tags = [], image, body = '' } = Astro.props;
 const minutes = readingTime(body);
 const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').toString();
+const categoryHref = `/categories/${slugify(category)}`;
 ---
 
 <BaseLayout title={title} description={description} type="article">
@@ -26,9 +28,17 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').to
           <time datetime={date.toISOString()}>{formatDate(date)}</time>
           <span class="accent-marker">/</span>
           <span>{minutes} min read</span>
+          <span class="accent-marker">/</span>
+          <a href={categoryHref} class="no-underline">{category}</a>
         </p>
         <h1 class="display-type max-w-5xl text-5xl sm:text-7xl lg:text-8xl">{title}</h1>
-        {description && <p class="mt-8 max-w-4xl text-xl leading-relaxed sm:text-2xl">{description}</p>}
+        {
+          description && (
+            <p class="mt-8 max-w-4xl text-xl leading-relaxed sm:text-2xl">
+              {description}
+            </p>
+          )
+        }
       </div>
       <div class="flex lg:justify-end">
         <ShareButton client:load title={title} url={shareUrl} />
@@ -55,11 +65,20 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').to
       {
         tags.length > 0 && (
           <aside class="pt-2 text-sm lg:pt-0">
-            <h2 class="mb-4 font-bold"><span class="accent-marker">&gt;</span> topics</h2>
+            <h2 class="mb-4 font-bold">
+              <span class="accent-marker">&gt;</span> topics
+            </h2>
             <ul class="grid gap-2">
               {tags.map((tag) => (
                 <li>
-                  <a href={`/topics/${tag.toLowerCase().replace(/['"]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`} class="no-underline">
+                  <a
+                    href={`/topics/${tag
+                      .toLowerCase()
+                      .replace(/['"]/g, '')
+                      .replace(/[^a-z0-9]+/g, '-')
+                      .replace(/^-|-$/g, '')}`}
+                    class="no-underline"
+                  >
                     {tag}
                   </a>
                 </li>
@@ -69,6 +88,8 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').to
         )
       }
     </div>
-    <a href="/writing" class="mt-12 inline-block no-underline"><span class="accent-marker">&lt;-</span> back to writing</a>
+    <a href="/writing" class="mt-12 inline-block no-underline"
+      ><span class="accent-marker">&lt;-</span> back to writing</a
+    >
   </article>
 </BaseLayout>

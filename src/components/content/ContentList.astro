@@ -1,33 +1,28 @@
 ---
-import { formatDate, getEntrySlug, readingTime } from '@/lib/content';
 import type { CollectionEntry } from 'astro:content';
+import SectionTitle from '@/components/content/SectionTitle.astro';
+import ContentBlock from '@/components/content/ContentBlock.astro';
+import ContentCompactRow from '@/components/content/ContentCompactRow.astro';
 
 interface Props {
   entries: CollectionEntry<'writing'>[];
-  heading?: string;
+  heading: string;
+  variant?: 'normal' | 'compact';
 }
 
-const { entries, heading } = Astro.props;
+const { entries, heading, variant = 'normal' } = Astro.props;
+const EntryComponent = variant === 'compact' ? ContentCompactRow : ContentBlock;
 ---
 
-<section class="site-container py-10">
-  {heading && <h2 class="mb-8 text-xl font-bold"><span class="accent-marker">&gt;</span> {heading}</h2>}
-  <ol class="divide-y divide-border border-y border-border">
-    {
-      entries.map((entry) => (
-        <li>
-          <a
-            href={`/writing/${getEntrySlug(entry)}`}
-            class="grid gap-3 py-6 no-underline transition-colors hover:text-accent sm:grid-cols-[12rem_1fr_auto] sm:items-baseline"
-          >
-            <time class="text-muted" datetime={entry.data.date.toISOString()}>
-              {formatDate(entry.data.date)}
-            </time>
-            <span class="text-xl">{entry.data.title}</span>
-            <span class="text-sm text-muted">{readingTime(entry.body)} min</span>
-          </a>
-        </li>
-      ))
-    }
-  </ol>
-</section>
+<SectionTitle>
+  {heading}
+</SectionTitle>
+<ol class:list={['m-0 max-w-4xl list-none p-0', variant === 'compact' && 'py-4']}>
+  {
+    entries.map((entry) => (
+      <li>
+        <EntryComponent entry={entry} />
+      </li>
+    ))
+  }
+</ol>

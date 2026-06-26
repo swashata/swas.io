@@ -1,30 +1,19 @@
 {
-	"cSpell.enabledLanguageIds": [
-		"asciidoc",
-		"c",
-		"cpp",
-		"csharp",
-		"css",
-		"go",
-		"handlebars",
-		"html",
-		"jade",
-		"javascript",
-		"javascriptreact",
-		"json",
-		"latex",
-		"less",
-		"markdown",
-		"php",
-		"plaintext",
-		"pub",
-		"python",
-		"restructuredtext",
-		"rust",
-		"scss",
-		"text",
-		"typescript",
-		"typescriptreact",
-		"yml"
-	]
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
 }

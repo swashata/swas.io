@@ -24,7 +24,11 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
 
   return (
     <Button type="button" onClick={handleShare} aria-label="Share this article">
-      {copied ? <Check aria-hidden="true" size={16} /> : <Share2 aria-hidden="true" size={16} />}
+      {copied ? (
+        <Check aria-hidden="true" size={16} />
+      ) : (
+        <Share2 aria-hidden="true" size={16} />
+      )}
       <span>{copied ? 'copied' : 'share'}</span>
     </Button>
   );

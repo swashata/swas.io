@@ -32,3 +32,40 @@ All content is MDX under `src/content`.
 - `src/content/pages`: standalone pages such as `/about`, `/uses`, and `/now`
 
 RSS is generated for writing posts only at `/rss.xml`.
+
+## Project Map
+
+- `src/pages/index.astro`: homepage route (`/`) and homepage hero/header content.
+- `src/pages/**`: file-based routes. Example: `src/pages/about.astro` becomes `/about`.
+- `src/layouts/BaseLayout.astro`: shared page shell with `<Header />`, `<main>`, and `<Footer />`.
+- `src/components/site/Header.astro`: top logo and primary navigation.
+- `src/components/site/Footer.astro`: shared footer.
+- `src/styles/global.css`: global colors, typography, layout helpers, and prose styles.
+- `src/layouts/ArticleLayout.astro`: writing detail page layout.
+- `src/layouts/PageLayout.astro`: standalone page layout for about, uses, and now.
+- `src/components/content/ContentList.astro`: writing list UI.
+- `src/components/content/ProjectCard.astro`: project list item UI.
+- `src/content.config.ts`: content collection schemas and loaders.
+- `src/content/writing`: edit blog posts here.
+- `src/content/projects`: edit project entries here.
+- `src/content/pages`: edit about, uses, and now here.
+
+For homepage styling, start with `src/pages/index.astro`, then follow into `src/layouts/BaseLayout.astro`, `src/components/site/Header.astro`, and `src/styles/global.css`.
+
+## Todos
+
+- [x] Fine tune the homepage design
+  - [ ] Add a "about" section and include links to about, uses, and now pages
+- [ ] Fine tune the article layout design
+- [ ] Fine tune the page layout design
+- [ ] Fine tune the archive layout design (category, tag, and writing list pages)
+- [ ] Update color scheme from a nice shade from refactoring UI book
+- [x] Come up with 5-6 categories and use those. Remove the topics/tags from the homepage. Keep the topics/tags in the article layout only.
+
+## v2 - Projects
+
+Revamp the projects page.
+
+1. Filter by active and inactive projects.
+2. Add some nice monochrome image/icon for each projects.
+3. Surface the projects in the homepage with a few featured ones.

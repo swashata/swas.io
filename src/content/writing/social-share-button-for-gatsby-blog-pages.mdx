@@ -3,7 +3,8 @@ title: Social Share button for Gatsby Blog Pages
 date: 2018-06-04T10:41:18.083Z
 image: ../../assets/images/share-buttons.png
 description: Learn how to create social share buttons for gatsbyjs blog pages using react-share.
-tags: ["Gatsbyjs","JavaScript","Social"]
+category: Web Platforms
+tags: ['Gatsbyjs', 'JavaScript', 'Social']
 ---
 
 Let's talk about adding some cool social share buttons on [Gatsby](https://gatsbyjs.org) blog pages.
@@ -24,13 +25,13 @@ So let's edit our `gatsby-config.js` file and put the URL in the `siteMetadata`.
 
 ```js
 module.exports = {
-	siteMetadata: {
-		// ...
-		twitterHandle: '@swashata',
-		url: 'https://swas.io',
-		// other metadata
-	},
-	// ... other stuff, like plugin
+  siteMetadata: {
+    // ...
+    twitterHandle: '@swashata',
+    url: 'https://swas.io',
+    // other metadata
+  },
+  // ... other stuff, like plugin
 };
 ```
 
@@ -48,93 +49,93 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	FacebookShareButton,
-	GooglePlusShareButton,
-	LinkedinShareButton,
-	TwitterShareButton,
-	WhatsappShareButton,
-	RedditShareButton,
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  RedditShareButton,
 } from 'react-share';
 
 import './Share.scss';
 
 const Share = ({ socialConfig, tags }) => (
-	<div className="post-social">
-		<FacebookShareButton
-			url={socialConfig.config.url}
-			className="button is-outlined is-rounded facebook"
-		>
-			<span className="icon">
-				<FontAwesomeIcon icon={['fab', 'facebook-f']} />
-			</span>
-			<span className="text">Facebook</span>
-		</FacebookShareButton>
-		<TwitterShareButton
-			url={socialConfig.config.url}
-			className="button is-outlined is-rounded twitter"
-			title={socialConfig.config.title}
-			via={socialConfig.twitterHandle.split('@').join('')}
-			hashtags={tags}
-		>
-			<span className="icon">
-				<FontAwesomeIcon icon={['fab', 'twitter']} />
-			</span>
-			<span className="text">Twitter</span>
-		</TwitterShareButton>
-		<GooglePlusShareButton
-			url={socialConfig.config.url}
-			className="button is-outlined is-rounded googleplus"
-		>
-			<span className="icon">
-				<FontAwesomeIcon icon={['fab', 'google-plus-g']} />
-			</span>
-			<span className="text">Google+</span>
-		</GooglePlusShareButton>
-		<LinkedinShareButton
-			url={socialConfig.config.url}
-			className="button is-outlined is-rounded linkedin"
-			title={socialConfig.config.title}
-		>
-			<span className="icon">
-				<FontAwesomeIcon icon={['fab', 'linkedin-in']} />
-			</span>
-			<span className="text">LinkedIn</span>
-		</LinkedinShareButton>
-		<RedditShareButton
-			url={socialConfig.config.url}
-			className="button is-outlined is-rounded reddit"
-			title={socialConfig.config.title}
-		>
-			<span className="icon">
-				<FontAwesomeIcon icon={['fab', 'reddit-alien']} />
-			</span>
-			<span className="text">Reddit</span>
-		</RedditShareButton>
-		<WhatsappShareButton
-			url={socialConfig.config.url}
-			className="button is-outlined is-rounded whatsapp"
-			title={socialConfig.config.title}
-		>
-			<span className="icon">
-				<FontAwesomeIcon icon={['fab', 'whatsapp']} />
-			</span>
-			<span className="text">WhatsApp</span>
-		</WhatsappShareButton>
-	</div>
+  <div className="post-social">
+    <FacebookShareButton
+      url={socialConfig.config.url}
+      className="button is-outlined is-rounded facebook"
+    >
+      <span className="icon">
+        <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+      </span>
+      <span className="text">Facebook</span>
+    </FacebookShareButton>
+    <TwitterShareButton
+      url={socialConfig.config.url}
+      className="button is-outlined is-rounded twitter"
+      title={socialConfig.config.title}
+      via={socialConfig.twitterHandle.split('@').join('')}
+      hashtags={tags}
+    >
+      <span className="icon">
+        <FontAwesomeIcon icon={['fab', 'twitter']} />
+      </span>
+      <span className="text">Twitter</span>
+    </TwitterShareButton>
+    <GooglePlusShareButton
+      url={socialConfig.config.url}
+      className="button is-outlined is-rounded googleplus"
+    >
+      <span className="icon">
+        <FontAwesomeIcon icon={['fab', 'google-plus-g']} />
+      </span>
+      <span className="text">Google+</span>
+    </GooglePlusShareButton>
+    <LinkedinShareButton
+      url={socialConfig.config.url}
+      className="button is-outlined is-rounded linkedin"
+      title={socialConfig.config.title}
+    >
+      <span className="icon">
+        <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
+      </span>
+      <span className="text">LinkedIn</span>
+    </LinkedinShareButton>
+    <RedditShareButton
+      url={socialConfig.config.url}
+      className="button is-outlined is-rounded reddit"
+      title={socialConfig.config.title}
+    >
+      <span className="icon">
+        <FontAwesomeIcon icon={['fab', 'reddit-alien']} />
+      </span>
+      <span className="text">Reddit</span>
+    </RedditShareButton>
+    <WhatsappShareButton
+      url={socialConfig.config.url}
+      className="button is-outlined is-rounded whatsapp"
+      title={socialConfig.config.title}
+    >
+      <span className="icon">
+        <FontAwesomeIcon icon={['fab', 'whatsapp']} />
+      </span>
+      <span className="text">WhatsApp</span>
+    </WhatsappShareButton>
+  </div>
 );
 
 Share.propTypes = {
-	socialConfig: PropTypes.shape({
-		twitterHandle: PropTypes.string.isRequired,
-		config: PropTypes.shape({
-			url: PropTypes.string.isRequired,
-			title: PropTypes.string.isRequired,
-		}),
-	}).isRequired,
-	tags: PropTypes.arrayOf(PropTypes.string),
+  socialConfig: PropTypes.shape({
+    twitterHandle: PropTypes.string.isRequired,
+    config: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
 };
 Share.defaultProps = {
-	tags: [],
+  tags: [],
 };
 
 export default Share;
@@ -144,30 +145,30 @@ Also create a `src/components/Share.scss` file and put the following.
 
 ```scss
 $brand-colors: (
-	facebook: #3b5998,
-	twitter: #1da1f2,
-	googleplus: #dd4b39,
-	linkedin: #0077b5,
-	reddit: #ff4500,
-	whatsapp: #128c7e,
+  facebook: #3b5998,
+  twitter: #1da1f2,
+  googleplus: #dd4b39,
+  linkedin: #0077b5,
+  reddit: #ff4500,
+  whatsapp: #128c7e,
 );
 
 .post-social {
-	.button {
-		margin: 0.5rem 0.25rem;
-		// transition: all 300ms ease-out;
-		@each $class, $color in $brand-colors {
-			&.#{$class} {
-				color: $color;
-				border-color: $color;
-				&:hover {
-					background-color: $color;
-					border-color: $color;
-					color: #fff;
-				}
-			}
-		}
-	}
+  .button {
+    margin: 0.5rem 0.25rem;
+    // transition: all 300ms ease-out;
+    @each $class, $color in $brand-colors {
+      &.#{$class} {
+        color: $color;
+        border-color: $color;
+        &:hover {
+          background-color: $color;
+          border-color: $color;
+          color: #fff;
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -194,23 +195,23 @@ In my case, I am going to edit `src/templates/blog-post.js`
 
 ```graphql
 query BlogPostByID($id: String!) {
-	site {
-		siteMetadata {
-			url
-			twitterHandle
-		}
-	}
-	post: markdownRemark(id: { eq: $id }) {
-		id
-		html
-		frontmatter {
-			title
-			tags
-		}
-		fields {
-			slug
-		}
-	}
+  site {
+    siteMetadata {
+      url
+      twitterHandle
+    }
+  }
+  post: markdownRemark(id: { eq: $id }) {
+    id
+    html
+    frontmatter {
+      title
+      tags
+    }
+    fields {
+      slug
+    }
+  }
 }
 ```
 
@@ -224,16 +225,16 @@ Your mileage will vary here. I have assumed the following
 const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-	const { createNodeField } = boundActionCreators;
+  const { createNodeField } = boundActionCreators;
 
-	if (node.internal.type === `MarkdownRemark`) {
-		const value = createFilePath({ node, getNode });
-		createNodeField({
-			name: `slug`,
-			node,
-			value,
-		});
-	}
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode });
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    });
+  }
 };
 ```
 
@@ -243,8 +244,7 @@ A simple frontmatter may look like this.
 ---
 title: Social Share button for Gatsby Blog Pages
 date: 2018-06-04T10:41:18.083Z
-tags: ["Gatsbyjs","JavaScript","Social"]
-
+tags: ['Gatsbyjs', 'JavaScript', 'Social']
 ---
 
 Let's talk about adding some cool social share buttons on [Gatsby](https://gatsbyjs.org) blog pages.
@@ -261,36 +261,33 @@ import React from 'react';
 import Share from '../components/Share';
 
 const BlogPost = ({ data }) => {
-	// destructure and get our variables
-	const {
-		post: {
-			html,
-			frontmatter: { title, tags },
-			fields: { slug },
-		},
-		site: {
-			siteMetadata: { url, twitterHandle },
-		},
-	} = data;
-	return (
-		<div className="blog-post">
-			<h1 className="title is-1">{title}</h1>
-			<div
-				className="content"
-				dangerouslySetInnerHTML={{ __html: html }}
-			/>
-			<Share
-				socialConfig={{
-					twitterHandle,
-					config: {
-						url: `${url}${slug}`,
-						title,
-					},
-				}}
-				tags={tags}
-			/>
-		</div>
-	);
+  // destructure and get our variables
+  const {
+    post: {
+      html,
+      frontmatter: { title, tags },
+      fields: { slug },
+    },
+    site: {
+      siteMetadata: { url, twitterHandle },
+    },
+  } = data;
+  return (
+    <div className="blog-post">
+      <h1 className="title is-1">{title}</h1>
+      <div className="content" dangerouslySetInnerHTML={{ __html: html }} />
+      <Share
+        socialConfig={{
+          twitterHandle,
+          config: {
+            url: `${url}${slug}`,
+            title,
+          },
+        }}
+        tags={tags}
+      />
+    </div>
+  );
 };
 ```
 

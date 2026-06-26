@@ -1,0 +1,12 @@
+---
+interface Props {
+  muted?: boolean;
+}
+
+const { muted = false } = Astro.props;
+---
+
+<h2 class:list={['pb-4 font-bold font-mono', muted ? 'text-sm text-muted' : 'text-xl']}>
+  <span class="accent-marker mr-1">$</span>
+  <slot /><span class="animate-ping text-accent font-bold">_</span>
+</h2>

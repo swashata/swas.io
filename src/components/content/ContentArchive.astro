@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ContentBlock from '@/components/content/ContentBlock.astro';
+import SectionTitle from '@/components/content/SectionTitle.astro';
+
+interface Props {
+  entries: CollectionEntry<'writing'>[];
+  label: string;
+  title?: string;
+  description?: string;
+}
+
+const { entries, label, title, description } = Astro.props;
+---
+
+<section class="site-container py-6 sm:py-8">
+  <SectionTitle muted>{label}</SectionTitle>
+  {
+    title && (
+      <div class="pb-8 sm:pb-10">
+        <h1 class="display-type max-w-5xl text-5xl leading-tight text-balance sm:text-7xl">
+          {title}
+        </h1>
+        {description && (
+          <p class="mt-6 max-w-3xl text-xl leading-relaxed">{description}</p>
+        )}
+      </div>
+    )
+  }
+  <ol class="m-0 max-w-4xl list-none p-0">
+    {
+      entries.map((entry) => (
+        <li>
+          <ContentBlock entry={entry} />
+        </li>
+      ))
+    }
+  </ol>
+</section>

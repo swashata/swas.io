@@ -1,9 +1,10 @@
 ---
 image: '../../assets/images/jsdom-jquery-output.png'
-title: "Use jQuery in Node with JSDOM V11"
+title: 'Use jQuery in Node with JSDOM V11'
 date: 2018-03-23T12:51:13+05:30
 draft: false
-tags: [ "JavaScript", "test", "jest", "jsdom" ]
+category: Technical Notes
+tags: ['JavaScript', 'test', 'jest', 'jsdom']
 ---
 
 Recently I've been learning new things from [WesBos Courses](http://wesbos.com/courses/).
@@ -32,13 +33,13 @@ const testHTML = `
 </html>
 `;
 
-const { JSDOM } = require( 'jsdom' );
-const jsdom = new JSDOM( testHTML );
+const { JSDOM } = require('jsdom');
+const jsdom = new JSDOM(testHTML);
 
-const $ = global.jQuery = require( 'jquery' );
+const $ = (global.jQuery = require('jquery'));
 
-const inputElement = $( '#fiptest' );
-console.log( inputElement.length );
+const inputElement = $('#fiptest');
+console.log(inputElement.length);
 ```
 
 Running it in node, straight away bailed out with the error.
@@ -72,8 +73,8 @@ const testHTML = `
 </body>
 </html>
 `;
-const { JSDOM } = require( 'jsdom' );
-const jsdom = new JSDOM( testHTML );
+const { JSDOM } = require('jsdom');
+const jsdom = new JSDOM(testHTML);
 
 // Set window and document from jsdom
 const { window } = jsdom;
@@ -82,11 +83,11 @@ const { document } = window;
 global.window = window;
 global.document = document;
 
-const $ = global.jQuery = require( 'jquery' );
+const $ = (global.jQuery = require('jquery'));
 
-console.log( `jQuery ${jQuery.fn.jquery} working! Yay!!!` );
-const inputElement = $( '#fiptest' );
-console.log( inputElement.length );
+console.log(`jQuery ${jQuery.fn.jquery} working! Yay!!!`);
+const inputElement = $('#fiptest');
+console.log(inputElement.length);
 ```
 
 ![jQuery JSDOM v11 Output](../../assets/images/jsdom-jquery-output.png)
