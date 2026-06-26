@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, subtitle, link, image } = project.data;
+const { Content } = await render(project);
+---
+
+<article class="grid gap-6 border-t border-border py-8 lg:grid-cols-[15rem_1fr_8rem] lg:items-start">
+  {
+    image && (
+      <a href={link} target="_blank" rel="noreferrer" class="block">
+        <Image
+          src={image}
+          alt=""
+          widths={[320, 480]}
+          sizes="(min-width: 1024px) 15rem, calc(100vw - 2rem)"
+          class="aspect-[4/3] w-full border border-border object-cover"
+          loading="lazy"
+        />
+      </a>
+    )
+  }
+  <div>
+    <h2 class="font-sans text-2xl font-bold">{title}</h2>
+    {subtitle && <p class="mt-1 text-muted">{subtitle}</p>}
+    <div class="prose prose-editorial mt-5 max-w-none text-base">
+      <Content />
+    </div>
+  </div>
+  <a href={link} target="_blank" rel="noreferrer" class="no-underline lg:text-right">
+    visit <span class="accent-marker">-&gt;</span>
+  </a>
+</article>

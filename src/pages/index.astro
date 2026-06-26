@@ -1,0 +1,28 @@
+---
+import ContentList from '@/components/content/ContentList.astro';
+import TopicList from '@/components/content/TopicList.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllTopics, site, sortByDateDesc } from '@/lib/content';
+import { getCollection } from 'astro:content';
+
+const writing = sortByDateDesc(
+  (await getCollection('writing')).filter((entry) => !entry.data.draft),
+);
+const latest = writing.slice(0, 3);
+const topics = getAllTopics(writing);
+---
+
+<BaseLayout description={site.description}>
+  <section class="site-container py-16 sm:py-24">
+    <h1 class="display-type max-w-6xl text-6xl sm:text-8xl lg:text-[8.5rem]">
+      Software, systems, and the quiet craft of building things that last.
+    </h1>
+    <p class="mt-10 max-w-3xl text-xl leading-relaxed sm:text-2xl">
+      I’m Swas, a product-focused engineer working across web platforms, system
+      architecture, developer tooling, and practical AI systems. This is my
+      personal notebook for ideas that deserve more than a thread and less than a book.
+    </p>
+  </section>
+  <ContentList entries={latest} heading="latest" />
+  <TopicList topics={topics} />
+</BaseLayout>

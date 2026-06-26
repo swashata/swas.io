@@ -1,6 +1,6 @@
 [build]
-  publish = "public"
-  command = "yarn build --verbose"
+  publish = "dist"
+  command = "npm run build"
+
 [build.environment]
-  YARN_VERSION = "1.7.0"
-  YARN_FLAGS = "--no-ignore-optional"
+  NODE_VERSION = "22.12.0"

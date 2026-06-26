@@ -1,0 +1,33 @@
+---
+import { formatDate, getEntrySlug, readingTime } from '@/lib/content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'writing'>[];
+  heading?: string;
+}
+
+const { entries, heading } = Astro.props;
+---
+
+<section class="site-container py-10">
+  {heading && <h2 class="mb-8 text-xl font-bold"><span class="accent-marker">&gt;</span> {heading}</h2>}
+  <ol class="divide-y divide-border border-y border-border">
+    {
+      entries.map((entry) => (
+        <li>
+          <a
+            href={`/writing/${getEntrySlug(entry)}`}
+            class="grid gap-3 py-6 no-underline transition-colors hover:text-accent sm:grid-cols-[12rem_1fr_auto] sm:items-baseline"
+          >
+            <time class="text-muted" datetime={entry.data.date.toISOString()}>
+              {formatDate(entry.data.date)}
+            </time>
+            <span class="text-xl">{entry.data.title}</span>
+            <span class="text-sm text-muted">{readingTime(entry.body)} min</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>

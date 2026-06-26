@@ -1,0 +1,24 @@
+---
+import ContentList from '@/components/content/ContentList.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sortByDateDesc } from '@/lib/content';
+import { getCollection } from 'astro:content';
+
+const entries = sortByDateDesc(
+  (await getCollection('writing')).filter((entry) => !entry.data.draft),
+);
+---
+
+<BaseLayout
+  title="Writing"
+  description="Notes on engineering, systems, developer tooling, product work, and practical AI."
+>
+  <section class="site-container py-16 sm:py-24">
+    <p class="mb-6 text-sm text-muted"><span class="accent-marker">&gt;</span> archive</p>
+    <h1 class="display-type text-6xl sm:text-8xl">Writing</h1>
+    <p class="mt-8 max-w-3xl text-xl leading-relaxed sm:text-2xl">
+      Long-form notes and working thoughts from the craft of building software.
+    </p>
+  </section>
+  <ContentList entries={entries} />
+</BaseLayout>

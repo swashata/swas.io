@@ -1,0 +1,23 @@
+---
+import ProjectCard from '@/components/content/ProjectCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sortProjects } from '@/lib/content';
+import { getCollection } from 'astro:content';
+
+const projects = sortProjects(
+  (await getCollection('projects')).filter((entry) => !entry.data.draft),
+);
+---
+
+<BaseLayout title="Projects" description="Open source and commercial projects by Swas.">
+  <section class="site-container py-16 sm:py-24">
+    <p class="mb-6 text-sm text-muted"><span class="accent-marker">&gt;</span> work</p>
+    <h1 class="display-type text-6xl sm:text-8xl">Projects</h1>
+    <p class="mt-8 max-w-3xl text-xl leading-relaxed sm:text-2xl">
+      Open source and commercial tools I have built, maintained, or shaped.
+    </p>
+  </section>
+  <section class="site-container pb-10">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </section>
+</BaseLayout>

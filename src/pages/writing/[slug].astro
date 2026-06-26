@@ -1,0 +1,30 @@
+---
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getEntrySlug, sortByDateDesc } from '@/lib/content';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = sortByDateDesc(
+    (await getCollection('writing')).filter((entry) => !entry.data.draft),
+  );
+
+  return entries.map((entry) => ({
+    params: { slug: getEntrySlug(entry) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  tags={entry.data.tags}
+  image={entry.data.image}
+  body={entry.body}
+>
+  <Content />
+</ArticleLayout>

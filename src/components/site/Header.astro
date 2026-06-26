@@ -1,0 +1,40 @@
+---
+const nav = [
+  { href: '/writing', label: 'writing' },
+  { href: '/projects', label: 'projects' },
+  { href: '/about', label: 'about' },
+  { href: '/now', label: 'now' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header class="site-container pt-8 sm:pt-12">
+  <div class="flex items-center justify-between gap-6">
+    <a
+      href="/"
+      class="font-sans text-3xl font-extrabold tracking-[0.14em] no-underline sm:text-4xl"
+      aria-label="swas home"
+    >
+      swas<span class="inline-block h-[0.9em] w-[0.18em] translate-y-[0.12em] bg-foreground"></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul class="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm sm:gap-x-9 sm:text-base">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={current.startsWith(item.href) ? 'page' : undefined}
+                class="no-underline transition-colors aria-[current=page]:text-accent"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="rule mt-8 sm:mt-10"></div>
+</header>
