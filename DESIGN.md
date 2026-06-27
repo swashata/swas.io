@@ -18,12 +18,12 @@
 
 ## Color
 
-- Background: off-white `#fbfaf7`.
-- Primary text: near-black `#111111`.
-- Muted text: warm gray `#6f6a62`.
-- Borders/dividers: soft warm gray `#cfcac1`.
-- Accent: restrained amber `#c06f12`.
-- Use amber sparingly for markers, separators, highlights, and hover states.
+- Background: off-white `#FAF9F5`.
+- Primary text: near-black `#171717`.
+- Muted text: warm gray `#706D66`.
+- Borders/dividers: soft warm gray `#E5E1D8`.
+- Accent: restrained teal `#3F6F6A`.
+- Use teal sparingly for markers, separators, highlights, and hover states.
 
 ## Layout
 

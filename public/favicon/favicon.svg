@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
   <title id="title">swas</title>
-  <rect width="512" height="512" rx="56" fill="#fbfaf7"/>
-  <path d="M64 96h384" stroke="#cfcac1" stroke-width="8"/>
-  <path d="M64 416h384" stroke="#cfcac1" stroke-width="8"/>
+  <rect width="512" height="512" rx="56" fill="#FAF9F5"/>
+  <path d="M64 96h384" stroke="#E5E1D8" stroke-width="8"/>
+  <path d="M64 416h384" stroke="#E5E1D8" stroke-width="8"/>
   <text
     x="64"
     y="296"
-    fill="#111111"
+    fill="#171717"
     font-family="Inter, Arial, Helvetica, sans-serif"
     font-size="132"
     font-weight="800"
     letter-spacing="10"
   >swas</text>
-  <rect x="389" y="176" width="28" height="136" fill="#111111"/>
-  <rect x="64" y="340" width="48" height="8" fill="#c06f12"/>
+  <rect x="389" y="176" width="28" height="136" fill="#171717"/>
+  <rect x="64" y="340" width="48" height="8" fill="#3F6F6A"/>
 </svg>
