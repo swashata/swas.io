@@ -1,27 +1,50 @@
 ---
+import ArticleEnhancements from '@/components/content/ArticleEnhancements.astro';
+import ArticleToc from '@/components/content/ArticleToc.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
 interface Props {
   title: string;
   description?: string;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
 }
 
-const { title, description } = Astro.props;
+const { title, description, headings = [] } = Astro.props;
+const tocHeadings = headings.filter((heading) => heading.depth > 1 && heading.depth < 4);
+const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').toString();
 ---
 
-<BaseLayout title={title} description={description}>
-  <section class="site-container py-16 sm:py-24">
-    <div class="max-w-4xl">
-      <p class="mb-6 text-sm text-muted"><span class="accent-marker">&gt;</span> page</p>
-      <h1 class="display-type text-5xl sm:text-7xl lg:text-8xl">{title}</h1>
+<BaseLayout title={title} description={description} hasToc={tocHeadings.length > 0}>
+  <section class="site-container py-8 pb-28 sm:py-12 lg:pb-12">
+    <header>
+      <h1 class="display-type max-w-5xl text-5xl leading-tight text-balance sm:text-6xl">
+        {title}
+      </h1>
       {
         description && (
-          <p class="mt-8 max-w-3xl text-xl leading-relaxed sm:text-2xl">{description}</p>
+          <p class="mt-10 max-w-5xl text-xl leading-relaxed sm:text-2xl font-mono">
+            {description}
+          </p>
+        )
+      }
+    </header>
+
+    <div
+      class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,65ch)_19rem] lg:items-start xl:grid-cols-[minmax(0,65ch)_21rem]"
+    >
+      <div class="min-w-0 max-w-prose">
+        <div class="prose prose-editorial max-w-prose" data-article-prose>
+          <slot />
+        </div>
+      </div>
+
+      {
+        tocHeadings.length > 0 && (
+          <ArticleToc headings={tocHeadings} shareTitle={title} shareUrl={shareUrl} />
         )
       }
     </div>
-    <div class="prose prose-editorial mt-12 max-w-3xl">
-      <slot />
-    </div>
+
+    <ArticleEnhancements />
   </section>
 </BaseLayout>

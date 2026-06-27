@@ -26,14 +26,14 @@ const excerpt =
 <article class="py-6">
   <ContentMeta date={entry.data.date} minutes={minutes} />
   <h2
-    class="mt-2 font-sans text-2xl font-extrabold leading-snug text-balance sm:text-3xl"
+    class="mt-4 font-sans text-2xl font-extrabold leading-snug text-balance sm:text-3xl"
   >
     <a href={href} class="no-underline transition-colors">{entry.data.title}</a>
   </h2>
   {excerpt && <p class="mt-4 max-w-3xl text-lg leading-relaxed text-muted">{excerpt}</p>}
   <a
     href={href}
-    class="group mt-4 inline-block font-mono text-sm no-underline transition-colors"
+    class="group mt-4 inline-block font-mono text-base no-underline transition-colors"
   >
     read more
     <span

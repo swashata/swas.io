@@ -56,11 +56,13 @@ For homepage styling, start with `src/pages/index.astro`, then follow into `src/
 
 - [x] Fine tune the homepage design
   - [x] Add a "about" section and include links to about, uses, and now pages
-- [ ] Fine tune the article layout design
-- [ ] Fine tune the page layout design
+- [x] Fine tune the article layout design
+- [x] Fine tune the page layout design
 - [ ] Fine tune the archive layout design (category, tag, and writing list pages)
-- [ ] Update color scheme from a nice shade from refactoring UI book
+- [x] Update color scheme from a nice shade from refactoring UI book
 - [x] Come up with 5-6 categories and use those. Remove the topics/tags from the homepage. Keep the topics/tags in the article layout only.
+- [ ] Add some nice "==||==" like separator on the home page between the sections near the section titles
+- [ ] Improve the design of the cards, make more breathing room between the cards, the icons look awkward, fix it.
 
 ## v2 - Projects
 

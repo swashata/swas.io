@@ -1,0 +1,107 @@
+<a href="/" class="logo" aria-label="swas home">
+  <span class="logo__mark" aria-hidden="true">
+    <span class="logo__text">swas.io</span>
+    <span class="logo__cursor animate-ping">_</span>
+  </span>
+  <span class="sr-only">swas</span>
+</a>
+
+<style>
+  .logo {
+    --logo-track: 0.05em;
+    --logo-duration: 5s;
+
+    display: inline-block;
+    min-width: calc(5.7ch + var(--logo-track) * 6);
+    color: inherit;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: var(--logo-track);
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .logo:hover {
+    color: var(--color-accent);
+  }
+
+  .logo__mark {
+    display: inline;
+  }
+
+  .logo__text {
+    display: inline-block;
+    width: calc(1ch + var(--logo-track));
+    overflow: hidden;
+    white-space: nowrap;
+    animation: logo-type var(--logo-duration) steps(1, end) forwards;
+  }
+
+  .logo__cursor {
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @keyframes logo-type {
+    0%,
+    20% {
+      width: calc(1ch + var(--logo-track));
+    }
+
+    28% {
+      width: calc(2ch + var(--logo-track) * 2);
+    }
+
+    36% {
+      width: calc(3ch + var(--logo-track) * 3);
+    }
+
+    44% {
+      width: calc(4ch + var(--logo-track) * 4);
+    }
+
+    52% {
+      width: calc(5ch + var(--logo-track) * 5);
+    }
+
+    60% {
+      width: calc(6ch + var(--logo-track) * 6);
+    }
+
+    68%,
+    84% {
+      width: calc(7ch + var(--logo-track) * 7);
+    }
+
+    92% {
+      width: calc(6ch + var(--logo-track) * 6);
+    }
+
+    96% {
+      width: calc(5ch + var(--logo-track) * 5);
+    }
+
+    100% {
+      width: calc(4ch + var(--logo-track) * 4);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .logo {
+      font-size: 2.25rem;
+    }
+  }
+</style>

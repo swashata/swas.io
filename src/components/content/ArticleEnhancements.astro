@@ -49,28 +49,83 @@
 </script>
 
 <style is:global>
+  .prose-editorial {
+    --tw-prose-body: var(--color-foreground);
+    --tw-prose-headings: var(--color-foreground);
+    --tw-prose-links: var(--color-foreground);
+    --tw-prose-bold: var(--color-foreground);
+    --tw-prose-counters: var(--color-muted);
+    --tw-prose-bullets: var(--color-accent);
+    --tw-prose-hr: var(--color-border);
+    --tw-prose-quotes: var(--color-foreground);
+    --tw-prose-quote-borders: var(--color-accent);
+    --tw-prose-captions: var(--color-muted);
+    --tw-prose-code: var(--color-foreground);
+    --tw-prose-pre-code: var(--color-foreground);
+    --tw-prose-pre-bg: rgba(255, 255, 255, 0.5);
+    --tw-prose-th-borders: var(--color-border);
+    --tw-prose-td-borders: var(--color-border);
+    width: 100%;
+    min-width: 0;
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    line-height: 1.72;
+  }
+
+  .prose-editorial > * {
+    max-width: 100%;
+  }
+
+  .prose-editorial h2 {
+    margin-top: 2.25em;
+    font-size: clamp(1.65rem, 1.25rem + 1.2vw, 2.25rem);
+  }
+
+  .prose-editorial h3 {
+    font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.6rem);
+  }
+
+  .prose-editorial pre {
+    border-radius: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 1rem 1.125rem;
+  }
+
+  .prose-editorial blockquote {
+    border-left-width: 2px;
+  }
+
+  .prose-editorial img {
+    filter: drop-shadow(12px 12px 0 rgb(255 255 255 / 1));
+    border: 1px solid rgb(255 255 255 / 0.5);
+  }
+
   .prose-editorial :is(h2, h3, h4) {
     position: relative;
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 2rem;
   }
 
   .heading-anchor {
     position: absolute;
-    top: 0.2em;
-    left: -1.65rem;
+    top: 0.05em;
+    left: -1.5em;
     display: inline-flex;
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 1.3333332em;
+    height: 1.3333332em;
     color: var(--color-muted);
+    line-height: 1;
     opacity: 0;
+    align-items: center;
+    justify-content: center;
     transition:
       color 160ms ease,
       opacity 160ms ease;
   }
 
   .heading-anchor svg {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
   }
 
   .prose-editorial :is(h2, h3, h4):hover .heading-anchor,
@@ -98,15 +153,14 @@
 
   .code-copy {
     position: absolute;
-    top: 0.625rem;
-    right: 0.625rem;
+    top: 0.8rem;
+    right: 1rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
     border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
-    background: color-mix(in srgb, var(--color-background) 92%, transparent);
     color: var(--color-muted);
     cursor: pointer;
     line-height: 1;

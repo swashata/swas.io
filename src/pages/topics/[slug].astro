@@ -25,5 +25,5 @@ const { topic, entries } = Astro.props;
 ---
 
 <BaseLayout title={topic.label} description={`Writing tagged ${topic.label}.`}>
-  <ContentArchive entries={entries} label="topic" title={topic.label} />
+  <ContentArchive entries={entries} title={topic.label} />
 </BaseLayout>
