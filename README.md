@@ -55,7 +55,7 @@ For homepage styling, start with `src/pages/index.astro`, then follow into `src/
 ## Todos
 
 - [x] Fine tune the homepage design
-  - [ ] Add a "about" section and include links to about, uses, and now pages
+  - [x] Add a "about" section and include links to about, uses, and now pages
 - [ ] Fine tune the article layout design
 - [ ] Fine tune the page layout design
 - [ ] Fine tune the archive layout design (category, tag, and writing list pages)

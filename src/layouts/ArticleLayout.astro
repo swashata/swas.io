@@ -1,7 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import ShareButton from '@/components/islands/ShareButton';
+import ArticleEnhancements from '@/components/content/ArticleEnhancements.astro';
+import ArticleToc from '@/components/content/ArticleToc.astro';
+import ArticleTopics from '@/components/content/ArticleTopics.astro';
+import ShareButton from '@/components/content/ShareButton.astro';
 import { formatDate, readingTime, slugify } from '@/lib/content';
 
 interface Props {
@@ -12,84 +15,88 @@ interface Props {
   tags?: string[];
   image?: ImageMetadata;
   body?: string;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
 }
 
-const { title, description, date, category, tags = [], image, body = '' } = Astro.props;
+const {
+  title,
+  description,
+  date,
+  category,
+  tags = [],
+  image,
+  body = '',
+  headings = [],
+} = Astro.props;
 const minutes = readingTime(body);
 const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').toString();
 const categoryHref = `/categories/${slugify(category)}`;
+const tocHeadings = headings.filter((heading) => heading.depth > 1 && heading.depth < 4);
 ---
 
-<BaseLayout title={title} description={description} type="article">
-  <article class="site-container py-16 sm:py-24">
-    <header class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_12rem] lg:items-end">
-      <div>
-        <p class="mb-8 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted sm:text-base">
-          <time datetime={date.toISOString()}>{formatDate(date)}</time>
-          <span class="accent-marker">/</span>
-          <span>{minutes} min read</span>
-          <span class="accent-marker">/</span>
-          <a href={categoryHref} class="no-underline">{category}</a>
-        </p>
-        <h1 class="display-type max-w-5xl text-5xl sm:text-7xl lg:text-8xl">{title}</h1>
-        {
-          description && (
-            <p class="mt-8 max-w-4xl text-xl leading-relaxed sm:text-2xl">
-              {description}
-            </p>
-          )
-        }
-      </div>
-      <div class="flex lg:justify-end">
-        <ShareButton client:load title={title} url={shareUrl} />
-      </div>
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  hasToc={tocHeadings.length > 0}
+>
+  <article class="site-container py-8 pb-28 sm:py-12 lg:pb-12">
+    <header>
+      <p class="mb-6 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted sm:text-base">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span class="accent-marker">/</span>
+        <span>{minutes} min read</span>
+        <span class="accent-marker">/</span>
+        <a href={categoryHref} class="no-underline">{category}</a>
+      </p>
+      <h1 class="display-type max-w-4xl text-5xl leading-tight text-balance sm:text-6xl">
+        {title}
+      </h1>
+      {
+        description && (
+          <p class="mt-10 max-w-5xl text-xl leading-relaxed sm:text-2xl">{description}</p>
+        )
+      }
     </header>
 
-    {
-      image && (
-        <Image
-          src={image}
-          alt=""
-          widths={[640, 960, 1280]}
-          sizes="(min-width: 1024px) 960px, calc(100vw - 2rem)"
-          class="mt-12 w-full max-w-4xl border border-border"
-          loading="lazy"
-        />
-      )
-    }
+    <div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,65ch)_15rem] lg:items-start">
+      <div class="min-w-0 max-w-prose">
+        {
+          image && (
+            <Image
+              src={image}
+              alt=""
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 1024px) 65ch, calc(100vw - 3rem)"
+              class="mb-12 w-full border border-border"
+              loading="lazy"
+            />
+          )
+        }
 
-    <div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,46rem)_12rem]">
-      <div class="prose prose-editorial">
-        <slot />
+        <div class="prose prose-editorial max-w-prose" data-article-prose>
+          <slot />
+        </div>
+
+        <footer class="mt-12 border-t border-border pt-8">
+          <ShareButton title={title} url={shareUrl} />
+          <div class="mt-8">
+            <ArticleTopics tags={tags} />
+          </div>
+        </footer>
+
+        <a href="/writing" class="mt-12 inline-block no-underline"
+          ><span class="accent-marker">&lt;-</span> back to writing</a
+        >
       </div>
+
       {
-        tags.length > 0 && (
-          <aside class="pt-2 text-sm lg:pt-0">
-            <h2 class="mb-4 font-bold">
-              <span class="accent-marker">&gt;</span> topics
-            </h2>
-            <ul class="grid gap-2">
-              {tags.map((tag) => (
-                <li>
-                  <a
-                    href={`/topics/${tag
-                      .toLowerCase()
-                      .replace(/['"]/g, '')
-                      .replace(/[^a-z0-9]+/g, '-')
-                      .replace(/^-|-$/g, '')}`}
-                    class="no-underline"
-                  >
-                    {tag}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
+        tocHeadings.length > 0 && (
+          <ArticleToc headings={tocHeadings} shareTitle={title} shareUrl={shareUrl} />
         )
       }
     </div>
-    <a href="/writing" class="mt-12 inline-block no-underline"
-      ><span class="accent-marker">&lt;-</span> back to writing</a
-    >
+
+    <ArticleEnhancements />
   </article>
 </BaseLayout>

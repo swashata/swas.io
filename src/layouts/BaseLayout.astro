@@ -9,9 +9,10 @@ interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  hasToc?: boolean;
 }
 
-const { title, description, image, type } = Astro.props;
+const { title, description, image, type, hasToc = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,7 +32,7 @@ const { title, description, image, type } = Astro.props;
     />
     <Seo title={title} description={description} image={image} type={type} />
   </head>
-  <body>
+  <body class:list={[type === 'article' && 'article-page', hasToc && 'has-toc']}>
     <Header />
     <main>
       <slot />

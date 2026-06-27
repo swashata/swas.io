@@ -22,7 +22,8 @@
 ## Workflow
 
 - Assume `npm run dev` is already running unless proven otherwise. Check http://localhost:4321/ for the local dev site.
-- Before running a full build, prefer checking the relevant page in the browser at the local dev URL.
+- Do not use the browser tool unless the user explicitly asks for browser verification. In particular, do not test native browser interactions by using Playwright/read-only evaluate, synthetic DOM clicks, or coordinate clicks through the browser tool; those checks can disagree with real user clicks.
+- Before running a full build, prefer checking the relevant page manually only when the user explicitly asks for browser verification.
 - Use `npm run build` after code/content/style changes that could affect routing, MDX, imports, or production output.
 - Use the user's NVM-backed shell when npm/node are needed: run commands through
   `zsh -lic 'npm ...'` or `zsh -lic 'node ...'` so NVM initializes correctly.

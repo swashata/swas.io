@@ -1,19 +1,57 @@
 ---
+import { FaGithub, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+
 const year = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    href: 'https://www.linkedin.com/in/swashata/',
+    label: 'LinkedIn',
+    icon: FaLinkedinIn,
+  },
+  {
+    href: 'http://x.com/swashata',
+    label: 'X',
+    icon: FaXTwitter,
+  },
+  {
+    href: 'https://github.com/swashata',
+    label: 'GitHub',
+    icon: FaGithub,
+  },
+];
 ---
 
-<footer class="site-container pb-8 pt-12 sm:pb-12">
+<footer class="site-footer site-container pb-8 pt-12 sm:pb-12">
   <div class="rule mb-6"></div>
   <div class="flex items-center justify-between gap-4 text-sm">
     <p class="m-0">&copy; {year} Swas</p>
-    <a
-      href="https://github.com/swashata"
-      target="_blank"
-      rel="noreferrer"
-      class="no-underline"
-      aria-label="GitHub"
-    >
-      &lt;/&gt;
-    </a>
+    <nav aria-label="Social links">
+      <ul class="m-0 flex list-none items-center gap-3 p-0">
+        {
+          socialLinks.map(({ href, label, icon: Icon }) => (
+            <li>
+              <a
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                class="inline-flex h-8 w-8 items-center justify-center no-underline text-muted transition-colors hover:text-accent"
+                aria-label={label}
+              >
+                <Icon aria-hidden="true" size={18} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 </footer>
+
+<style is:global>
+  @media (max-width: 1023px) {
+    .article-page.has-toc .site-footer {
+      padding-bottom: 7rem;
+    }
+  }
+</style>

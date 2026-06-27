@@ -1,0 +1,137 @@
+---
+import { Check, Share2 } from 'lucide-react';
+
+interface Props {
+  title: string;
+  url: string;
+  variant?: 'default' | 'icon';
+}
+
+const { title, url, variant = 'default' } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={['share-button', `share-button-${variant}`]}
+  data-share-button
+  data-share-title={title}
+  data-share-url={url}
+  aria-label="Share this article"
+>
+  <Share2
+    className="share-icon share-icon-copy"
+    aria-hidden="true"
+    size={16}
+    strokeWidth={2}
+  />
+  <Check
+    className="share-icon share-icon-check"
+    aria-hidden="true"
+    size={16}
+    strokeWidth={2}
+  />
+  {variant !== 'icon' && <span data-share-label>share</span>}
+</button>
+
+<script>
+  function initShareButtons() {
+    const buttons = Array.from(document.querySelectorAll('[data-share-button]'));
+
+    buttons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement) || button.dataset.shareReady) return;
+
+      button.dataset.shareReady = 'true';
+      button.addEventListener('click', async () => {
+        const title = button.dataset.shareTitle ?? document.title;
+        const url = button.dataset.shareUrl ?? window.location.href;
+        const label = button.querySelector('[data-share-label]');
+
+        try {
+          if (navigator.share) {
+            await navigator.share({ title, url });
+          } else {
+            await navigator.clipboard.writeText(url);
+          }
+
+          button.dataset.copied = 'true';
+          if (label) label.textContent = 'copied';
+          window.setTimeout(() => {
+            delete button.dataset.copied;
+            if (label) label.textContent = 'share';
+          }, 1800);
+        } catch (error) {
+          if (error instanceof DOMException && error.name === 'AbortError') return;
+
+          await navigator.clipboard.writeText(url);
+          button.dataset.copied = 'true';
+          if (label) label.textContent = 'copied';
+          window.setTimeout(() => {
+            delete button.dataset.copied;
+            if (label) label.textContent = 'share';
+          }, 1800);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShareButtons, { once: true });
+  } else {
+    initShareButtons();
+  }
+
+  document.addEventListener('astro:page-load', initShareButtons);
+</script>
+
+<style>
+  .share-button {
+    display: inline-flex;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-foreground);
+    cursor: pointer;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition:
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .share-button:hover,
+  .share-button:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .share-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .share-button-icon {
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    padding: 0;
+    color: var(--color-muted);
+  }
+
+  .share-button-icon:hover,
+  .share-button-icon:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .share-icon-check,
+  .share-button[data-copied='true'] .share-icon-copy {
+    display: none;
+  }
+
+  .share-button[data-copied='true'] .share-icon-check {
+    display: block;
+  }
+</style>

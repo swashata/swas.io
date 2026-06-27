@@ -1,0 +1,574 @@
+---
+import { ChevronUp } from 'lucide-react';
+import ShareButton from '@/components/content/ShareButton.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+  shareTitle: string;
+  shareUrl: string;
+}
+
+const { headings, shareTitle, shareUrl } = Astro.props;
+---
+
+{
+  headings.length > 0 && (
+    <div class="article-toc-shell">
+      <aside class="article-toc article-toc-desktop" aria-label="Table of contents">
+        <div class="toc-panel">
+          <div class="toc-header">
+            <h2>on this page</h2>
+            <ShareButton title={shareTitle} url={shareUrl} variant="icon" />
+          </div>
+          <nav class="toc-nav">
+            <span class="toc-track-layer" aria-hidden="true">
+              <svg
+                class="toc-lines toc-lines-static"
+                viewBox="0 0 32.5 1"
+                width="32.5"
+                height="1"
+                data-toc-lines-static
+              >
+                <path class="toc-line-static" data-toc-track-path />
+              </svg>
+              <svg
+                class="toc-lines toc-lines-active"
+                viewBox="0 0 32.5 1"
+                width="32.5"
+                height="1"
+                data-toc-lines-active
+              >
+                <path class="toc-line-active" data-toc-track-active />
+              </svg>
+              <span class="toc-active-dot" data-toc-active-dot />
+            </span>
+            <ol>
+              {headings.map((heading) => (
+                <li
+                  class:list={[`depth-${heading.depth}`]}
+                  data-toc-item={heading.slug}
+                  data-toc-depth={heading.depth}
+                >
+                  <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="article-toc-mobile">
+        <details class="mobile-toc-disclosure" data-mobile-toc>
+          <summary class="mobile-toc-trigger">
+            <span class="mobile-toc-trigger-content">
+              <span class="mobile-toc-text">
+                <span class="mobile-toc-kicker-row">
+                  <span class="mobile-toc-kicker">on this page</span>
+                  <ChevronUp
+                    className="mobile-toc-chevron"
+                    aria-hidden="true"
+                    size={15}
+                    strokeWidth={1.75}
+                  />
+                </span>
+                <span class="mobile-toc-current" data-mobile-toc-current>
+                  {headings[0].text}
+                </span>
+              </span>
+            </span>
+          </summary>
+          <nav
+            id="mobile-toc-list"
+            class="mobile-toc-list"
+            aria-label="Table of contents"
+          >
+            <ol>
+              {headings.map((heading) => (
+                <li class:list={[`depth-${heading.depth}`]}>
+                  <a href={`#${heading.slug}`} data-mobile-toc-link={heading.slug}>
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </details>
+        <div class="mobile-toc-share">
+          <ShareButton title={shareTitle} url={shareUrl} variant="icon" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  interface TocItemMetrics {
+    x: number;
+    top: number;
+    bottom: number;
+    middle: number;
+  }
+
+  function initArticleToc() {
+    const tocLinks = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'),
+    );
+    const mobileLinks = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-link]'),
+    );
+    const tocNav = document.querySelector<HTMLElement>('.toc-nav');
+    const tocLineSvgs = Array.from(
+      document.querySelectorAll<SVGSVGElement>(
+        '[data-toc-lines-static], [data-toc-lines-active]',
+      ),
+    );
+    const activeLineSvg = document.querySelector<SVGSVGElement>(
+      '[data-toc-lines-active]',
+    );
+    const activeDot = document.querySelector<HTMLElement>('[data-toc-active-dot]');
+    const trackPath = document.querySelector<SVGPathElement>('[data-toc-track-path]');
+    const activeTrack = document.querySelector<SVGPathElement>('[data-toc-track-active]');
+    const currentHeading = document.querySelector<HTMLElement>(
+      '[data-mobile-toc-current]',
+    );
+    const mobileToc = document.querySelector<HTMLDetailsElement>('[data-mobile-toc]');
+    const mobileSummary = document.querySelector<HTMLElement>('.mobile-toc-trigger');
+    const trackWidth = 32.5;
+    const leftX = 8.5;
+    const rightX = 24.5;
+    const curve = 8;
+    let activeSlug: string | undefined =
+      tocLinks[0]?.getAttribute('data-toc-link') ?? undefined;
+    const tocItems = new Map<string, HTMLElement>(
+      tocLinks.flatMap((link): Array<[string, HTMLElement]> => {
+        const slug = link.getAttribute('data-toc-link');
+        const item = link.closest<HTMLElement>('[data-toc-item]');
+
+        return slug && item ? [[slug, item]] : [];
+      }),
+    );
+
+    function getItemMetrics(item: HTMLElement): TocItemMetrics {
+      const height = item.offsetHeight;
+      const top = item.offsetTop;
+      const bottom = top + height;
+      const middle = top + height / 2;
+      const depth = item.getAttribute('data-toc-depth') ?? '2';
+
+      return {
+        x: depth === '3' ? rightX : leftX,
+        top,
+        bottom,
+        middle,
+      };
+    }
+
+    function getTrackPath(metrics: TocItemMetrics[], navHeight: number): string {
+      if (metrics.length === 0) return '';
+
+      const commands = [`M ${metrics[0].x} 0`];
+
+      metrics.forEach((item, index) => {
+        const next = metrics[index + 1];
+        const endY = next ? Math.max(item.middle, next.middle - curve * 2) : navHeight;
+
+        commands.push(`L ${item.x} ${endY}`);
+
+        if (next) {
+          const controlY = next.middle;
+          commands.push(
+            `C ${item.x} ${controlY - curve} ${next.x} ${controlY - curve} ${next.x} ${controlY}`,
+          );
+        }
+      });
+
+      return commands.join(' ');
+    }
+
+    function drawTocTrack(): void {
+      if (!tocNav || tocLineSvgs.length === 0 || !trackPath || !activeTrack) return;
+
+      const items = Array.from(tocItems.values());
+      const metrics = items.map((item) => getItemMetrics(item));
+      const activeItem = activeSlug ? tocItems.get(activeSlug) : undefined;
+      const activeMetrics = activeItem ? getItemMetrics(activeItem) : metrics[0];
+      const navHeight = Math.max(tocNav.scrollHeight, metrics.at(-1)?.bottom ?? 0);
+      const path = getTrackPath(metrics, navHeight);
+
+      tocLineSvgs.forEach((svg: SVGElement) => {
+        svg.setAttribute('viewBox', `0 0 ${trackWidth} ${navHeight}`);
+        svg.setAttribute('width', `${trackWidth}`);
+        svg.setAttribute('height', `${navHeight}`);
+        svg.style.width = `${trackWidth}px`;
+        svg.style.height = `${navHeight}px`;
+      });
+      trackPath.setAttribute('d', path);
+      activeTrack.setAttribute('d', path);
+
+      if (!activeMetrics) return;
+
+      if (activeLineSvg) {
+        activeLineSvg.style.setProperty('--track-top', `${activeMetrics.top}px`);
+        activeLineSvg.style.setProperty('--track-bottom', `${activeMetrics.bottom}px`);
+      }
+
+      if (activeDot) {
+        activeDot.style.setProperty('--dot-x', `${activeMetrics.x}px`);
+        activeDot.style.setProperty('--dot-y', `${activeMetrics.middle}px`);
+      }
+    }
+
+    function activateToc(slug: string | null | undefined): void {
+      const desktopLink = tocLinks.find(
+        (link) => link.getAttribute('data-toc-link') === slug,
+      );
+      const label = desktopLink?.textContent?.trim();
+
+      tocLinks.forEach((link) => {
+        link.toggleAttribute('aria-current', link.getAttribute('data-toc-link') === slug);
+      });
+
+      mobileLinks.forEach((link) => {
+        link.toggleAttribute(
+          'aria-current',
+          link.getAttribute('data-mobile-toc-link') === slug,
+        );
+      });
+
+      if (currentHeading && label) {
+        currentHeading.textContent = label;
+      }
+
+      activeSlug = slug ?? undefined;
+      drawTocTrack();
+    }
+
+    if (mobileSummary && !mobileSummary.hasAttribute('data-toc-ready')) {
+      mobileSummary.setAttribute('data-toc-ready', 'true');
+      mobileSummary.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (mobileToc) mobileToc.toggleAttribute('open');
+      });
+    }
+
+    mobileLinks.forEach((link) => {
+      if (link.hasAttribute('data-toc-ready')) return;
+      link.setAttribute('data-toc-ready', 'true');
+      link.addEventListener('click', () => {
+        if (mobileToc) mobileToc.removeAttribute('open');
+      });
+    });
+
+    if (tocLinks.length > 0) {
+      activateToc(tocLinks[0].getAttribute('data-toc-link'));
+      window.addEventListener('resize', drawTocTrack);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+          if (visible?.target.id) {
+            activateToc(visible.target.id);
+          }
+        },
+        { rootMargin: '-18% 0px -68% 0px', threshold: 0 },
+      );
+
+      tocLinks.forEach((link) => {
+        const target = document.getElementById(link.getAttribute('data-toc-link') ?? '');
+        if (target) observer.observe(target);
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initArticleToc, { once: true });
+  } else {
+    initArticleToc();
+  }
+
+  document.addEventListener('astro:page-load', initArticleToc);
+</script>
+
+<style>
+  .article-toc-shell {
+    min-width: 0;
+  }
+
+  .article-toc-desktop {
+    display: none;
+  }
+
+  .toc-panel {
+    padding-left: 0.25rem;
+  }
+
+  .toc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.875rem;
+  }
+
+  h2,
+  .mobile-toc-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-muted);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .toc-nav {
+    position: relative;
+  }
+
+  .toc-track-layer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2.25rem;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .toc-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 32.5px;
+    min-width: 32.5px;
+    max-width: 32.5px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .toc-lines-active {
+    clip-path: inset(var(--track-top, 0px) 0 calc(100% - var(--track-bottom, 0px)) 0);
+    transition: clip-path 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .toc-line-static,
+  .toc-line-active {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .toc-line-static {
+    stroke: color-mix(in srgb, var(--color-border) 88%, transparent);
+    stroke-width: 1;
+  }
+
+  .toc-line-active {
+    stroke: var(--color-accent);
+    stroke-width: 2;
+  }
+
+  .toc-active-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    transform: translate(
+      calc(var(--dot-x, 8.5px) - 0.21875rem),
+      calc(var(--dot-y, 0px) - 0.21875rem)
+    );
+    transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  ol {
+    display: grid;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .toc-nav ol {
+    padding-left: 1.375rem;
+  }
+
+  li {
+    position: relative;
+    min-height: 1.5rem;
+  }
+
+  li.depth-3 {
+    padding-left: 2.375rem;
+  }
+
+  a {
+    display: block;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    text-decoration: none;
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  a:hover {
+    color: var(--color-foreground);
+  }
+
+  a[aria-current] {
+    color: var(--color-accent);
+    transform: translateX(0.125rem);
+  }
+
+  .article-toc-mobile {
+    position: fixed;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    z-index: 40;
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-background) 96%, transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-toc-disclosure {
+    display: block;
+  }
+
+  .mobile-toc-share {
+    position: absolute;
+    top: 0.875rem;
+    right: 0.875rem;
+    z-index: 1;
+  }
+
+  .mobile-toc-trigger {
+    width: 100%;
+    color: var(--color-foreground);
+    cursor: pointer;
+    display: list-item;
+    list-style: none;
+  }
+
+  .mobile-toc-trigger-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 3.25rem 0.75rem 0.875rem;
+    text-align: left;
+  }
+
+  .mobile-toc-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-toc-trigger::marker {
+    content: '';
+  }
+
+  .mobile-toc-text {
+    min-width: 0;
+  }
+
+  .mobile-toc-kicker,
+  .mobile-toc-current {
+    display: block;
+  }
+
+  .mobile-toc-kicker-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    max-width: 100%;
+  }
+
+  .mobile-toc-current {
+    overflow: hidden;
+    color: var(--color-foreground);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-toc-chevron {
+    display: inline-block;
+    flex: 0 0 auto;
+    color: var(--color-accent);
+    transition: transform 180ms ease;
+  }
+
+  .mobile-toc-list {
+    display: grid;
+    grid-template-rows: 0fr;
+    border-top: 1px solid transparent;
+    transition:
+      border-color 180ms ease,
+      grid-template-rows 180ms ease;
+  }
+
+  .mobile-toc-list ol {
+    max-height: 45vh;
+    overflow: hidden;
+    padding: 0 0.875rem;
+  }
+
+  .mobile-toc-disclosure[open] .mobile-toc-list {
+    grid-template-rows: 1fr;
+    border-top-color: var(--color-border);
+  }
+
+  .mobile-toc-disclosure[open] .mobile-toc-list ol {
+    overflow: auto;
+    padding-block: 0.75rem;
+  }
+
+  .mobile-toc-disclosure[open] .mobile-toc-chevron {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width: 1024px) {
+    .article-toc-shell {
+      position: sticky;
+      top: 5rem;
+      align-self: start;
+      max-height: calc(100vh - 7rem);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @supports (overflow: clip) {
+      .article-toc-shell {
+        overflow-x: clip;
+      }
+    }
+
+    .article-toc-desktop {
+      display: block;
+    }
+
+    .article-toc-mobile {
+      display: none;
+    }
+  }
+</style>
