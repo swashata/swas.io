@@ -1,1 +1,2 @@
+npm run update:writing-updated
 npm exec lint-staged

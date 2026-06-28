@@ -82,6 +82,16 @@ export function sortByDateDesc<T extends CollectionEntry<'writing'>>(entries: T[
   return [...entries].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+export function isVisibleWritingEntry(entry: CollectionEntry<'writing'>) {
+  return import.meta.env.DEV || !entry.data.draft;
+}
+
+export function filterVisibleWritingEntries<T extends CollectionEntry<'writing'>>(
+  entries: T[],
+) {
+  return entries.filter(isVisibleWritingEntry);
+}
+
 export function sortProjects<T extends CollectionEntry<'projects'>>(entries: T[]) {
   return [...entries].sort((a, b) => b.data.order - a.data.order);
 }

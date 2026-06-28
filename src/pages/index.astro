@@ -9,11 +9,16 @@ import compactGridMarker from '@/assets/icons/compact-grid-marker.svg?raw';
 import heroRuledPages from '@/assets/icons/hero-ruled-pages.svg?raw';
 import latestLineMarker from '@/assets/icons/latest-line-marker.svg?raw';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getAllCategories, site, sortByDateDesc } from '@/lib/content';
+import {
+  filterVisibleWritingEntries,
+  getAllCategories,
+  site,
+  sortByDateDesc,
+} from '@/lib/content';
 import { getCollection } from 'astro:content';
 
 const writing = sortByDateDesc(
-  (await getCollection('writing')).filter((entry) => !entry.data.draft),
+  filterVisibleWritingEntries(await getCollection('writing')),
 );
 const latest = writing.slice(0, 2);
 const archive = writing.slice(2, 12);

@@ -9,10 +9,26 @@ interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  tags?: string[];
+  section?: string;
+  jsonLd?: Record<string, unknown>;
   hasToc?: boolean;
 }
 
-const { title, description, image, type, hasToc = false } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  type,
+  publishedTime,
+  modifiedTime,
+  tags,
+  section,
+  jsonLd,
+  hasToc = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -30,7 +46,17 @@ const { title, description, image, type, hasToc = false } = Astro.props;
       title="swas.io writing"
       href="/rss.xml"
     />
-    <Seo title={title} description={description} image={image} type={type} />
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      tags={tags}
+      section={section}
+      jsonLd={jsonLd}
+    />
   </head>
   <body class:list={[type === 'article' && 'article-page', hasToc && 'has-toc']}>
     <Header />

@@ -1,10 +1,15 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { getEntrySlug, site, sortByDateDesc } from '@/lib/content';
+import {
+  filterVisibleWritingEntries,
+  getEntrySlug,
+  site,
+  sortByDateDesc,
+} from '@/lib/content';
 
 export async function GET(context) {
   const writing = sortByDateDesc(
-    (await getCollection('writing')).filter((entry) => !entry.data.draft),
+    filterVisibleWritingEntries(await getCollection('writing')),
   );
 
   return rss({
