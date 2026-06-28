@@ -1,0 +1,89 @@
+<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .soft-line {
+      stroke: var(--marker-soft-line, #E5E1D8);
+      opacity: var(--marker-soft-opacity, 1);
+    }
+
+    .dot {
+      fill: var(--marker-dot, #C8C1B6);
+      opacity: var(--marker-dot-opacity, .9);
+    }
+
+    .accent-line {
+      stroke: var(--marker-accent, #3F6F6A);
+      opacity: var(--marker-accent-opacity, 1);
+    }
+
+    .anchor-dot {
+      fill: var(--marker-background, #FAF9F5);
+      stroke: var(--marker-accent, #3F6F6A);
+      opacity: var(--marker-accent-opacity, 1);
+    }
+  </style>
+  <!--
+    swas.io compact grid marker — sharp corner version
+    Background: transparent
+    Accent: #3F6F6A
+    Soft line: #E5E1D8
+    Dot color: #C8C1B6
+  -->
+
+  <!-- left construction rail -->
+  <path d="M92 42V178" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- short ruled lines -->
+  <path d="M60 82H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M60 104H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M60 126H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M60 148H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- compact sharp bracket/form -->
+  <path
+    d="M92 70H206V160"
+    class="soft-line"
+    stroke-width="1.5"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+
+  <!-- dot matrix -->
+  <g class="dot">
+    <circle cx="112" cy="96" r="1.8"/>
+    <circle cx="128" cy="96" r="1.8"/>
+    <circle cx="144" cy="96" r="1.8"/>
+    <circle cx="160" cy="96" r="1.8"/>
+
+    <circle cx="112" cy="112" r="1.8"/>
+    <circle cx="128" cy="112" r="1.8"/>
+    <circle cx="144" cy="112" r="1.8"/>
+    <circle cx="160" cy="112" r="1.8"/>
+
+    <circle cx="112" cy="128" r="1.8"/>
+    <circle cx="128" cy="128" r="1.8"/>
+    <circle cx="144" cy="128" r="1.8"/>
+    <circle cx="160" cy="128" r="1.8"/>
+
+    <circle cx="112" cy="144" r="1.8"/>
+    <circle cx="128" cy="144" r="1.8"/>
+    <circle cx="144" cy="144" r="1.8"/>
+    <circle cx="160" cy="144" r="1.8"/>
+  </g>
+
+  <!-- accent connector -->
+  <path
+    d="M206 108H252"
+    class="accent-line"
+    stroke-width="2.25"
+    stroke-linecap="square"
+  />
+
+  <!-- anchor circle -->
+  <circle
+    cx="228"
+    cy="108"
+    r="7"
+    class="anchor-dot"
+    stroke-width="1.75"
+  />
+</svg>

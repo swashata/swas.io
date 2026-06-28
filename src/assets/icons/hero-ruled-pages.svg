@@ -1,0 +1,87 @@
+<svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .soft-line {
+      stroke: var(--marker-soft-line, #E5E1D8);
+      opacity: var(--marker-soft-opacity, 1);
+    }
+
+    .dot {
+      fill: var(--marker-dot, #C8C1B6);
+      opacity: var(--marker-dot-opacity, .9);
+    }
+
+    .accent-line {
+      stroke: var(--marker-accent, #3F6F6A);
+      opacity: var(--marker-accent-opacity, 1);
+    }
+
+    .anchor-dot {
+      fill: var(--marker-background, #FAF9F5);
+      stroke: var(--marker-accent, #3F6F6A);
+      opacity: var(--marker-accent-opacity, 1);
+    }
+  </style>
+  <!--
+    swas.io hero motif — editorial margin mark
+    Background: transparent
+    Accent: #3F6F6A
+    Soft line: #E5E1D8
+    Dot color: #C8C1B6
+  -->
+
+  <!-- main quiet margin rail -->
+  <path
+    d="M236 56V304"
+    class="soft-line"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- ruled writing lines -->
+  <path d="M104 104H292" class="soft-line" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M132 132H292" class="soft-line" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M160 160H292" class="soft-line" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- small editorial bracket -->
+  <path
+    d="M104 104V160"
+    class="soft-line"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- soft dot cluster, like a writing/grid texture -->
+  <g class="dot">
+    <circle cx="116" cy="214" r="2"/>
+    <circle cx="136" cy="214" r="2"/>
+    <circle cx="156" cy="214" r="2"/>
+    <circle cx="176" cy="214" r="2"/>
+
+    <circle cx="116" cy="234" r="2"/>
+    <circle cx="136" cy="234" r="2"/>
+    <circle cx="156" cy="234" r="2"/>
+    <circle cx="176" cy="234" r="2"/>
+
+    <circle cx="116" cy="254" r="2"/>
+    <circle cx="136" cy="254" r="2"/>
+    <circle cx="156" cy="254" r="2"/>
+    <circle cx="176" cy="254" r="2"/>
+  </g>
+
+  <!-- restrained accent mark -->
+  <path
+    d="M236 188H288"
+    class="accent-line"
+    stroke-width="2.25"
+    stroke-linecap="round"
+  />
+
+  <!-- tiny anchor dot -->
+  <circle
+    cx="236"
+    cy="188"
+    r="3.5"
+    class="anchor-dot"
+    stroke-width="1.75"
+  />
+</svg>

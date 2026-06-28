@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group mt-4 inline-block font-mono text-base no-underline transition-colors"
+>
+  <slot />
+  <span
+    aria-hidden="true"
+    class="font-sans inline-block pl-1 text-accent transition-transform duration-200 group-hover:translate-x-1"
+  >
+    →
+  </span>
+</a>

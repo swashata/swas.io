@@ -1,8 +1,13 @@
 ---
 import ContentList from '@/components/content/ContentList.astro';
+import DecorativeMarker from '@/components/content/DecorativeMarker.astro';
 import HomeHero from '@/components/content/HomeHero.astro';
 import TopicList from '@/components/content/TopicList.astro';
 import WhoamiSection from '@/components/content/WhoamiSection.astro';
+import ReadmoreLink from '@/components/content/ReadmoreLink.astro';
+import compactGridMarker from '@/assets/icons/compact-grid-marker.svg?raw';
+import heroRuledPages from '@/assets/icons/hero-ruled-pages.svg?raw';
+import latestLineMarker from '@/assets/icons/latest-line-marker.svg?raw';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getAllCategories, site, sortByDateDesc } from '@/lib/content';
 import { getCollection } from 'astro:content';
@@ -16,17 +21,46 @@ const categories = getAllCategories(writing);
 ---
 
 <BaseLayout description={site.description}>
-  <section class="site-container py-8 sm:py-12">
-    <HomeHero />
+  <section class="site-container relative">
+    <DecorativeMarker
+      icon={heroRuledPages}
+      class="opacity-75 -top-5 w-70 -right-10 sm:w-88 sm:-right-20 sm:-top-10 lg:w-md lg:-right-5"
+    >
+      <div class="py-8 sm:py-12">
+        <HomeHero />
+      </div>
+    </DecorativeMarker>
   </section>
-  <section class="site-container py-4">
-    <ContentList entries={latest} heading="latest" />
+  <section class="site-container relative">
+    <DecorativeMarker
+      icon={latestLineMarker}
+      class="left-20 -top-5 w-lg opacity-80 sm:left-40"
+    >
+      <DecorativeMarker
+        icon={compactGridMarker}
+        class="opacity-70 -right-10 bottom-1 w-50 sm:w-72 md:right-auto md:left-180 md:bottom-8"
+      >
+        <div class="py-4">
+          <ContentList entries={latest} heading="latest" />
+        </div>
+      </DecorativeMarker>
+    </DecorativeMarker>
   </section>
   <section class="site-container py-6">
     <WhoamiSection />
   </section>
-  <section class="site-container py-4">
-    <ContentList entries={archive} heading="archive" variant="compact" />
+  <section class="site-container relative">
+    <DecorativeMarker
+      icon={compactGridMarker}
+      class="opacity-70 -right-10 bottom-1 w-50 sm:w-72 lg:right-auto lg:left-210 lg:bottom-6"
+    >
+      <div class="py-4">
+        <ContentList entries={archive} heading="writing" variant="compact" />
+        <div class="mb-4">
+          <ReadmoreLink href="/writing">view all writing</ReadmoreLink>
+        </div>
+      </div>
+    </DecorativeMarker>
   </section>
   <section class="site-container py-8">
     <TopicList topics={categories} title="categories" basePath="/categories" />

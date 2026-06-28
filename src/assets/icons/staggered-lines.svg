@@ -1,0 +1,15 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 86 40"
+  fill="none"
+  width="86"
+  height="40"
+>
+  <path
+    d="M2 8H17 M32 8H52 M2 20H36 M55 20H78 M2 32H18 M32 32H55"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="square"
+    vector-effect="non-scaling-stroke"
+  />
+</svg>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+  muted?: boolean;
+}
+
+const { class: className, muted = false } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  class:list={[
+    'block h-0.5 w-8 bg-accent',
+    muted ? 'opacity-45' : 'opacity-100',
+    className,
+  ]}></span>

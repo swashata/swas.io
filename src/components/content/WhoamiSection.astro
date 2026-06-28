@@ -1,6 +1,10 @@
 ---
-import { Clock3, SlidersHorizontal, Terminal } from 'lucide-react';
+import { Clock3, CodeXml, Quote, UserRound } from 'lucide-react';
+import longLinesIcon from '@/assets/icons/long-lines.svg?raw';
+import offsetLinesIcon from '@/assets/icons/offset-lines.svg?raw';
+import staggeredLinesIcon from '@/assets/icons/staggered-lines.svg?raw';
 import AboutCard from '@/components/content/AboutCard.astro';
+import EditorialDash from '@/components/content/EditorialDash.astro';
 import SectionTitle from '@/components/content/SectionTitle.astro';
 
 const links = [
@@ -9,14 +13,17 @@ const links = [
     command: 'about',
     description:
       'A short background on my work, how I think about engineering, and the path from building WordPress products to leading engineering at Freemius.',
-    icon: Terminal,
+    icon: UserRound,
+    lineIcon: longLinesIcon,
+    iconPlacement: 'tablet-right',
   },
   {
     href: '/uses',
     command: 'uses',
     description:
       'The tools, hardware, software, and workflows I rely on to keep my development and writing loop simple, fast, and predictable.',
-    icon: SlidersHorizontal,
+    icon: CodeXml,
+    lineIcon: staggeredLinesIcon,
   },
   {
     href: '/now',
@@ -24,12 +31,21 @@ const links = [
     description:
       'What currently has my attention: work, writing, systems I’m thinking about, things I’m learning, and a few life updates.',
     icon: Clock3,
+    lineIcon: offsetLinesIcon,
+    lineIconPosition: 'before',
   },
 ];
 ---
 
 <SectionTitle>whoami</SectionTitle>
-<div class="grid gap-4 py-10 md:grid-cols-2 lg:grid-cols-3">
+<div class="pt-4 pb-10">
+  <EditorialDash />
+  <p class="mt-8 max-w-2xl font-mono text-base leading-relaxed text-muted sm:text-lg">
+    Engineer by trade, builder at heart. The why and how behind building things that make
+    me happy.
+  </p>
+</div>
+<div class="grid gap-0 py-4 md:grid-cols-2 lg:grid-cols-3">
   {
     links.map((link, index) => (
       <AboutCard
@@ -37,8 +53,25 @@ const links = [
         command={link.command}
         description={link.description}
         icon={link.icon}
+        lineIcon={link.lineIcon}
+        lineIconPosition={link.lineIconPosition as 'before' | 'after'}
+        iconPlacement={link.iconPlacement as 'default' | 'tablet-right'}
+        index={index}
         class={index === 0 ? 'md:col-span-2 lg:col-span-1' : undefined}
       />
     ))
   }
+</div>
+<div class="flex gap-2 py-4 px-2 sm:py-10 sm:px-12 sm:gap-12 sm:items-center">
+  <Quote
+    aria-hidden="true"
+    strokeWidth={2.4}
+    className="shrink-0 scale-x-[-1] scale-y-[-1] text-accent sm:w-12 sm:h-12"
+  />
+  <p
+    class="max-w-5xl sm:border-l border-border sm:pl-12 font-mono text-base text-balance leading-relaxed text-muted sm:text-lg"
+  >
+    This is where I write to clarify my thinking and share what I learn. Follow along if
+    you're into building software, products, and systems that are meant to last.
+  </p>
 </div>

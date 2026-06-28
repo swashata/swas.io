@@ -6,27 +6,64 @@ interface Props {
   command: string;
   description: string;
   icon: LucideIcon;
+  lineIcon: string;
+  lineIconPosition?: 'before' | 'after';
+  iconPlacement?: 'default' | 'tablet-right';
+  index: number;
   class?: string;
 }
 
-const { href, command, description, icon: Icon, class: className } = Astro.props;
+const {
+  href,
+  command,
+  description,
+  icon: Icon,
+  lineIcon,
+  lineIconPosition = 'after',
+  iconPlacement = 'default',
+  index,
+  class: className,
+} = Astro.props;
+const count = String(index + 1).padStart(2, '0');
 ---
 
 <a
   href={href}
   class:list={[
-    'group relative isolate min-h-56 overflow-hidden border border-border px-6 py-7 no-underline transition-colors hover:border-accent sm:min-h-64 sm:px-8 sm:py-9',
+    'group relative isolate flex min-h-64 flex-col overflow-hidden border-t border-b -mt-px border-border px-6 py-7 no-underline transition-colors hover:border-t-accent hover:border-b-accent sm:min-h-72 sm:px-8 sm:py-9 lg:min-h-80',
     className,
   ]}
 >
-  <Icon
-    aria-hidden="true"
-    size={176}
-    strokeWidth={1}
-    className="pointer-events-none absolute -bottom-8 -right-8 -z-10 text-foreground opacity-10 transition-transform duration-300 group-hover:scale-105"
-  />
-  <h3 class="font-mono text-2xl font-bold leading-tight sm:text-3xl">
+  <p class="font-mono text-base font-extrabold text-accent">{count}</p>
+  <h3 class="mt-4 font-mono text-2xl font-bold leading-tight sm:text-3xl">
     <span class="accent-marker">/</span>{command}
   </h3>
-  <p class="mt-8 mb-10 max-w-sm text-lg leading-relaxed text-muted">{description}</p>
+  <p class="mt-6 max-w-sm text-base leading-relaxed text-muted sm:text-lg">
+    {description}
+  </p>
+
+  <div
+    class:list={[
+      'pointer-events-none mt-auto flex pt-12 text-foreground/45 transition-colors group-hover:text-accent/75',
+      iconPlacement === 'tablet-right' &&
+        'md:absolute md:right-10 md:bottom-16 md:mt-0 md:pt-0 lg:static lg:mt-auto lg:pt-12',
+    ]}
+  >
+    <div class="flex items-center gap-4">
+      {
+        lineIconPosition === 'before' ? (
+          <span class="shrink-0 [&_svg]:block" set:html={lineIcon} />
+        ) : (
+          <Icon aria-hidden="true" size={76} strokeWidth={1.4} className="shrink-0" />
+        )
+      }
+      {
+        lineIconPosition === 'before' ? (
+          <Icon aria-hidden="true" size={76} strokeWidth={1.4} className="shrink-0" />
+        ) : (
+          <span class="shrink-0 [&_svg]:block" set:html={lineIcon} />
+        )
+      }
+    </div>
+  </div>
 </a>

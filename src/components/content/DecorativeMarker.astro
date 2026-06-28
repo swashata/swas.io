@@ -1,0 +1,33 @@
+---
+interface Props {
+  icon: string;
+  class?: string;
+}
+
+const { icon, class: className } = Astro.props;
+---
+
+<div class="relative">
+  <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+    <span
+      aria-hidden="true"
+      class:list={[
+        'pointer-events-none block absolute select-none decorative-marker-svg-box',
+        className,
+      ]}
+      set:html={icon}
+    />
+  </div>
+
+  <div class="relative z-10">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .decorative-marker-svg-box :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>
