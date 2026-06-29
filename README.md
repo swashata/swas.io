@@ -2,7 +2,8 @@
 
 Personal site for writing, projects, uses, now, and about.
 
-Built with Astro, TypeScript, React islands, MDX content collections, Tailwind CSS, and shadcn/ui primitives.
+Built with Astro, TypeScript, React islands, MDX content collections, Tailwind CSS, and
+shadcn/ui primitives.
 
 ## Requirements
 
@@ -37,7 +38,8 @@ RSS is generated for writing posts only at `/rss.xml`.
 
 - `src/pages/index.astro`: homepage route (`/`) and homepage hero/header content.
 - `src/pages/**`: file-based routes. Example: `src/pages/about.astro` becomes `/about`.
-- `src/layouts/BaseLayout.astro`: shared page shell with `<Header />`, `<main>`, and `<Footer />`.
+- `src/layouts/BaseLayout.astro`: shared page shell with `<Header />`, `<main>`, and
+  `<Footer />`.
 - `src/components/site/Header.astro`: top logo and primary navigation.
 - `src/components/site/Footer.astro`: shared footer.
 - `src/styles/global.css`: global colors, typography, layout helpers, and prose styles.
@@ -50,21 +52,11 @@ RSS is generated for writing posts only at `/rss.xml`.
 - `src/content/projects`: edit project entries here.
 - `src/content/pages`: edit about, uses, and now here.
 
-For homepage styling, start with `src/pages/index.astro`, then follow into `src/layouts/BaseLayout.astro`, `src/components/site/Header.astro`, and `src/styles/global.css`.
+For homepage styling, start with `src/pages/index.astro`, then follow into
+`src/layouts/BaseLayout.astro`, `src/components/site/Header.astro`, and
+`src/styles/global.css`.
 
-## Todos
-
-- [x] Fine tune the homepage design
-  - [x] Add a "about" section and include links to about, uses, and now pages
-- [x] Fine tune the article layout design
-- [x] Fine tune the page layout design
-- [ ] Fine tune the archive layout design (category, tag, and writing list pages)
-- [x] Update color scheme from a nice shade from refactoring UI book
-- [x] Come up with 5-6 categories and use those. Remove the topics/tags from the homepage. Keep the topics/tags in the article layout only.
-- [ ] Add some nice "==||==" like separator on the home page between the sections near the section titles
-- [ ] Improve the design of the cards, make more breathing room between the cards, the icons look awkward, fix it.
-
-## v2 - Projects
+## TODO - Projects
 
 Revamp the projects page.
 
