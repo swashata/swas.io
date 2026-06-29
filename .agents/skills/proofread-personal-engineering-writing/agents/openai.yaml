@@ -1,4 +1,6 @@
 interface:
   display_name: 'Proofread Personal Engineering Writing'
   short_description: "Polish Swashata's reflective engineering prose"
-  default_prompt: 'Use $proofread-personal-engineering-writing to proofread this article while preserving my voice.'
+  default_prompt:
+    'Use $proofread-personal-engineering-writing to proofread this article while
+    preserving my voice.'

@@ -1,15 +1,23 @@
 ---
 name: create-social-micro-content
-description: Create social micro content from Swashata Ghosh's existing articles, blog posts, MDX drafts, notes, or long-form engineering/product writing. Use when asked to turn an article into posts for X/Twitter and LinkedIn, create social snippets, repurpose writing, draft launch/share copy, or summarize the core hook for social channels without making it feel like a website teaser.
+description:
+  Create social micro content from Swashata Ghosh's existing articles, blog posts, MDX
+  drafts, notes, or long-form engineering/product writing. Use when asked to turn an
+  article into posts for X/Twitter and LinkedIn, create social snippets, repurpose
+  writing, draft launch/share copy, or summarize the core hook for social channels without
+  making it feel like a website teaser.
 ---
 
 # Create Social Micro Content
 
 ## Purpose
 
-Create standalone social posts that capture the real essence, tension, and hook of an article. The posts should make sense even if the reader never clicks a link.
+Create standalone social posts that capture the real essence, tension, and hook of an
+article. The posts should make sense even if the reader never clicks a link.
 
-Do not write tiny teasers, traffic bait, or posts that imply the main goal is to send people to the author's website. Treat the article as source material for a thoughtful social idea, not as something to advertise.
+Do not write tiny teasers, traffic bait, or posts that imply the main goal is to send
+people to the author's website. Treat the article as source material for a thoughtful
+social idea, not as something to advertise.
 
 ## Source Reading
 
@@ -23,7 +31,8 @@ Before drafting, identify:
 - The author's level of certainty.
 - The audience that would recognize the problem.
 
-If the article has multiple ideas, choose the strongest social hook instead of trying to summarize everything.
+If the article has multiple ideas, choose the strongest social hook instead of trying to
+summarize everything.
 
 ## Voice
 
@@ -37,20 +46,24 @@ Use the same voice as the author's personal engineering writing:
 - Personal without being performative.
 - Conversational without becoming casual filler.
 
-The post should sound like a real reflection from work, not a marketing caption, personal-brand thread, or generic founder/operator advice.
+The post should sound like a real reflection from work, not a marketing caption,
+personal-brand thread, or generic founder/operator advice.
 
 ## What to Avoid
 
 Avoid:
 
 - "I wrote about..." as the default opening.
-- "New blog post", "I published", "link below", or similar link-promo framing unless explicitly requested.
+- "New blog post", "I published", "link below", or similar link-promo framing unless
+  explicitly requested.
 - Clickbait, cliffhangers, or incomplete teasers.
 - Over-short posts that only gesture at the article.
-- Engagement bait such as "Agree?", "Thoughts?", "What's your take?", or "Let me know in the comments."
+- Engagement bait such as "Agree?", "Thoughts?", "What's your take?", or "Let me know in
+  the comments."
 - Hashtags unless the user explicitly asks for them.
 - Emojis unless the source already uses them and they fit naturally.
-- Buzzwords such as "unlock", "leverage", "game-changer", "synergy", "paradigm", or "10x" unless clearly intentional in the source.
+- Buzzwords such as "unlock", "leverage", "game-changer", "synergy", "paradigm", or "10x"
+  unless clearly intentional in the source.
 - Flattening careful nuance into universal advice.
 - Ending with a forced CTA to read the full article.
 
@@ -66,7 +79,8 @@ Prefer:
 - A complete idea that can stand alone.
 - Natural first person when the source is personal.
 
-Do not force the post into an ultra-short one-liner. The goal is micro content, not a headline.
+Do not force the post into an ultra-short one-liner. The goal is micro content, not a
+headline.
 
 A good X post usually has:
 
@@ -87,7 +101,8 @@ Prefer:
 - Enough context for someone to understand the idea without clicking away.
 - A reflective close rather than a promotional CTA.
 
-Use bullets only when the source naturally supports them. Do not turn every post into a framework.
+Use bullets only when the source naturally supports them. Do not turn every post into a
+framework.
 
 A good LinkedIn post usually has:
 
@@ -99,7 +114,8 @@ A good LinkedIn post usually has:
 
 ## Links and CTAs
 
-If the user provides a URL or asks to include one, include it quietly at the end after the post body.
+If the user provides a URL or asks to include one, include it quietly at the end after the
+post body.
 
 Do not make the link the point of the post. Avoid lines like:
 
@@ -111,7 +127,8 @@ Prefer either a plain URL on its own line or a restrained line such as:
 
 > Full piece: [URL]
 
-If no URL is provided, do not invent one and do not mention that there is an article to read.
+If no URL is provided, do not invent one and do not mention that there is an article to
+read.
 
 ## Transformation Rules
 
@@ -138,14 +155,13 @@ Unless the user asks for another format, return:
 
 ## X
 
-Variant 1:
-[post]
+Variant 1: [post]
 
-Variant 2:
-[post]
+Variant 2: [post]
 
 ## LinkedIn
 
 [post]
 
-If the source article is weak or unclear, still draft the posts, then add a brief note naming the uncertainty or suggesting a stronger hook.
+If the source article is weak or unclear, still draft the posts, then add a brief note
+naming the uncertainty or suggesting a stronger hook.

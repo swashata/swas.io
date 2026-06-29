@@ -1,4 +1,5 @@
 interface:
   display_name: 'Create Social Micro Content'
   short_description: 'Create X and LinkedIn posts from articles'
-  default_prompt: 'Use $create-social-micro-content to create X and LinkedIn posts from this article.'
+  default_prompt:
+    'Use $create-social-micro-content to create X and LinkedIn posts from this article.'
