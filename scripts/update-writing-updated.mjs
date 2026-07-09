@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const writingPrefix = 'src/content/writing/';
-const updatedValue = new Date().toISOString();
+const timestampValue = new Date().toISOString();
 
 function stagedWritingFiles() {
   const output = execFileSync(
@@ -33,17 +33,23 @@ function updateFrontmatter(source) {
   }
 
   const frontmatter = match[1];
+  const isDraft = /^draft:\s*true\s*$/m.test(frontmatter);
   let nextFrontmatter;
 
-  if (/^updated:\s*.*$/m.test(frontmatter)) {
-    nextFrontmatter = frontmatter.replace(/^updated:\s*.*$/m, `updated: ${updatedValue}`);
+  if (isDraft && /^date:\s*.*$/m.test(frontmatter)) {
+    nextFrontmatter = frontmatter.replace(/^date:\s*.*$/m, `date: ${timestampValue}`);
+  } else if (/^updated:\s*.*$/m.test(frontmatter)) {
+    nextFrontmatter = frontmatter.replace(
+      /^updated:\s*.*$/m,
+      `updated: ${timestampValue}`,
+    );
   } else if (/^date:\s*.*$/m.test(frontmatter)) {
     nextFrontmatter = frontmatter.replace(
       /^(date:\s*.*)$/m,
-      `$1\nupdated: ${updatedValue}`,
+      `$1\nupdated: ${timestampValue}`,
     );
   } else {
-    nextFrontmatter = `updated: ${updatedValue}\n${frontmatter}`;
+    nextFrontmatter = `updated: ${timestampValue}\n${frontmatter}`;
   }
 
   return source.replace(match[0], `---\n${nextFrontmatter}\n---`);
