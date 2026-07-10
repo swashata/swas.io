@@ -3,29 +3,31 @@ image: ../../assets/images/letsencrypt.png
 title: 'Automatic Letsencrypt SSL for Gitlab and GitLab Pages'
 description: 'How to automate SSL with lets encrypt for GitLab and GitLab pages.'
 date: 2017-09-17T07:54:41+05:30
+updated: 2026-07-10T07:08:57.209Z
 category: Developer Experience
-tags: ['GitLab', "Let's encrypt", 'SSL']
+tags: ['GitLab', "Let's Encrypt", 'SSL']
 ---
 
-So I use GitLab and GitLab pages as part of my workflow for past 4 years and it
-has been a wonderful journey. The flexibility GitLab provides is extra ordinary
-and all for free. As you have seen from my [previous post](/blog/gitlab-private-networking-runner/)
-I have set them up on different [Linode VMs](https://linode.com).
+So I use GitLab and GitLab pages as part of my workflow for past 4 years and it has been a
+wonderful journey. The flexibility GitLab provides is extra ordinary and all for free. As
+you have seen from my [previous post](/blog/gitlab-private-networking-runner/) I have set
+them up on different [Linode VMs](https://linode.com).
 
-One of the challenges was to automate Let's Encrypt free SSL for both my GitLab
-and GitLab instances.
+One of the challenges was to automate Let's Encrypt free SSL for both my GitLab and GitLab
+instances.
 
-I could have used [cloudflare SSL](https://www.cloudflare.com), but for brevity,
-I opted for Let's Encrypt.
+I could have used [cloudflare SSL](https://www.cloudflare.com), but for brevity, I opted
+for Let's Encrypt.
 
 ## Pre-requisites
 
-For this, I am assuming, we are running GitLab on Ubuntu 16.04 LTS and we have
-the following packages installed.
+For this, I am assuming, we are running GitLab on Ubuntu 16.04 LTS and we have the
+following packages installed.
 
 - [Python3](https://www.python.org/) - Comes pre-installed with Ubuntu 16.04.
 - [Certbot](https://certbot.eff.org/) - We will see how to install it.
-- [GitLab pages](https://docs.gitlab.com/ee/administration/pages/) is setup with any of the official methods.
+- [GitLab pages](https://docs.gitlab.com/ee/administration/pages/) is setup with any of
+  the official methods.
 
 Before we proceed, let's do a system upgrade.
 
@@ -39,10 +41,10 @@ In my scenario, the URLs are as follows.
 - GitLab - `https://wpquark.io` Listening on `139.162.39.232`.
 - GitLab Pages - `https://wpquark.xyz` Listening on `172.104.184.210`.
 
-But you can have both GitLab and GitLab pages on the same IP. I have this because
-I support custom domain. This website `https://swashata.me` is actually being
-hosted by GitLab Pages, originally at `https://swashata.wpquark.xyz` and published
-through [Hugo](https://gohugo.io/).
+But you can have both GitLab and GitLab pages on the same IP. I have this because I
+support custom domain. This website `https://swashata.me` is actually being hosted by
+GitLab Pages, originally at `https://swashata.wpquark.xyz` and published through
+[Hugo](https://gohugo.io/).
 
 ## Installing Let's Encrypt
 
@@ -97,16 +99,16 @@ Now we are ready to generate SSL.
 
 ### Create GitLab SSL
 
-Now that GitLab's Nginx is configured to server files from the needed directory,
-we can go ahead and tell certbot to get us a certificate and use `--webroot` to
-place the needed files.
+Now that GitLab's Nginx is configured to server files from the needed directory, we can go
+ahead and tell certbot to get us a certificate and use `--webroot` to place the needed
+files.
 
 ```bash
 sudo certbot certonly --webroot --webroot-path=/var/www/letsencrypt -d wpquark.io
 ```
 
-Of course you would replace `wpquark.io` with your domain name. Once done, you
-will see an output like this.
+Of course you would replace `wpquark.io` with your domain name. Once done, you will see an
+output like this.
 
 ```text
 IMPORTANT NOTES:
@@ -165,7 +167,8 @@ Now this is going to be tricky, so I am going to break down what we will be doin
 3. We will use `certbot` to get the SSL through python server.
 4. We will stop the python server and start `gitlab-pages` service.
 
-For this we will be using two scripts which I have made from [here](https://github.com/VojtechMyslivec/letsencrypt-gitlab).
+For this we will be using two scripts which I have made from
+[here](https://github.com/VojtechMyslivec/letsencrypt-gitlab).
 
 ### Create the script files
 
@@ -333,8 +336,8 @@ sudo chmod +x /opt/gpages/*
 
 ### Execute Commands
 
-Now that our scripts are in-place, obtaining certificates for Pages domain is
-only a matter of executing the scripts in order.
+Now that our scripts are in-place, obtaining certificates for Pages domain is only a
+matter of executing the scripts in order.
 
 ```bash
 sudo /opt/gpages/before.sh
@@ -342,13 +345,13 @@ sudo certbot certonly --webroot --webroot-path=/var/www/letsencrypt -d wpquark.x
 sudo /opt/gpages/after.sh
 ```
 
-If set-up properly, then it will obtain certificates for you and will save them
-in `/etc/letsencrypt/live/wpquark.xyz/fullchain.pem` for your use.
+If set-up properly, then it will obtain certificates for you and will save them in
+`/etc/letsencrypt/live/wpquark.xyz/fullchain.pem` for your use.
 
 ### Edit gitlab.rb configuration
 
-Once again, edit `/etc/gitlab/gitlab.rb` file and put there the following config.
-You need to change the values according to your server config.
+Once again, edit `/etc/gitlab/gitlab.rb` file and put there the following config. You need
+to change the values according to your server config.
 
 ```ruby
 pages_external_url 'https://wpquark.xyz'
@@ -359,8 +362,8 @@ gitlab_pages['external_http'] = ['172.104.184.210:80']
 gitlab_pages['external_https'] = ['172.104.184.210:443']
 ```
 
-Note that I have used external domain support for my setup. If you don't need
-that, then your config would look like this.
+Note that I have used external domain support for my setup. If you don't need that, then
+your config would look like this.
 
 ```ruby
 pages_external_url 'https://wpquark.xyz'
@@ -380,8 +383,8 @@ And enjoy free SSL with let's encrypt.
 
 ## Automate with Cron Job
 
-Now that we have issued SSL, it is time to automate with crontab. Create or edit
-the system crontab and put the following line.
+Now that we have issued SSL, it is time to automate with crontab. Create or edit the
+system crontab and put the following line.
 
 ```bash
 sudo crontab -e
@@ -395,5 +398,7 @@ This will check for renewal every day at `3:15am` and will execute needed hooks.
 
 ## Further Read
 
-- [Secure GitLab with Let's Encrypt](https://www.digitalocean.com/community/tutorials/how-to-secure-gitlab-with-let-s-encrypt-on-ubuntu-16-04) - Digital Ocean.
-- [Securing GitLab Pages with Let's Encrypt](https://about.gitlab.com/2016/04/11/tutorial-securing-your-gitlab-pages-with-tls-and-letsencrypt/) - GitLab.
+- [Secure GitLab with Let's Encrypt](https://www.digitalocean.com/community/tutorials/how-to-secure-gitlab-with-let-s-encrypt-on-ubuntu-16-04) -
+  Digital Ocean.
+- [Securing GitLab Pages with Let's Encrypt](https://about.gitlab.com/2016/04/11/tutorial-securing-your-gitlab-pages-with-tls-and-letsencrypt/) -
+  GitLab.

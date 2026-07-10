@@ -1,22 +1,10 @@
 import { closeSync, mkdirSync, openSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { CATEGORY_NAMES } from '../TAXONOMIES.ts';
 
 const writingDir = path.join(process.cwd(), 'src/content/writing');
 const title = process.argv.slice(2).join(' ').trim() || 'Untitled Post';
 const now = new Date();
-const categories = [
-  'Engineering Leadership',
-  'Product Engineering',
-  'Software Architecture',
-  'Developer Experience',
-  'Web Platforms',
-  'AI Systems',
-  'Freemius Lessons',
-  'Technical Notes',
-  'Career & Craft',
-  'Personal Notes',
-];
-
 function slugify(value) {
   return value
     .toLowerCase()
@@ -69,8 +57,9 @@ mkdirSync(writingDir, { recursive: true });
 
 const baseSlug = slugify(title) || `${formatDateOnly(now)}-draft`;
 const { fd, filepath } = uniquePath(baseSlug);
-const categoryOptions = categories
-  .filter((category) => category !== 'Technical Notes')
+const categoryOptions = CATEGORY_NAMES.filter(
+  (category) => category !== 'Technical Notes',
+)
   .map((category) => `# category: ${category}`)
   .join('\n');
 const markdown = `---

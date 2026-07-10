@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
+import { CATEGORY_NAMES, TAGS } from '../TAXONOMIES';
 
 const writing = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/writing' }),
@@ -9,19 +10,8 @@ const writing = defineCollection({
       description: z.string().optional(),
       date: z.coerce.date(),
       updated: z.coerce.date().optional(),
-      category: z.enum([
-        'Engineering Leadership',
-        'Product Engineering',
-        'Software Architecture',
-        'Developer Experience',
-        'Web Platforms',
-        'AI Systems',
-        'Freemius Lessons',
-        'Technical Notes',
-        'Career & Craft',
-        'Personal Notes',
-      ]),
-      tags: z.array(z.string()).default([]),
+      category: z.enum(CATEGORY_NAMES),
+      tags: z.array(z.enum(TAGS)).default([]),
       image: image().optional(),
       draft: z.boolean().default(false),
     }),
@@ -37,7 +27,7 @@ const projects = defineCollection({
       image: image().optional(),
       order: z.number().default(0),
       link: z.string().url(),
-      tags: z.array(z.string()).default([]),
+      tags: z.array(z.enum(TAGS)).default([]),
       draft: z.boolean().default(false),
     }),
 });

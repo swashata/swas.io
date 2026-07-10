@@ -1,14 +1,17 @@
 ---
 title: Social Share button for Gatsby Blog Pages
 date: 2018-06-04T10:41:18.083Z
+updated: 2026-07-10T07:08:57.209Z
 image: ../../assets/images/share-buttons.png
-description: Learn how to create social share buttons for gatsbyjs blog pages using react-share.
+description:
+  Learn how to create social share buttons for gatsbyjs blog pages using react-share.
 category: Web Platforms
-tags: ['Gatsbyjs', 'JavaScript', 'Social']
+tags: ['GatsbyJS', 'JavaScript', 'Social']
 ---
 
-Let's talk about adding some cool social share buttons on [Gatsby](https://gatsbyjs.org) blog pages.
-For this we will be using [react-share](https://github.com/nygardk/react-share).
+Let's talk about adding some cool social share buttons on [Gatsby](https://gatsbyjs.org)
+blog pages. For this we will be using
+[react-share](https://github.com/nygardk/react-share).
 
 ### Install `react-share`
 
@@ -20,8 +23,8 @@ yarn add react-share
 
 ### Modify configuration
 
-Now we need to know about site's URL and a few other things for social sharing to work.
-So let's edit our `gatsby-config.js` file and put the URL in the `siteMetadata`.
+Now we need to know about site's URL and a few other things for social sharing to work. So
+let's edit our `gatsby-config.js` file and put the URL in the `siteMetadata`.
 
 ```js
 module.exports = {
@@ -39,8 +42,8 @@ module.exports = {
 
 Now let's create a [React Component](https://reactjs.org/docs/components-and-props.html)
 which will show the share buttons. Creating a component instead of adding the code
-directly is a great way to show share buttons where ever you like, for example,
-archive pages, single pages etc.
+directly is a great way to show share buttons where ever you like, for example, archive
+pages, single pages etc.
 
 Create a file `src/components/Share.jsx` and put the following code.
 
@@ -172,21 +175,24 @@ $brand-colors: (
 }
 ```
 
-PS: You do need the [gatsby-plugin-sass](https://www.gatsbyjs.org/packages/gatsby-plugin-sass/?=sass).
+PS: You do need the
+[gatsby-plugin-sass](https://www.gatsbyjs.org/packages/gatsby-plugin-sass/?=sass).
 
 Of course edit to your liking. Here the component basically requires two props:
 
-1.  `socialConfig`: An object of the mentioned shape to pass in our configuration
-    data. We pass the common `url` and `title` inside `config` hash and a separate
-    `twitterHandle` for twitter specific share.
-2.  `tags`: Optional array of tags of the blog post. This is implementation specific.
-    If you are not using any tags, then you can just leave it as is.
+1.  `socialConfig`: An object of the mentioned shape to pass in our configuration data. We
+    pass the common `url` and `title` inside `config` hash and a separate `twitterHandle`
+    for twitter specific share.
+2.  `tags`: Optional array of tags of the blog post. This is implementation specific. If
+    you are not using any tags, then you can just leave it as is.
 
-Also I am assuming you have some sort of [FontAwesome](https://github.com/FortAwesome/react-fontawesome) setup.
+Also I am assuming you have some sort of
+[FontAwesome](https://github.com/FortAwesome/react-fontawesome) setup.
 
 ### Get data using graphql
 
-Now depending on your setup, you need to edit the [template component](https://www.gatsbyjs.org/docs/building-with-components/#page-template-components)
+Now depending on your setup, you need to edit the
+[template component](https://www.gatsbyjs.org/docs/building-with-components/#page-template-components)
 for your single blog pages.
 
 We need to insert the query for getting the `siteMetadata` we had inserted before.
@@ -217,9 +223,10 @@ query BlogPostByID($id: String!) {
 
 Your mileage will vary here. I have assumed the following
 
-1.  You are putting `title`, `tags` in the [frontmatter](https://jekyllrb.com/docs/frontmatter/).
-2.  You are adding the `slug` field to nodes. It can be done by the following snippet
-    put directly in `gatsby-node.js`. We will need the slug to calculate the share URL.
+1.  You are putting `title`, `tags` in the
+    [frontmatter](https://jekyllrb.com/docs/frontmatter/).
+2.  You are adding the `slug` field to nodes. It can be done by the following snippet put
+    directly in `gatsby-node.js`. We will need the slug to calculate the share URL.
 
 ```js
 const { createFilePath } = require('gatsby-source-filesystem');
@@ -247,7 +254,8 @@ date: 2018-06-04T10:41:18.083Z
 tags: ['Gatsbyjs', 'JavaScript', 'Social']
 ---
 
-Let's talk about adding some cool social share buttons on [Gatsby](https://gatsbyjs.org) blog pages.
+Let's talk about adding some cool social share buttons on [Gatsby](https://gatsbyjs.org)
+blog pages.
 ```
 
 ### Use the data to add a `Share` component
@@ -297,8 +305,7 @@ If done correctly, it will now show up below your post content.
 
 ### Quick Recap
 
-So, to recap, we have implemented the social share button with the following
-strategy.
+So, to recap, we have implemented the social share button with the following strategy.
 
 1.  Pass in the site URL and twitterHandle through `gatsby-config.js` file.
 2.  Pass post `title`, `tags` etc through frontmatter.

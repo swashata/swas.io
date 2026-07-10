@@ -1,14 +1,17 @@
 ---
 title: Fix Yarn error 137 on GitLab CI
 date: 2019-10-01T16:56:39.606Z
-description: How to fix Yarn exit code 137 when running commands on GitLab CI/CD through GitLab Runner.
+updated: 2026-07-10T07:08:57.209Z
+description:
+  How to fix Yarn exit code 137 when running commands on GitLab CI/CD through GitLab
+  Runner.
 category: Developer Experience
-tags: ['gitlab', 'ci/cd']
+tags: ['GitLab', 'CI/CD']
 ---
 
-Very recently I came across an error when running some nodejs script on GitLab
-CI/CD. As usual, the commands were running fine on my local machine, but on
-GitLab Runner it was throwing an error 137 saying...
+Very recently I came across an error when running some nodejs script on GitLab CI/CD. As
+usual, the commands were running fine on my local machine, but on GitLab Runner it was
+throwing an error 137 saying...
 
 ```
 Killed
@@ -20,8 +23,7 @@ A quick googling revealed that the issue was indeed related to memory. For some
 background, here's my GitLab setup.
 
 - I use [gitlab.com](https://gitlab.com) hosted service.
-- For runner, I have a 4GB [linode](https://linode.com) instance running
-  GitLab Runner.
+- For runner, I have a 4GB [linode](https://linode.com) instance running GitLab Runner.
 - GitLab runner is running with
   [docker executor](https://docs.gitlab.com/runner/executors/docker.html).
 
@@ -29,15 +31,14 @@ background, here's my GitLab setup.
 
 All we need to do is increase the memory size of the docker runner.
 
-> NOTE: The following commands need to be run as super user. So affix `sudo`
-> before all commands.
+> NOTE: The following commands need to be run as super user. So affix `sudo` before all
+> commands.
 
 ### STEP 1: Configure GitLab runner with docker executor
 
-Make sure you are using GitLab runner with docker executor. Otherwise the guide
-will not work. To configure a fresh gitlab runner with docker executor, you can
-run the following command, optionally after deleting the file
-`/etc/gitlab-runner/config.toml`.
+Make sure you are using GitLab runner with docker executor. Otherwise the guide will not
+work. To configure a fresh gitlab runner with docker executor, you can run the following
+command, optionally after deleting the file `/etc/gitlab-runner/config.toml`.
 
 ```bash
 sudo gitlab-runner register
@@ -84,10 +85,9 @@ It should look something like
     [runners.cache.gcs]
 ```
 
-The options we are interested in are the `memory`, `memory_swap` and
-`memory_reservation`. I would like to give double the value to `memory_swap` as
-that of `memory`. Since my runner was hosted on a 4GB instance, I increased the
-memories like below.
+The options we are interested in are the `memory`, `memory_swap` and `memory_reservation`.
+I would like to give double the value to `memory_swap` as that of `memory`. Since my
+runner was hosted on a 4GB instance, I increased the memories like below.
 
 ```diff
 [[runners]]
@@ -127,5 +127,5 @@ gitlab-runner restart
 
 ---
 
-Now run your CI/CD pipeline again and for most of the cases the job will not
-fail. If it still gives you error 137, try increasing the memory again.
+Now run your CI/CD pipeline again and for most of the cases the job will not fail. If it
+still gives you error 137, try increasing the memory again.
