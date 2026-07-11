@@ -1,27 +1,29 @@
 ---
 title: Iterable Numbers in JavaScript with Symbol.iterator
 date: 2018-06-05T14:24:24.746Z
-description: Just an experiment to iterate numbers with for-of loop and spread to create ranges etc.
+updated: 2026-07-11T14:24:42.474Z
+description:
+  Just an experiment to iterate numbers with for-of loop and spread to create ranges etc.
 category: Web Platforms
 tags: ['JavaScript', 'ES6']
+image: './images/iterable-numbers-in-javascript-with-symbol.iterator-featured.png'
 ---
 
 > Kudos to [Samantha Ming](http://www.samanthaming.com/tidbits/17-print-ranges-natively)
 > for her thoughts on printing ranges natively on JavaScript.
 
-This looked really promising and cool. So I though about
-implementing within a custom class and without generators
-so it can run without [regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) in Nodejs.
+This looked really promising and cool. So I though about implementing within a custom
+class and without generators so it can run without
+[regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime) in Nodejs.
 
-This is what I came up with and it doesn't have any side
-effects mentioned by the original article.
+This is what I came up with and it doesn't have any side effects mentioned by the original
+article.
 
-The purpose of the class is to create a number that can
-be spread into an array reaching to 0 from either positive
-or negative side.
+The purpose of the class is to create a number that can be spread into an array reaching
+to 0 from either positive or negative side.
 
-Since the implementation basically uses `Symbol.iterator`
-it also works for looping with `for ...of`.
+Since the implementation basically uses `Symbol.iterator` it also works for looping with
+`for ...of`.
 
 This is what the code looks like.
 
