@@ -13,6 +13,7 @@
     "start": "astro dev",
     "new": "node scripts/new-writing.mjs",
     "update:writing-updated": "node scripts/update-writing-updated.mjs",
+    "generate-favicons": "node scripts/generate-favicons.mjs",
     "generate-featured-images": "node scripts/generate-featured-images.mjs",
     "force-featured-image": "node scripts/force-featured-image.mjs",
     "build": "astro build",
