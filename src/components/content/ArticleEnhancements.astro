@@ -1,4 +1,6 @@
 <script>
+  import mediumZoom from 'medium-zoom';
+
   const articleProse = document.querySelector('[data-article-prose]');
 
   const icons = {
@@ -9,6 +11,11 @@
   };
 
   if (articleProse) {
+    mediumZoom(articleProse.querySelectorAll('img:not([data-no-zoom])'), {
+      background: '#FAF9F5',
+      margin: 24,
+    });
+
     articleProse.querySelectorAll('h2[id], h3[id], h4[id]').forEach((heading) => {
       if (heading.querySelector('.heading-anchor')) return;
 
