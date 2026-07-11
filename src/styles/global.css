@@ -7,6 +7,34 @@
 @import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: scale(0.985);
+    filter: blur(2px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.99);
+    filter: blur(3px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 180ms ease-in both page-out;
+}
+
+::view-transition-new(root) {
+  animation: 360ms cubic-bezier(0.22, 1, 0.36, 1) both page-in;
+}
+
 @theme {
   --font-sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -53,6 +81,13 @@ pre {
 html {
   min-width: 320px;
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
 
 body {

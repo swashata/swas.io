@@ -83,13 +83,21 @@ const imageUrl = image
           </p>
         )
       }
-      <p class="mb-6 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted sm:text-base">
-        <time datetime={date.toISOString()}>{formatDate(date)}</time>
-        <span class="accent-marker">/</span>
-        <span>{minutes} min read</span>
-        <span class="accent-marker">/</span>
-        <a href={categoryHref} class="no-underline">{category}</a>
-      </p>
+      <div class="mb-7 flex items-start gap-4 font-mono text-sm sm:text-base">
+        <p class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-muted">
+          <span>
+            <time datetime={date.toISOString()}>{formatDate(date)}</time>
+            <span class="mx-1 text-foreground/50">under</span>
+            <a
+              href={categoryHref}
+              class="font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              {category}
+            </a>
+          </span>
+          <span class="text-xs text-muted/75 sm:text-sm">({minutes} min read)</span>
+        </p>
+      </div>
       <h1 class="display-type max-w-5xl text-5xl leading-tight text-balance sm:text-6xl">
         {title}
       </h1>

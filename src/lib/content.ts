@@ -14,10 +14,10 @@ export function getEntrySlug(entry: { id: string; slug?: string }) {
 }
 
 export function formatDate(date: Date) {
-  return new Intl.DateTimeFormat('en-CA', {
+  return new Intl.DateTimeFormat('en-GB', {
     year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
+    month: 'long',
+    day: 'numeric',
   }).format(date);
 }
 
