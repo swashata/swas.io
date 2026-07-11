@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { CATEGORY_NAMES, TAGS } from '../TAXONOMIES';
 
 const writing = defineCollection({
@@ -7,6 +8,7 @@ const writing = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      image_title: z.string().optional(),
       description: z.string().optional(),
       date: z.coerce.date(),
       updated: z.coerce.date().optional(),

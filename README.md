@@ -34,6 +34,22 @@ All content is MDX under `src/content`.
 
 RSS is generated for writing posts only at `/rss.xml`.
 
+### Featured images
+
+Generate images for posts without an `image` field:
+
+```bash
+npm run generate-featured-images
+```
+
+Force regeneration for one post:
+
+```bash
+npm run force-featured-image -- ./src/content/writing/example.mdx
+```
+
+Add `image_title` to a post's frontmatter to override the text rendered on its image.
+
 ## Project Map
 
 - `src/pages/index.astro`: homepage route (`/`) and homepage hero/header content.
