@@ -26,7 +26,11 @@ const archive = writing.slice(2, 12);
 const categories = getAllCategories(writing);
 ---
 
-<BaseLayout description={site.description} image={featuredImageHome.src}>
+<BaseLayout
+  absoluteTitle="Swas — Software, Systems, and Product Engineering"
+  description="Personal notes on software architecture, product engineering, developer experience, engineering leadership, and practical AI systems."
+  image={featuredImageHome.src}
+>
   <section class="site-container relative">
     <DecorativeMarker
       icon={heroRuledPages}

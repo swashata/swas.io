@@ -6,6 +6,7 @@ import '@/styles/global.css';
 
 interface Props {
   title?: string;
+  absoluteTitle?: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
@@ -19,6 +20,7 @@ interface Props {
 
 const {
   title,
+  absoluteTitle,
   description,
   image,
   type,
@@ -48,6 +50,7 @@ const {
     />
     <Seo
       title={title}
+      absoluteTitle={absoluteTitle}
       description={description}
       image={image}
       type={type}

@@ -3,6 +3,7 @@ import { site } from '@/lib/content';
 
 interface Props {
   title?: string;
+  absoluteTitle?: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
@@ -15,6 +16,7 @@ interface Props {
 
 const {
   title,
+  absoluteTitle,
   description = site.description,
   image,
   type = 'website',
@@ -24,7 +26,7 @@ const {
   section,
   jsonLd,
 } = Astro.props;
-const pageTitle = title ? `${title} | ${site.title}` : site.title;
+const pageTitle = absoluteTitle ?? (title ? `${title} | ${site.title}` : site.title);
 const canonical = new URL(Astro.url.pathname, site.url).toString();
 const imageUrl = image ? new URL(image, site.url).toString() : undefined;
 const serializedJsonLd = jsonLd
