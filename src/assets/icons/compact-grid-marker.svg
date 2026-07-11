@@ -1,89 +1,43 @@
-<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .soft-line {
-      stroke: var(--marker-soft-line, #E5E1D8);
-      opacity: var(--marker-soft-opacity, 1);
-    }
-
-    .dot {
-      fill: var(--marker-dot, #C8C1B6);
-      opacity: var(--marker-dot-opacity, .9);
-    }
-
-    .accent-line {
-      stroke: var(--marker-accent, #3F6F6A);
-      opacity: var(--marker-accent-opacity, 1);
-    }
-
-    .anchor-dot {
-      fill: var(--marker-background, #FAF9F5);
-      stroke: var(--marker-accent, #3F6F6A);
-      opacity: var(--marker-accent-opacity, 1);
-    }
-  </style>
-  <!--
-    swas.io compact grid marker — sharp corner version
-    Background: transparent
-    Accent: #3F6F6A
-    Soft line: #E5E1D8
-    Dot color: #C8C1B6
-  -->
-
-  <!-- left construction rail -->
-  <path d="M92 42V178" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
-
-  <!-- short ruled lines -->
-  <path d="M60 82H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
-  <path d="M60 104H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
-  <path d="M60 126H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
-  <path d="M60 148H92" class="soft-line" stroke-width="1.5" stroke-linecap="square"/>
-
-  <!-- compact sharp bracket/form -->
-  <path
-    d="M92 70H206V160"
-    class="soft-line"
-    stroke-width="1.5"
-    stroke-linecap="square"
-    stroke-linejoin="miter"
-  />
-
-  <!-- dot matrix -->
-  <g class="dot">
-    <circle cx="112" cy="96" r="1.8"/>
-    <circle cx="128" cy="96" r="1.8"/>
-    <circle cx="144" cy="96" r="1.8"/>
-    <circle cx="160" cy="96" r="1.8"/>
-
-    <circle cx="112" cy="112" r="1.8"/>
-    <circle cx="128" cy="112" r="1.8"/>
-    <circle cx="144" cy="112" r="1.8"/>
-    <circle cx="160" cy="112" r="1.8"/>
-
-    <circle cx="112" cy="128" r="1.8"/>
-    <circle cx="128" cy="128" r="1.8"/>
-    <circle cx="144" cy="128" r="1.8"/>
-    <circle cx="160" cy="128" r="1.8"/>
-
-    <circle cx="112" cy="144" r="1.8"/>
-    <circle cx="128" cy="144" r="1.8"/>
-    <circle cx="144" cy="144" r="1.8"/>
-    <circle cx="160" cy="144" r="1.8"/>
-  </g>
-
-  <!-- accent connector -->
-  <path
-    d="M206 108H252"
-    class="accent-line"
-    stroke-width="2.25"
-    stroke-linecap="square"
-  />
-
-  <!-- anchor circle -->
-  <circle
-    cx="228"
-    cy="108"
-    r="7"
-    class="anchor-dot"
-    stroke-width="1.75"
-  />
+<svg width="325" height="254" viewBox="0 0 325 254" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_7_195)">
+<path d="M52 2V252" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M2 82H52" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M2 112H52" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M2 142H52" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M2 172H52" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-linecap="round"/>
+<g opacity="0.95">
+<path d="M80 85C81.6569 85 83 83.6569 83 82C83 80.3431 81.6569 79 80 79C78.3431 79 77 80.3431 77 82C77 83.6569 78.3431 85 80 85Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M110 85C111.657 85 113 83.6569 113 82C113 80.3431 111.657 79 110 79C108.343 79 107 80.3431 107 82C107 83.6569 108.343 85 110 85Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M140 85C141.657 85 143 83.6569 143 82C143 80.3431 141.657 79 140 79C138.343 79 137 80.3431 137 82C137 83.6569 138.343 85 140 85Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M170 85C171.657 85 173 83.6569 173 82C173 80.3431 171.657 79 170 79C168.343 79 167 80.3431 167 82C167 83.6569 168.343 85 170 85Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M200 85C201.657 85 203 83.6569 203 82C203 80.3431 201.657 79 200 79C198.343 79 197 80.3431 197 82C197 83.6569 198.343 85 200 85Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M80 115C81.6569 115 83 113.657 83 112C83 110.343 81.6569 109 80 109C78.3431 109 77 110.343 77 112C77 113.657 78.3431 115 80 115Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M110 115C111.657 115 113 113.657 113 112C113 110.343 111.657 109 110 109C108.343 109 107 110.343 107 112C107 113.657 108.343 115 110 115Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M140 115C141.657 115 143 113.657 143 112C143 110.343 141.657 109 140 109C138.343 109 137 110.343 137 112C137 113.657 138.343 115 140 115Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M170 115C171.657 115 173 113.657 173 112C173 110.343 171.657 109 170 109C168.343 109 167 110.343 167 112C167 113.657 168.343 115 170 115Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M200 115C201.657 115 203 113.657 203 112C203 110.343 201.657 109 200 109C198.343 109 197 110.343 197 112C197 113.657 198.343 115 200 115Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M80 145C81.6569 145 83 143.657 83 142C83 140.343 81.6569 139 80 139C78.3431 139 77 140.343 77 142C77 143.657 78.3431 145 80 145Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M110 145C111.657 145 113 143.657 113 142C113 140.343 111.657 139 110 139C108.343 139 107 140.343 107 142C107 143.657 108.343 145 110 145Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M140 145C141.657 145 143 143.657 143 142C143 140.343 141.657 139 140 139C138.343 139 137 140.343 137 142C137 143.657 138.343 145 140 145Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M170 145C171.657 145 173 143.657 173 142C173 140.343 171.657 139 170 139C168.343 139 167 140.343 167 142C167 143.657 168.343 145 170 145Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M200 145C201.657 145 203 143.657 203 142C203 140.343 201.657 139 200 139C198.343 139 197 140.343 197 142C197 143.657 198.343 145 200 145Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M80 175C81.6569 175 83 173.657 83 172C83 170.343 81.6569 169 80 169C78.3431 169 77 170.343 77 172C77 173.657 78.3431 175 80 175Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M80 205C81.6569 205 83 203.657 83 202C83 200.343 81.6569 199 80 199C78.3431 199 77 200.343 77 202C77 203.657 78.3431 205 80 205Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M110 175C111.657 175 113 173.657 113 172C113 170.343 111.657 169 110 169C108.343 169 107 170.343 107 172C107 173.657 108.343 175 110 175Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M110 205C111.657 205 113 203.657 113 202C113 200.343 111.657 199 110 199C108.343 199 107 200.343 107 202C107 203.657 108.343 205 110 205Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M140 175C141.657 175 143 173.657 143 172C143 170.343 141.657 169 140 169C138.343 169 137 170.343 137 172C137 173.657 138.343 175 140 175Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M140 205C141.657 205 143 203.657 143 202C143 200.343 141.657 199 140 199C138.343 199 137 200.343 137 202C137 203.657 138.343 205 140 205Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M170 175C171.657 175 173 173.657 173 172C173 170.343 171.657 169 170 169C168.343 169 167 170.343 167 172C167 173.657 168.343 175 170 175Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M200 175C201.657 175 203 173.657 203 172C203 170.343 201.657 169 200 169C198.343 169 197 170.343 197 172C197 173.657 198.343 175 200 175Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M170 205C171.657 205 173 203.657 173 202C173 200.343 171.657 199 170 199C168.343 199 167 200.343 167 202C167 203.657 168.343 205 170 205Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M200 205C201.657 205 203 203.657 203 202C203 200.343 201.657 199 200 199C198.343 199 197 200.343 197 202C197 203.657 198.343 205 200 205Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+</g>
+<path d="M228 142H316" stroke="var(--marker-accent, #3F6F6A)" stroke-width="2.5" stroke-linecap="square"/>
+<path d="M318 149C321.866 149 325 145.866 325 142C325 138.134 321.866 135 318 135C314.134 135 311 138.134 311 142C311 145.866 314.134 149 318 149Z" fill="var(--marker-accent, #3F6F6A)"/>
+</g>
+<defs>
+<clipPath id="clip0_7_195">
+<rect width="325" height="254"/>
+</clipPath>
+</defs>
 </svg>

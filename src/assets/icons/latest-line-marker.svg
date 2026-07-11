@@ -1,49 +1,14 @@
-<svg width="720" height="160" viewBox="0 0 720 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Subtle latest section line marker">
-  <style>
-    .line { stroke: var(--marker-line, #D8D2C7); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; opacity: var(--marker-line-opacity, .76); }
-    .dot { fill: var(--marker-dot, #C8C1B6); opacity: var(--marker-dot-opacity, .68); }
-    .accent-fill { fill: var(--marker-accent, #3F6F6A); opacity: var(--marker-accent-opacity, .9); }
-  </style>
-
-  <!-- tab marker -->
-  <path class="line" d="M50 74L66 48H134C140 48 146 50 151 54L188 82L178 94H50V74Z" />
-
-  <!-- horizontal rule -->
-  <path class="line" d="M188 82H662" />
-
-  <!-- teal node -->
-  <circle class="accent-fill" cx="204" cy="82" r="5" />
-
-  <!-- dotted rule -->
-  <g>
-    <circle class="dot" cx="204" cy="105" r="1.7" />
-    <circle class="dot" cx="220" cy="105" r="1.7" />
-    <circle class="dot" cx="236" cy="105" r="1.7" />
-    <circle class="dot" cx="252" cy="105" r="1.7" />
-    <circle class="dot" cx="268" cy="105" r="1.7" />
-    <circle class="dot" cx="284" cy="105" r="1.7" />
-    <circle class="dot" cx="300" cy="105" r="1.7" />
-    <circle class="dot" cx="316" cy="105" r="1.7" />
-    <circle class="dot" cx="332" cy="105" r="1.7" />
-    <circle class="dot" cx="348" cy="105" r="1.7" />
-    <circle class="dot" cx="364" cy="105" r="1.7" />
-    <circle class="dot" cx="380" cy="105" r="1.7" />
-    <circle class="dot" cx="396" cy="105" r="1.7" />
-    <circle class="dot" cx="412" cy="105" r="1.7" />
-    <circle class="dot" cx="428" cy="105" r="1.7" />
-    <circle class="dot" cx="444" cy="105" r="1.7" />
-    <circle class="dot" cx="460" cy="105" r="1.7" />
-    <circle class="dot" cx="476" cy="105" r="1.7" />
-    <circle class="dot" cx="492" cy="105" r="1.7" />
-    <circle class="dot" cx="508" cy="105" r="1.7" />
-    <circle class="dot" cx="524" cy="105" r="1.7" />
-    <circle class="dot" cx="540" cy="105" r="1.7" />
-    <circle class="dot" cx="556" cy="105" r="1.7" />
-    <circle class="dot" cx="572" cy="105" r="1.7" />
-    <circle class="dot" cx="588" cy="105" r="1.7" />
-    <circle class="dot" cx="604" cy="105" r="1.7" />
-    <circle class="dot" cx="620" cy="105" r="1.7" />
-    <circle class="dot" cx="636" cy="105" r="1.7" />
-    <circle class="dot" cx="652" cy="105" r="1.7" />
-  </g>
+<svg width="712" height="38" viewBox="0 0 712 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_7_189)">
+<path d="M2 17.75C1.30964 17.75 0.75 18.3096 0.75 19C0.75 19.6904 1.30964 20.25 2 20.25V19V17.75ZM229 20.25H230.25V17.75H229V19V20.25ZM2 19V20.25H229V19V17.75H2V19Z" fill="var(--marker-soft-line, #E5E1D8)"/>
+<path d="M231 2V36" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M233 19H337" stroke="var(--marker-accent, #3F6F6A)" stroke-width="2.25" stroke-linecap="square"/>
+<path d="M338 26C341.866 26 345 22.866 345 19C345 15.134 341.866 12 338 12C334.134 12 331 15.134 331 19C331 22.866 334.134 26 338 26Z" fill="var(--marker-accent, #3F6F6A)"/>
+<path d="M352 19H712" stroke="var(--marker-soft-line, #E5E1D8)" stroke-width="2.5" stroke-dasharray="10 10"/>
+</g>
+<defs>
+<clipPath id="clip0_7_189">
+<rect width="712" height="38"/>
+</clipPath>
+</defs>
 </svg>

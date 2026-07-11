@@ -29,7 +29,7 @@ const categories = getAllCategories(writing);
   <section class="site-container relative">
     <DecorativeMarker
       icon={heroRuledPages}
-      class="opacity-75 -top-5 w-70 -right-10 sm:w-88 sm:-right-20 sm:-top-10 lg:w-md lg:-right-5"
+      class="opacity-75 -top-1 w-60 right-0 sm:w-104 sm:right-0 sm:top-1 lg:top-2 lg:w-100"
     >
       <div class="py-8 sm:py-12">
         <HomeHero />
@@ -39,11 +39,11 @@ const categories = getAllCategories(writing);
   <section class="site-container relative">
     <DecorativeMarker
       icon={latestLineMarker}
-      class="left-20 -top-5 w-lg opacity-80 sm:left-40"
+      class="left-30 top-5 w-80 opacity-80 sm:left-50 sm:w-100 lg:w-120"
     >
       <DecorativeMarker
         icon={compactGridMarker}
-        class="opacity-70 -right-10 bottom-1 w-50 sm:w-72 md:right-auto md:left-180 md:bottom-8"
+        class="opacity-70 right-0 bottom-1 w-34 sm:w-54 md:right-auto md:left-180 md:bottom-8"
       >
         <div class="py-4">
           <ContentList entries={latest} heading="latest" />
@@ -57,7 +57,7 @@ const categories = getAllCategories(writing);
   <section class="site-container relative">
     <DecorativeMarker
       icon={compactGridMarker}
-      class="opacity-70 -right-10 bottom-1 w-50 sm:w-72 lg:right-auto lg:left-210 lg:bottom-6"
+      class="opacity-70 right-0 bottom-1 w-34 sm:w-64 lg:right-auto lg:left-230 lg:bottom-6"
     >
       <div class="py-4">
         <ContentList entries={archive} heading="writing" variant="compact" />
