@@ -1,5 +1,6 @@
 ---
 import ContentArchive from '@/components/content/ContentArchive.astro';
+import featuredImageHome from '@/assets/featured-image/featured-image-home.png';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { filterVisibleWritingEntries, sortByDateDesc } from '@/lib/content';
 import { getCollection } from 'astro:content';
@@ -12,6 +13,7 @@ const entries = sortByDateDesc(
 <BaseLayout
   title="All Articles written by swas.io"
   description="Notes on engineering, systems, developer tooling, product work, and practical AI."
+  image={featuredImageHome.src}
 >
   <ContentArchive
     entries={entries}

@@ -8,6 +8,7 @@ import ReadmoreLink from '@/components/content/ReadmoreLink.astro';
 import compactGridMarker from '@/assets/icons/compact-grid-marker.svg?raw';
 import heroRuledPages from '@/assets/icons/hero-ruled-pages.svg?raw';
 import latestLineMarker from '@/assets/icons/latest-line-marker.svg?raw';
+import featuredImageHome from '@/assets/featured-image/featured-image-home.png';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   filterVisibleWritingEntries,
@@ -25,7 +26,7 @@ const archive = writing.slice(2, 12);
 const categories = getAllCategories(writing);
 ---
 
-<BaseLayout description={site.description}>
+<BaseLayout description={site.description} image={featuredImageHome.src}>
   <section class="site-container relative">
     <DecorativeMarker
       icon={heroRuledPages}

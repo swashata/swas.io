@@ -6,7 +6,13 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 export const paths = {
   projectRoot,
   writing: path.join(projectRoot, 'src/content/writing'),
-  images: path.join(projectRoot, 'src/content/writing/images'),
+  pages: path.join(projectRoot, 'src/content/pages'),
+  contentImages: {
+    writing: path.join(projectRoot, 'src/content/writing/images'),
+    pages: path.join(projectRoot, 'src/content/pages/images'),
+  },
+  taxonomyImages: path.join(projectRoot, 'public/featured-images'),
+  taxonomies: path.join(projectRoot, 'TAXONOMIES.ts'),
   template: path.join(
     projectRoot,
     'src/assets/featured-image/featured-image-template.png',

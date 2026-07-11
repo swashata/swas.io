@@ -36,13 +36,13 @@ RSS is generated for writing posts only at `/rss.xml`.
 
 ### Featured images
 
-Generate images for posts without an `image` field:
+Generate images for writing, pages, categories, and topics when missing:
 
 ```bash
 npm run generate-featured-images
 ```
 
-Force regeneration for one post:
+Force regeneration for one writing or page entry:
 
 ```bash
 npm run force-featured-image -- ./src/content/writing/example.mdx

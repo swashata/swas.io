@@ -36,12 +36,15 @@ const projects = defineCollection({
 
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/pages' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    updated: z.coerce.date().optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      image_title: z.string().optional(),
+      description: z.string().optional(),
+      image: image().optional(),
+      updated: z.coerce.date().optional(),
+      draft: z.boolean().default(false),
+    }),
 });
 
 export const collections = { writing, projects, pages };

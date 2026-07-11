@@ -11,7 +11,7 @@ const spinner = ora();
 try {
   if (process.argv.length !== 3) {
     throw new Error(
-      'Usage: npm run force-featured-image -- ./src/content/writing/example.mdx',
+      'Usage: npm run force-featured-image -- ./src/content/{writing|pages}/example.mdx',
     );
   }
 

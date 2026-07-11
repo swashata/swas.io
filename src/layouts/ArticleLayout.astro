@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleEnhancements from '@/components/content/ArticleEnhancements.astro';
 import ArticleToc from '@/components/content/ArticleToc.astro';
@@ -94,18 +93,6 @@ const imageUrl = image
       <h1 class="display-type max-w-5xl text-5xl leading-tight text-balance sm:text-6xl">
         {title}
       </h1>
-      {
-        image && (
-          <Image
-            src={image}
-            alt=""
-            widths={[640, 960, 1280]}
-            sizes="(min-width: 1024px) 65ch, calc(100vw - 3rem)"
-            class="my-12 w-full border border-border"
-            loading="lazy"
-          />
-        )
-      }
       {
         description && (
           <p class="mt-10 max-w-5xl text-xl leading-relaxed sm:text-2xl font-mono">

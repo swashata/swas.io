@@ -2,19 +2,26 @@
 import ArticleEnhancements from '@/components/content/ArticleEnhancements.astro';
 import ArticleToc from '@/components/content/ArticleToc.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
   description?: string;
+  image?: ImageMetadata;
   headings?: Array<{ depth: number; slug: string; text: string }>;
 }
 
-const { title, description, headings = [] } = Astro.props;
+const { title, description, image, headings = [] } = Astro.props;
 const tocHeadings = headings.filter((heading) => heading.depth > 1 && heading.depth < 4);
 const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').toString();
 ---
 
-<BaseLayout title={title} description={description} hasToc={tocHeadings.length > 0}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={image?.src}
+  hasToc={tocHeadings.length > 0}
+>
   <section class="site-container py-8 pb-28 sm:py-12 lg:pb-12">
     <header>
       <h1 class="display-type max-w-5xl text-5xl leading-tight text-balance sm:text-6xl">

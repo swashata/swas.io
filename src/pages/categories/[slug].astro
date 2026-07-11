@@ -27,7 +27,11 @@ export async function getStaticPaths() {
 const { category, entries } = Astro.props;
 ---
 
-<BaseLayout title={category.label} description={category.description}>
+<BaseLayout
+  title={category.label}
+  description={category.description}
+  image={`/featured-images/categories/${category.slug}.png`}
+>
   <ContentArchive
     entries={entries}
     title={category.label}

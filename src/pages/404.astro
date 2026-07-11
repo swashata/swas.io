@@ -1,8 +1,13 @@
 ---
+import featuredImageHome from '@/assets/featured-image/featured-image-home.png';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Not Found" description="This page does not exist.">
+<BaseLayout
+  title="Not Found"
+  description="This page does not exist."
+  image={featuredImageHome.src}
+>
   <section class="site-container py-24">
     <p class="mb-6 text-sm text-muted"><span class="accent-marker">&gt;</span> 404</p>
     <h1 class="display-type text-6xl sm:text-8xl">Not found</h1>
