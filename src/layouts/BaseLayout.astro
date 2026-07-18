@@ -3,18 +3,20 @@ import Header from '@/components/site/Header.astro';
 import Footer from '@/components/site/Footer.astro';
 import Seo from '@/components/site/Seo.astro';
 import '@/styles/global.css';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   title?: string;
   absoluteTitle?: string;
   description?: string;
-  image?: string;
+  image?: string | ImageMetadata;
   type?: 'website' | 'article';
   publishedTime?: Date;
   modifiedTime?: Date;
   tags?: string[];
   section?: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
   hasToc?: boolean;
 }
 
@@ -29,6 +31,7 @@ const {
   tags,
   section,
   jsonLd,
+  noindex,
   hasToc = false,
 } = Astro.props;
 ---
@@ -84,6 +87,7 @@ const {
       tags={tags}
       section={section}
       jsonLd={jsonLd}
+      noindex={noindex}
     />
   </head>
   <body class:list={[type === 'article' && 'article-page', hasToc && 'has-toc']}>

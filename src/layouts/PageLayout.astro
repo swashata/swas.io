@@ -19,7 +19,7 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://swas.io').to
 <BaseLayout
   title={title}
   description={description}
-  image={image?.src}
+  image={image}
   hasToc={tocHeadings.length > 0}
 >
   <section class="site-container py-8 pb-28 sm:py-12 lg:pb-12">

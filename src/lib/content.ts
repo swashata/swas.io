@@ -2,11 +2,21 @@ import type { CollectionEntry } from 'astro:content';
 import { CATEGORIES } from '../../TAXONOMIES';
 
 export const site = {
-  name: 'swas',
+  name: 'swas.io',
+  alternateName: 'Swas',
   title: 'swas.io',
   description: 'Software, systems, and the quiet craft of building things that last.',
   url: 'https://swas.io',
-  author: 'Swas',
+  locale: 'en_US',
+  language: 'en',
+  author: 'Swashata Ghosh',
+  authorUrl: 'https://swas.io/about',
+  twitterHandle: '@swashata',
+  socialLinks: [
+    'https://github.com/swashata',
+    'https://www.linkedin.com/in/swashata/',
+    'https://x.com/swashata',
+  ],
 };
 
 export function getEntrySlug(entry: { id: string; slug?: string }) {
