@@ -84,6 +84,15 @@ export async function generateForPost(filepath, { force = false } = {}) {
 
   const title = getImageTitle(frontmatter.data);
   const output = outputForContent(filepath);
+  let overwroteImage = false;
+
+  if (force) {
+    try {
+      await access(output.absolute);
+      overwroteImage = true;
+    } catch {}
+  }
+
   const png = await renderFeaturedImage(title);
   const updated = setImageFrontmatter(source, frontmatter, output.frontmatter);
 
@@ -91,7 +100,15 @@ export async function generateForPost(filepath, { force = false } = {}) {
   await writeFile(output.absolute, png);
   await writeFile(filepath, updated, 'utf8');
 
-  return { status: 'generated', filepath, output: output.absolute, title };
+  return {
+    status: 'generated',
+    filepath,
+    output: output.absolute,
+    imageReference: output.frontmatter,
+    title,
+    forced: force,
+    overwroteImage,
+  };
 }
 
 function slugify(value) {
@@ -176,9 +193,15 @@ export function printResult(result, spinner) {
     return;
   }
 
-  const message = chalk.green(relativeToProject(result.output));
+  const output = relativeToProject(result.output);
+  const action = result.overwroteImage ? 'Overwrote' : 'Generated';
+  const message = chalk.green(result.forced ? `${action} ${output}` : output);
   if (spinner) spinner.succeed(message);
-  else console.log(`Generated: ${message}`);
+  else console.log(result.forced ? `${action}: ${output}` : `Generated: ${message}`);
+
+  if (result.forced) {
+    console.log(chalk.dim(`  Updated ${post} with image: '${result.imageReference}'`));
+  }
 
   if (result.title.trimmed) {
     console.warn(

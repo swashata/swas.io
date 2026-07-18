@@ -16,6 +16,7 @@
     "generate-favicons": "node scripts/generate-favicons.mjs",
     "generate-featured-images": "node scripts/generate-featured-images.mjs",
     "force-featured-image": "node scripts/force-featured-image.mjs",
+    "test:featured-images": "node --test scripts/featured-images/*.test.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

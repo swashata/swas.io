@@ -30,6 +30,9 @@ export const image = {
   titleWidth: 450,
   fontSize: 45,
   lineHeight: 54,
+  textColor: '#171717',
+  mutedTextColor: '#706D66',
+  smallTextScale: 0.75,
   maxLines: 4,
   maxTitleLength: 60,
 };

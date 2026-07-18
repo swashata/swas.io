@@ -48,7 +48,19 @@ Force regeneration for one writing or page entry:
 npm run force-featured-image -- ./src/content/writing/example.mdx
 ```
 
-Add `image_title` to a post's frontmatter to override the text rendered on its image.
+For example, regenerate the featured image for `/uses`:
+
+```bash
+npm run force-featured-image -- ./src/content/pages/uses.mdx
+```
+
+Add `image_title` to a post's frontmatter to override the text rendered on its image. Use
+`<br>` for an explicit line break and wrap text in `<small>...</small>` to render it at
+75% of the title size in the muted text color:
+
+```yaml
+image_title: The Gear<br><small>That Earned Its Place</small>
+```
 
 ## Project Map
 
