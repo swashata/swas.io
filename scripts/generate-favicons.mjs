@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { Resvg } from '@resvg/resvg-js';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const source = resolve(projectRoot, 'src/assets/icons/swas-io-logo.svg');
+const source = resolve(projectRoot, 'src/assets/icons/favicon.svg');
 const outputDirectory = resolve(projectRoot, 'public/favicon');
 
 const pngFavicons = [
