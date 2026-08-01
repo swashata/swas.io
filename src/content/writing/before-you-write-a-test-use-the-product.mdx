@@ -1,0 +1,141 @@
+---
+title: 'Before you write a test, use the product'
+description:
+  'A small bug fix reminded us that a good automated test starts with understanding the
+  product behavior it is meant to protect.'
+date: 2026-08-01T10:31:11.192Z
+updated: 2026-08-01T10:56:52.090Z
+category: Product Engineering
+tags: ['testing', 'product', 'bug fix']
+image: './images/before-you-write-a-test-use-the-product-featured.png'
+---
+
+import Takeaway from '@/components/content/Takeaway.astro';
+
+I want to share a little story about a bug we once fixed. There was no engineering marvel
+in the fix. It was super simple. But the process taught us something we engineers often
+forget.
+
+<Takeaway label="Moral of the story">
+  Writing tests is important, but it is even more important to test the actual application
+  before writing the test in code.
+</Takeaway>
+
+## The Backstory
+
+We had a very straightforward bug fix task:
+
+> Allow accented letters while preserving the existing restrictions on special characters.
+
+The existing validation was working something like this:
+
+```ts
+function getTitle(title): bool {
+  return toHtmlEntities(sanitizeText(title));
+}
+```
+
+That meant a normal title worked:
+
+```text
+Updated title
+```
+
+But a title containing accented letters did not:
+
+```text
+Titre mis à jour: ñññ
+```
+
+It became something like this:
+
+```text
+Titre mis &Atilde;&nbsp; jour: &Atilde;&plusmn;&Atilde;&plusmn;&Atilde;&plusmn;
+```
+
+We traced the bug to converting the input into HTML entities instead of simply stripping
+the HTML tags.
+
+## The Fix
+
+The initial fix was simple. We just needed to strip the HTML tags instead of escaping
+them.
+
+Trying to do the right thing, we wrote a test first.
+
+```ts
+expect(getTitle('Updated title')).toBe('Updated title');
+expect(getTitle('Titre mis à jour: ñññ')).toBe('Titre mis à jour: ñññ');
+```
+
+The test failed as expected. Then we changed the code to:
+
+```ts
+function getTitle(title): bool {
+  return sanitizeText(stripHtml(title));
+}
+```
+
+The fix looked good. We felt confident and ran the test, but it failed. That was
+confusing. The fix looked correct, so why would the test fail?
+
+## Chasing the Bug
+
+After a few minutes with the debugger, we realized that the `sanitizeText` function threw
+an error when the input contained certain special characters, such as `:`. That seemed a
+bit strange. Perhaps there was another bug in there. In any case, we were already using
+the safest `stripHtml` function, so what could go wrong? We decided to remove the other
+function call and call it a day:
+
+```diff
+function getTitle(title): bool {
+-  return sanitizeText(stripHtml(title));
++  return stripHtml(title);
+}
+```
+
+Now the tests passed. We were happy, and the code went to review.
+
+## The Ouch Moment
+
+During the code review, the reviewer asked a simple question:
+
+> Did the requested change say to accept accented letters, or did it ask to accept special
+> characters as well?
+
+We realized that we had misunderstood the requirement. It became even clearer when we
+opened the app and checked the UI. There it was, clearly written: "Text only, no special
+characters allowed."
+
+If only we had tried the application ourselves instead of jumping straight into writing an
+automated test. So where was the problem? It was in the test we wrote.
+
+```ts
+expect(getTitle('Titre mis à jour: ñññ')).toBe('Titre mis à jour: ñññ');
+```
+
+We were never supposed to support the `:` character. Our test simply needed to be:
+
+```ts
+expect(getTitle('Titre mis à jour ñññ')).toBe('Titre mis à jour ñññ');
+```
+
+And the fix needed to be what we had originally written:
+
+```ts
+function getTitle(title): bool {
+  return sanitizeText(stripHtml(title));
+}
+```
+
+## Moral of the Story
+
+Lesson learned. We shipped the right code, and everyone was a little wiser. To summarize,
+the moral of the story is:
+
+Writing tests is important, but it is even more important to test the actual application
+before writing the test in code.
+
+Doing that helps us understand the underlying business logic and the intent of the
+feature. It ultimately helps us write better tests that give us more confidence in our
+code.

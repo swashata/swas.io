@@ -100,7 +100,47 @@
   }
 
   .prose-editorial blockquote {
-    border-left-width: 2px;
+    position: relative;
+    margin-block: 2em;
+    padding-block: 1.25rem 1.35rem;
+    padding-inline: clamp(3rem, 8vw, 4rem) 0;
+    border-block: 1px solid var(--color-border);
+    border-inline-start: 0;
+    color: var(--color-foreground);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .prose-editorial blockquote::before {
+    position: absolute;
+    top: 1.2rem;
+    left: 0;
+    color: var(--color-accent);
+    content: '"';
+    font-family: var(--font-mono);
+    font-size: clamp(2.75rem, 2.25rem + 1.5vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .prose-editorial blockquote p {
+    font-size: 1.25em;
+    line-height: 1.65;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .prose-editorial blockquote > :first-child {
+    margin-top: 0;
+  }
+
+  .prose-editorial blockquote > :last-child {
+    margin-bottom: 0;
+  }
+
+  .prose-editorial blockquote p:first-of-type::before,
+  .prose-editorial blockquote p:last-of-type::after {
+    content: none;
   }
 
   .prose-editorial img {

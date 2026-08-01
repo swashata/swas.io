@@ -1,0 +1,61 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label = 'TL;DR' } = Astro.props;
+---
+
+<aside class="takeaway" aria-label={label}>
+  <p class="takeaway-label">
+    <span aria-hidden="true">//</span>
+    {label}
+  </p>
+  <div class="takeaway-content">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .takeaway {
+    display: grid;
+    gap: 0.75rem;
+    margin-block: 0 2.5em;
+    padding-block: 1rem 1.25rem;
+    border-block: 1px solid var(--color-border);
+  }
+
+  .takeaway-label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    margin: 0;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--color-accent);
+  }
+
+  .takeaway-label span {
+    color: var(--color-muted);
+  }
+
+  .takeaway-content {
+    color: var(--color-foreground);
+    font-family: var(--font-mono);
+    font-size: clamp(1.15rem, 1.05rem + 0.35vw, 1.35rem);
+    font-weight: 900;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  .takeaway-content :global(> :first-child) {
+    margin-top: 0;
+  }
+
+  .takeaway-content :global(> :last-child) {
+    margin-bottom: 0;
+  }
+</style>
