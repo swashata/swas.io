@@ -1,2 +1,3 @@
 npm run update:writing-updated
 npm exec lint-staged
+npm run validate:content
